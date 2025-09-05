@@ -1,0 +1,118 @@
+@import "tailwindcss";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+      /*Responsive*/
+      --breakpoint-xs: 320px;
+      --breakpoint-sm: 480px;
+      --breakpoint-md: 768px;
+      --breakpoint-lg: 1200px;
+}
+
+@layer base {
+      :root{
+            /*Global style*/
+            --background: #ffffff;
+            --text: #000000;
+            
+            /*Card-course style*/
+            --card-course-border: 0.5px solid rgba(0, 0, 0, 0.2);
+            --card-course-border-radius: 14px;
+            --card-course-shadow: 0px 4px 5px 0px rgba(0,0,0,0.2), 0px 6px 15px 0px rgba(0,0,0,0.1);
+            
+            /*Filter-course style*/
+            --filter-course-bg: #E5E7EB;
+            --filter-course-text: #000000;
+            --filter-course-border-radius: 14px;
+
+            /*Responsive font size*/
+            --text-base-h1: clamp(1.5rem,  1rem + 2vw, 3rem );                      /* 24px -> 48px */
+            --text-base-h2: clamp(1.25rem,  0.875rem + 0.75vw, 2.25rem );           /* 20px -> 32px */
+            --text-base-h3: clamp(1.125rem,  0.75rem + 0.75vw, 1.75rem );           /* 18px -> 26px */
+            --text-base-body-text: clamp(0.875rem,  0.75rem + 0.5vw, 1rem );        /* 14px -> 16px */
+            --text-base-small-text: clamp(0.75rem,  0.65rem + 0.25vw, 0.875rem );   /* 12px -> 15px */
+
+            /*Navbar style*/
+            --nav-background: rgba(0,0,0,0.1);
+            --nav-shadow: 0px 2px 15px 0px rgba(0,0,0,0.4);
+
+            /*Sidebar style*/
+            --sidebar-background: #ffffff;
+            --sidebar-border: 0.5px solid rgba(0,0,0,0.2);
+            --sidebar-shadow: 5px 0 15px 0px rgba(0,0,0,0.1), 5px 0px 5px 0px rgba(0,0,0,0.1);
+      }
+      .dark{
+            /*Global style after dark mode*/
+            --background: #000000;
+            --text: #ffffff;
+            
+            /*Card-course style after dark mode*/
+            --card-course-border: 0.5px solid rgba(255, 255, 255, 0.15);
+            --card-course-border-radius: 14px;
+            --card-course-shadow: 0px 4px 8px 0px rgba(255,255,255,0.2), 0px 6px 15px 0px rgba(255,255,255,0.1);
+            
+            /*Filter-course style dark mode*/
+            --filter-course-bg: #E5E7EB;
+            --filter-course-text: #000000;
+            --filter-course-border-radius: 14px; 
+
+             /*Navbar style*/
+            --nav-background: rgba(0,0,0,0.2);
+            --nav-shadow: 0px 4px 9px 0px rgba(255,255,255,0.4), 0px 5px 10px 0px rgba(255,255,255,0.2);
+
+            /*Sidebar style*/
+            --sidebar-background: #000001;
+            --sidebar-border: 0.5px solid rgba(255,255,255,0.2);
+            --sidebar-shadow: 5px 0 20px 0px rgba(255,255,255,0.1);
+      }
+}
+
+@layer base {
+     body {
+       @apply bg-[var(--background)] text-[var(--text)];
+     }
+}
+
+@layer components {     
+      .card-course {
+            border: var(--card-course-border);
+            border-radius: var(--card-course-border-radius);
+            box-shadow: var(--card-course-shadow);
+      }
+      .filter-course {
+            background-color: var(--filter-course-bg);
+            border-radius: var(--filter-course-border-radius);
+            color: var(--filter-course-text);
+      }
+      .typography-h1 {
+         
+                  font-size: var(--text-base-h1)
+       }
+       .typography-h2 {
+                  font-size: var(--text-base-h2)
+       }
+       .typography-h3 {
+                  font-size: var(--text-base-h3)
+       }
+       .typography-p {
+                  font-size: var(--text-base-body-text)
+       }
+       .typography-small {
+                  font-size: var(--text-base-small-text)
+       }
+       .nav {
+            background: var(--nav-background);
+            box-shadow: var(--nav-shadow);
+            position: sticky;
+            top: 0;
+       }
+       .sidebar{
+            background: var(--sidebar-background);
+            border-right: var(--sidebar-border);
+            box-shadow: var(--sidebar-shadow);
+            position: sticky;
+            top: 0;
+            left: 0
+       }
+}
