@@ -41,6 +41,8 @@
             --sidebar-background: #ffffff;
             --sidebar-border: 0.5px solid rgba(0,0,0,0.2);
             --sidebar-shadow: 5px 0 15px 0px rgba(0,0,0,0.1), 5px 0px 5px 0px rgba(0,0,0,0.1);
+
+             
       }
       .dark{
             /*Global style after dark mode*/
@@ -114,5 +116,10 @@
             position: sticky;
             top: 0;
             left: 0
+       }
+       .glassmorphism {
+            background-color: rgba(255,255,255,0.095);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
        }
 }
