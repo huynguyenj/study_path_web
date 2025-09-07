@@ -1,6 +1,10 @@
+import RegisterForm from '@/features/auth/components/RegisterForm'
+import AuthPageStructure from './AuthPageStructure'
 
 export default function RegisterPage() {
   return (
-    <div>RegisterPage</div>
+    <AuthPageStructure>
+      <RegisterForm/>
+    </AuthPageStructure>  
   )
 }
