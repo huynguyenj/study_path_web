@@ -5,3 +5,17 @@ export const Global_Path = {
       LOGIN: 'login',
       REGISTER: 'register'
 }
+
+
+export const Auth_Path = {
+      USER : {
+            DASHBOARD: 'dashboard',
+            STUDY_METHOD: 'study-method',
+            SCHEDULE: 'schedule',
+            QUIZZES: 'quizzes',
+            COURSES: 'courses'
+      },
+      ADMIN: {
+            DASHBOARD: 'dashboard'
+      }
+}

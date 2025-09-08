@@ -6,13 +6,16 @@ import { Provider } from 'react-redux'
 import { store } from './store/store.ts'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { env } from './configuration/environment.ts'
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+const queryClient = new QueryClient()
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Provider store={store}>
-      <GoogleOAuthProvider clientId={env.VITE_GOOGLE_CLIENT_ID}>
-        <App />
-      </GoogleOAuthProvider>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <GoogleOAuthProvider clientId={env.VITE_GOOGLE_CLIENT_ID}>
+          <App />
+        </GoogleOAuthProvider>
+      </Provider>
+    </QueryClientProvider>
   </StrictMode>
 )
