@@ -9,7 +9,7 @@ export default function NavbarItem({ name, path }: NavbarItemProps) {
   const location = useLocation()
   return (
       <li 
-          className={`typography-p uppercase px-5 py-2 rounded-2xl cursor-pointer hover:outline-solid ${location.pathname === path && 'outline-solid'}`} 
+          className={`typography-p px-5 py-[5.5px] rounded-2xl cursor-pointer hover:outline-solid ${location.pathname === path && 'outline-solid'}`} 
           onClick={() => navigate(path)}
       >
           {name}

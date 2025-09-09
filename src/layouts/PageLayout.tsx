@@ -5,12 +5,12 @@ import { Outlet } from 'react-router'
 
 export default function PageLayout() {
   return (
-      <div>
+      <div className='relative'>
             <Navbar/>
-            <main>
+            <main className=''>
                   <Outlet/>
             </main>
-            <Footer/>
+                  <Footer/>
       </div>
 )
 }
