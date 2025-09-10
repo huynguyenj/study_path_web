@@ -19,3 +19,7 @@ export { default as Inventory2OutlinedIcon } from '@mui/icons-material/Inventory
 export { default as DoubleArrowOutlinedIcon } from '@mui/icons-material/DoubleArrowOutlined'
 export { default as NotificationsIcon } from '@mui/icons-material/Notifications'
 export { default as PersonIcon } from '@mui/icons-material/Person'
+export { default as CalendarMonthIcon } from '@mui/icons-material/CalendarMonth'
+export { default as LibraryBooksIcon } from '@mui/icons-material/LibraryBooks'
+export { default as AutoAwesomeIcon } from '@mui/icons-material/AutoAwesome'
+export { default as ShowChartIcon } from '@mui/icons-material/ShowChart'

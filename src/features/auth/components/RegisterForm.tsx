@@ -12,7 +12,7 @@ export default function RegisterForm() {
   return (
     <FormStructure>
       <div>
-        <form onSubmit={handleSubmitForm} className='flex flex-col gap-10 my-2'>
+        <form onSubmit={handleSubmitForm} className='flex flex-col gap-6 my-2'>
           <Input name='fullname' placeHolder='Fullname' type='text' size='md' variant='standard'>
             <DriveFileRenameOutlineIcon/>
           </Input>
