@@ -5,9 +5,9 @@ import { Outlet } from 'react-router'
 
 export default function PageLayout() {
   return (
-      <div className='relative'>
+      <div className=''>
             <Navbar/>
-            <main className=''>
+            <main className='mb-20'>
                   <Outlet/>
             </main>
                   <Footer/>

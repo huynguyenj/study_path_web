@@ -3,28 +3,27 @@ import { motion } from 'motion/react'
 
 export default function Section1() {
   return (
-     <div className='px-10 mt-5 flex flex-col items-center lg:items-start lg:flex-row  justify-center gap-20 mb-20'>
+     <div className='px-10 flex flex-col items-center lg:items-start lg:flex-row  justify-center gap-20'>
         <motion.div
         initial={{ y:100, scale:0 }}
         whileInView= {{ y:[50, 0], scale: [0.5, 1] }}
-        viewport={{ once:false, amount:0.5 }}
+        viewport={{ once:false, amount:0.1 }}
         transition={{
             duration: 0.5,
             ease: 'easeInOut'
         }}
-        className='w-[30%]'>
-          <h3 className='typography-p font-semibold uppercase'>Dịch vụ của chúng tôi</h3>
-          <h2 className='relative typography-h2 uppercase font-bold '>
+        className='lg:w-[30%]'>
+          <h3 className='text-center lg:text-start typography-p font-semibold uppercase'>Dịch vụ của chúng tôi</h3>
+          <h2 className='relative typography-h2 text-center lg:text-start uppercase font-bold '>
             Chúng tôi đã làm gì?
               <motion.span
-             className='absolute w-25 h-1 bg-purple-400 -bottom-2 left-0'></motion.span>
-              <motion.span
-             className='absolute w-20 h-1 bg-purple-400 bottom-10 right-40'></motion.span>
+             className='hidden lg:block absolute w-25 h-1 bg-purple-400 -bottom-2 left-0'></motion.span>
           </h2>
-          <p className='mt-5'>Nếu bạn muốn tìm hiểu về những dịch vụ chúng tôi có. Sau đây sẽ là 1 số dịch vụ bạn sẽ đc trải nghiệm khi dùng sản phẩm của chúng tôi.</p>
+          <p className='text-center lg:text-start mt-5 w-[60%] mx-auto lg:w-full'>Nếu bạn muốn tìm hiểu về những dịch vụ chúng tôi có. Sau đây sẽ là 1 số dịch vụ bạn sẽ đc trải nghiệm khi dùng sản phẩm của chúng tôi.</p>
         </motion.div>
-      <div className='grid grid-cols-2 w-[50%] gap-10'>
+      <div className='grid md:grid-cols-2 lg:w-[50%] gap-10'>
         <motion.div
+        initial={{ scale: 0 }}
         viewport={{ once:false, amount: 0.1 }}
         whileInView={{
             scale: [0, 0.5, 1]
@@ -43,6 +42,7 @@ export default function Section1() {
           </div>
         </motion.div>
          <motion.div
+         initial={{ scale: 0 }}
          viewport={{ once:false, amount: 0.1 }}
          whileInView={{
             scale: [0, 0.5, 1]
@@ -61,6 +61,7 @@ export default function Section1() {
           </div>
         </motion.div>
          <motion.div
+         initial={{ scale: 0 }}
          viewport={{ once:false, amount: 0.1 }}
          whileInView={{
             scale: [0, 0.5, 1]
@@ -79,6 +80,7 @@ export default function Section1() {
           </div>
         </motion.div>
          <motion.div
+         initial={{ scale: 0 }}
          viewport={{ once:false, amount: 0.1 }}
          whileInView={{
             scale: [0, 0.5, 1]
