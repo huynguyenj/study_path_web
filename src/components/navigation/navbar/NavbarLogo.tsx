@@ -1,9 +1,10 @@
-import React from '@/assets/react.svg'
+import Logo from '@/assets/logo1.jpg'
+
 export default function NavbarLogo() {
   return (
       <div className='flex items-center gap-5'>
-            <img src={React} alt="Logo" className='w-10 h-10 rounded-full' />
-            <p className='typography-p'>Logo</p>
+            <img src={Logo} alt="Logo" className='w-10 h-10 rounded-full' />
+            <p className='typography-p'>Study Path</p>
       </div>
   )
 }

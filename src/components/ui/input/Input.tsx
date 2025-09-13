@@ -24,7 +24,7 @@ const getTypeChoice = (size: string, variant: string) => {
    const defaults: string = 'w-[100%] flex gap-3 relative'
    const variants:Record<string, string> = {
       outline: 'outline-1 rounded-[2px] focus-within:outline-blue-400',
-      filled: 'border-b-1 bg-[#2F3234] focus-within:border-b-blue-400',
+      filled: 'border-b-1 dark:bg-[#2F3234] focus-within:border-b-blue-400',
       standard: 'border-b-1 focus-within:border-b-blue-400'
    }
    const sizes: Record<string, string> = {

@@ -1,5 +1,5 @@
 import { DoubleArrowOutlinedIcon } from '@/assets/icons/mui-icon'
-import Logo from '@/assets/react.svg'
+import Logo from '@/assets/logo1.jpg'
 import useToggleSidebar from '@/hooks/state/useToggleSidebar'
 
 export default function SidebarLogo() {
