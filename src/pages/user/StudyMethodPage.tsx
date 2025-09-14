@@ -1,6 +1,8 @@
 
 export default function StudyMethodPage() {
   return (
-    <div>StudyMethodPage</div>
+    <div>
+      
+    </div>
   )
 }
