@@ -1,13 +1,7 @@
-import { EmojiEventsOutlinedIcon, LibraryBooksIcon, QueryBuilderOutlinedIcon, ShowChartIcon } from '@/assets/icons/mui-icon'
-import DashboardCard from '@/features/user-dashboard/components/DashboardCard'
+import ActivitySection from '@/features/user-dashboard/components/ActivitySection'
+import EventSection from '@/features/user-dashboard/components/EventSection'
+import StatisticSection from '@/features/user-dashboard/components/StatisticSection'
 import { getCurrentDate } from '@/utils/getCurrenDate'
-
-const dashboardDataList = [
-  { title: 'Courses', data: 12, icon: LibraryBooksIcon },
-  { title: 'Score', data: 87, icon: EmojiEventsOutlinedIcon },
-  { title: 'Study time', data: 124, icon: QueryBuilderOutlinedIcon },
-  { title: 'Streak', data: 28, icon: ShowChartIcon }
-]
 
 export default function DashboardPage() {
   return (
@@ -22,10 +16,10 @@ export default function DashboardPage() {
           <p className='font-bold'>{getCurrentDate()}</p>
         </div>
       </div>
-      <div className='grid xs:grid-cols-1 md:grid-cols-2 lg:flex mt-5 justify-between gap-5'>
-        {dashboardDataList.map(({ title, data, icon }) => (
-          <DashboardCard title={title} data={data} icon={icon} variant='green'/>
-        ))}
+     <StatisticSection/>
+      <div className='w-full flex flex-col gap-5 lg:gap-0 lg:flex-row justify-between mt-5'>
+        <ActivitySection/>
+        <EventSection/>
       </div>
     </div>
   )
