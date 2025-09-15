@@ -28,8 +28,8 @@
             --card-course-shadow: 0px 4px 5px 0px rgba(0,0,0,0.2), 0px 6px 15px 0px rgba(0,0,0,0.1);
             
               /*Card-dashboard style*/
-            --card-dashboard-border-radius: 14px;
-            --card-dashboard-shadow: 2px 6px 4px 0px rgba(0,0,0,0.2), 0px 5px 10px 0px rgba(0,0,0,0.1);
+            --card-radius: 14px;
+            --card-shadow: 2px 6px 4px 0px rgba(0,0,0,0.2), 0px 5px 10px 0px rgba(0,0,0,0.1);
 
             /*Filter-course style*/
             --filter-course-bg: #E5E7EB;
@@ -64,8 +64,8 @@
             --card-course-border-radius: 14px;
             --card-course-shadow: 0px 4px 8px 0px rgba(255,255,255,0.2), 0px 6px 15px 0px rgba(255,255,255,0.1);
 
-            --card-dashboard-border-radius: 14px;
-            --card-dashboard-shadow: 0px 0px 8px 0px rgba(255,255,255,0.2), 0px 6px 10px 0px rgba(255,255,255,0.1);
+            --card-border-radius: 14px;
+            --card-shadow: 0px 0px 8px 0px rgba(255,255,255,0.2), 0px 6px 10px 0px rgba(255,255,255,0.1);
             
             /*Filter-course style dark mode*/
             --filter-course-bg: #E5E7EB;
@@ -95,10 +95,9 @@
             border-radius: var(--card-course-border-radius);
             box-shadow: var(--card-course-shadow);
       }
-      .card-dashboard {
-            border: var(--card-dashboard-border);
-            border-radius: var(--card-dashboard-border-radius);
-            box-shadow: var(--card-dashboard-shadow);
+      .card {
+            border-radius: var(--card-radius);
+            box-shadow: var(--card-shadow);
       }
       .filter-course {
             background-color: var(--filter-course-bg);

@@ -3,7 +3,7 @@ import { EmojiEventsOutlinedIcon, QueryBuilderOutlinedIcon, ShowChartIcon } from
 
 export default function ActivitySection() {
   return (
-   <div className='lg:w-[60%] card-dashboard rounded-[5px] px-5 py-5'>
+   <div className='lg:w-[60%] card rounded-[5px] px-5 py-5'>
           <h3 className='typography-h3 font-semibold'>Hoạt động gần đây</h3>
           <div className='flex flex-col gap-5 lg:px-5 mt-5'>  
             <WorkLabel title='Học trong 8 giờ' sub='1 ngày trước' icon={QueryBuilderOutlinedIcon}/>

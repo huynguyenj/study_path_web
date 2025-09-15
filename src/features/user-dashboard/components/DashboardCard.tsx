@@ -16,7 +16,7 @@ export default function DashboardCard({ title, data, variant, icon: Icon } :Dash
       orange: 'bg-[#F97316]'
   }
   return (
-    <div className='card-dashboard flex justify-between  gap-5 w-[100%]  px-5 py-7 '>
+    <div className='card flex justify-between  gap-5 w-[100%]  px-5 py-7 '>
       <div className='typography-p'>
             <p className='text-[#747373]'>{title}</p>
             <h3 className='typography-h3 font-semibold'>{data}</h3>
