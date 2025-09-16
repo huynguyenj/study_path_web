@@ -8,11 +8,11 @@ export default function QuestionList() {
   return (
     <div>
       {questions?.map((question) => (
-            <div className='flex flex-col gap-5 mt-10'>
+            <div className='flex flex-col gap-5 mt-10' key={question.id}>
                   <p className='typography-p font-semibold'>{question.title}</p>
                   <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                         {question.choices.map((choice) => (
-                              <ChoiceContainer title={choice.title} sub={choice.description}/>
+                              <ChoiceContainer key={choice.id} title={choice.title} sub={choice.description}/>
                         ))}
                   </div>
             </div>

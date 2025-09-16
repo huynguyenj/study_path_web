@@ -18,7 +18,7 @@ export default function ProcessSection() {
         <p>{currentIndex} trên {fullPercentData}</p>
       </div>
       <div className="relative w-full h-3 bg-gray-400 rounded-2xl">
-        <span className='absolute inset-0 h-[100%] bg-blue-300 rounded-2xl' style={{
+        <span className='absolute inset-0 h-[100%] bg-blue-500 rounded-2xl' style={{
           width: `${calculateWidthPercent()}%`
         }}></span>
       </div>

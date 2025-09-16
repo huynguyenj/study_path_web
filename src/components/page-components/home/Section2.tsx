@@ -3,10 +3,10 @@ import Section2Card from './Section2Card'
 
 export default function Section2() {
   return (
-    <div className="relative bg-blue-400 dark:bg-white px-10 py-15 flex flex-col justify-center items-center gap-5 ">
+    <div className="relative bg-blue-400 dark:bg-white  py-15 flex flex-col justify-center items-center gap-5 ">
       {/* Left side */}
       <div className="sticky top-30">
-        <h2 className="typography-h2 text-white dark:text-black uppercase font-bold">
+        <h2 className="typography-h2 text-white text-center dark:text-black uppercase font-bold">
                   Làm sao để sử dụng dịch vụ của chúng tôi đúng cách ?
         </h2>
       </div>

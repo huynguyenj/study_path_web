@@ -9,4 +9,4 @@ export const ICON_QUESTION_SECTION: Record<string | number, ElementType<SvgIconP
       3: ShowChartIcon,
       4: PeopleIcon,
       5: StarRateIcon
-}
+}     

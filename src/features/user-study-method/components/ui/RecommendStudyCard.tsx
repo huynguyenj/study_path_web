@@ -1,0 +1,65 @@
+import Card from '@/components/ui/cards/Card'
+import type { StudyMethodType } from '../../types/study-type'
+import { CheckCircleIcon } from '@/assets/icons/mui-icon'
+import Tag from '@/components/ui/tags/Tag'
+import ProcessBar from '@/components/ui/process/ProcessBar'
+import StarEvaluation from '@/components/ui/process/StarEvaluation'
+
+export default function RecommendStudyCard({
+      id, 
+      name, 
+      description, 
+      difficulty, 
+      effectiveness, 
+      time_info, 
+      weight, 
+      pros, 
+      techniques
+}: StudyMethodType) {
+  return (
+   <Card variant='white' key={id}>
+      <h3 className='typography-h3 font-semibold'>{name}</h3>
+      <p className='typography-p'>{description}</p>
+      <div className='flex flex-col md:flex-row justify-between typography-p mt-3'>
+            <p className='font-semibold'>Điểm khớp</p>
+            <div className='flex md:w-[50%] items-center gap-2'>
+                  <ProcessBar variant='success' percent={weight}/>
+                  <p className='text-[#16A34A] font-semibold'>{weight}%</p>
+            </div>
+      </div>
+      <div className='flex flex-col md:flex-row justify-between typography-p mt-2'>
+           <p className='font-semibold'>Hiệu quả</p>
+           <div className='flex items-center gap-2'>
+                  {/* <div className='relative'><span className={`absolute inset-0 w-[${effectiveness}%]`}></span></div> */}
+                  <StarEvaluation limitStar={5} dataNumber={effectiveness}/>
+                  <p>{effectiveness}%</p>
+            </div>
+      </div>
+      <div className='flex flex-col md:flex-row justify-between typography-p mt-5'>
+            <div className='flex flex-col gap-1'>
+                  <p className='font-semibold'>Thời gian</p>
+                  <p>{time_info}</p>
+            </div>
+             <div className='flex flex-col gap-1'>
+                  <p className='font-semibold'>Độ khó</p>
+                  <p>{difficulty}</p>
+            </div>
+      </div>
+      <div className='flex flex-col gap-2 my-3'>
+            <p className='font-semibold'>Kĩ thuật then chốt</p>
+            {techniques?.map((data) => (
+                  <div className='flex gap-2' key={data.id}>
+                        <CheckCircleIcon sx={{ color:'green' }}/>
+                        <p className='typography-p'>{data.name}</p>
+                  </div>
+            ))}
+      </div>
+        <div className='flex flex-col gap-2'>
+            <p className='font-semibold'>Những lợi ích</p>
+            {pros?.map((data) => (
+                  <Tag content={data.pro} variant='primary' key={data.id}/>
+            ))}
+      </div>
+   </Card>
+  )
+}

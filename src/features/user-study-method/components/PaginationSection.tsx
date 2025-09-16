@@ -1,9 +1,11 @@
 import Button from '@/components/ui/button/Button'
 import { useContext } from 'react'
 import StudyMethodContext from '../context/StudyMethodProvider'
+import useGetRecommendMethod from '../hooks/useGetRecommendMethod'
 
 export default function PaginationSection() {
   const context = useContext(StudyMethodContext)
+  const { getStudyMethodRecommend } = useGetRecommendMethod()
   const limitPage = context?.limit
   const currentPage = context?.page
   return (
@@ -12,9 +14,14 @@ export default function PaginationSection() {
         Trước
       </Button>
       <p>Bước {currentPage} trên {limitPage}</p>
-      <Button size='md' variant='primary' onClick={context?.goToNextPage}>
-        Tiếp theo
-      </Button>
+      {currentPage === limitPage ? 
+        <Button size='sm' variant='primary' onClick={getStudyMethodRecommend}>
+          Nhận kết quả gợi ý
+        </Button>:
+        <Button size='md' variant='primary' onClick={context?.goToNextPage}>
+          Tiếp theo
+        </Button>
+      }
     </div>
   )
 }

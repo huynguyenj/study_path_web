@@ -25,7 +25,6 @@ export function StudyMethodProvider({ children }: StudyMethodProviderProps) {
   const goToNextPage = () => {
       const nextPage = page + 1
       const dataIndex = nextPage - 1
-      console.log('Data index', dataIndex)
       if (nextPage <= limit) {
             setPage(nextPage)
             setQuestionIndexPage(questionSectionList[dataIndex])
@@ -38,9 +37,6 @@ export function StudyMethodProvider({ children }: StudyMethodProviderProps) {
             setQuestionIndexPage(questionSectionList[previousPage])
       }
   }
-  console.log(page)
-  console.log(questionSectionList[5])
-  console.log('render at study page')
   return (
     <StudyMethodContext.Provider value={{ page, questionSectionList, limit, questionIndexPage, goToNextPage, goBackPage }}>
       {children}
