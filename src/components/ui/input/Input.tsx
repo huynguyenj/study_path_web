@@ -10,20 +10,21 @@ type InputProps = React.HTMLAttributes<HTMLInputElement> & PropsWithChildren & {
       type: 'text' | 'password' | 'number'
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(({ size, name, placeHolder, type, variant, children, ...props }, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(({ size, name, placeHolder, type, variant, children, error, ...props }, ref) => {
   return (
       <div className={getTypeChoice(size, variant)}>
         {children}
-         <input name={name} ref={ref} type={type} placeholder={placeHolder} className='w-[100%] focus:outline-none ' {...props}/>
+         <input name={name} ref={ref} type={type} placeholder={placeHolder} className='w-[100%] bg-none focus:outline-none' {...props}/>
+         {error && <p className='absolute typography-p text-red-500 -bottom-7 font-semibold'>{error}</p>}
       </div>
   )
 })
 
 const getTypeChoice = (size: string, variant: string) => {
-   const defaults: string = 'w-[100%] flex gap-3 '
+   const defaults: string = 'w-[100%] flex gap-3 relative'
    const variants:Record<string, string> = {
       outline: 'outline-1 rounded-[2px] focus-within:outline-blue-400',
-      filled: 'border-b-1 bg-[#2F3234] focus-within:border-b-blue-400',
+      filled: 'border-b-1 dark:bg-[#2F3234] focus-within:border-b-blue-400',
       standard: 'border-b-1 focus-within:border-b-blue-400'
    }
    const sizes: Record<string, string> = {

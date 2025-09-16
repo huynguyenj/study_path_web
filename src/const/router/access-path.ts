@@ -5,3 +5,13 @@ export const ACCESS_PUBLIC_PATH = {
       LOGIN: '/auth/login',
       REGISTER: '/auth/register'
 }
+
+export const PRIVATE_PATH = {
+      USER: {
+            DASHBOARD: '/user/dashboard',
+            STUDY_METHOD: '/user/study-method',
+            SCHEDULE: '/user/schedule',
+            QUIZZES: '/user/quizzes',
+            COURSES: '/user/courses'
+      }
+}
