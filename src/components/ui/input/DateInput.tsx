@@ -10,7 +10,23 @@ export default function DateInput({ name, label }:DateInputProps) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker name={name} label={label} defaultValue={dayjs(Date.now())} format='DD/MM/YYYY' />
+      <DatePicker name={name} label={label} defaultValue={dayjs(Date.now())} format='DD/MM/YYYY' slotProps={{
+        textField: {
+                InputLabelProps: {
+                      sx: {
+                           color:'white',
+                           borderColor:'white'
+                      }
+                  },
+                InputProps: {
+                      sx: {
+                           borderWidth: 1,
+                           color:'white',
+                           borderColor:'white'
+                       }
+                 }
+          }
+      }}/>
     </LocalizationProvider>
   )
 }

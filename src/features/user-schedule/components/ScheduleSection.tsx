@@ -9,9 +9,26 @@ export default function ScheduleSection() {
   const [date, setDate] = useState<Dayjs | null>()
   return (
       <div className='px-10 py-8 mt-8 card'>
-            <div>
+            <div className='card w-fit mb-5'>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker name='Schedule' label='Schedule date' format='DD/MM/YYYY' onChange={(newValue) => setDate(newValue)} />
+                  <DatePicker name='Schedule' label='Schedule date' format='DD/MM/YYYY' onChange={(newValue) => setDate(newValue)} slotProps={{
+                        textField: {
+                              InputLabelProps: {
+                                    sx:{
+                                          mixBlendMode:'difference',
+                                          color:'white'
+                                    }
+                              },
+                              InputProps: {
+                                    sx: {
+                                          fontWeight: 'bold',
+                                          backgroundColor:' #ececec',
+                                          border: 'none'
+                               }
+                                   
+                        }
+                  }
+  }}/>
             </LocalizationProvider>
             </div>
             <div>

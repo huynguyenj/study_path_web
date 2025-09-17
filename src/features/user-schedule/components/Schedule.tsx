@@ -20,9 +20,9 @@ export default function Schedule({ month, year, currentDay }: ScheduleProps) {
                         <p key={index} className='typography-p text-[#747373]'>{day}</p>
                   ))}
             </div>
-            <div className='grid grid-cols-7 justify-items-center place-items-center'>
+            <div className='grid grid-cols-7 w-full justify-items-center place-items-center'>
                   {getListDayOfWeekInSpecificMonth(month, year).map((day) => (
-                        <div className={`flex justify-center items-center py-5 w-[60%] h-[6rem] mt-2 rounded-[10px] ${day == currentDay && 'bg-blue-400 text-white'}`}>
+                        <div className={`flex justify-center items-center py-3 w-8 h-8 rounded-full md:w-[50%] md:h-[4rem] lg:h-[6rem] mt-2 md:rounded-[10px] ${day == currentDay && 'bg-blue-400 text-white'}`}>
                               {day && 
                               <p className='typography-p text-center'>{day}</p>
                               }
