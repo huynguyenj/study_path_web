@@ -8,7 +8,7 @@ export default function HeaderSection() {
   const currentPage = context?.page
   return (
     <div className='flex flex-col justify-center items-center'>
-      {context?.questionIndexPage.id ? 
+      {context?.questionIndexPage ? 
       <IconContainer icon={ICON_QUESTION_SECTION[currentPage ? currentPage -1 : 0]} containerType='circle' size='md' variant='primary'/>
       : <p>Loading...</p>
     }
