@@ -13,7 +13,7 @@ const variantChoice = (variant: string, size: string) => {
     primary: 'bg-blue-500 font-medium text-white typography-p',
     secondary: 'bg-gray-300 font-medium text-black typography-p',
     orange: 'bg-[#E89162] font-medium text-white typography-p',
-    inactive: 'bg-[#E5E7EB] text-[#CACFD5]'
+    inactive: 'bg-[#E5E7EB] text-gray-400'
     
   }
   const sizes: Record<string, string> = {

@@ -1,7 +1,7 @@
 
 type TagProps = {
       variant: 'primary' | 'success' | 'danger' | 'yellow'
-      content: string
+      content: string | undefined
 }
 export default function Tag({ content, variant }: TagProps) {
   return (
@@ -14,7 +14,7 @@ export default function Tag({ content, variant }: TagProps) {
 }
 
 const styleTag = (variant: TagProps['variant']) => {
-      const defaults = 'px-5 py-1 w-fit rounded-[10px]'
+      const defaults = 'px-5 py-1 w-fit rounded-[10px] font-semibold'
       const variants: Record<TagProps['variant'], string> = {
             primary: 'bg-[#DBEAFE] text-[#1E5DCB]',
             danger: 'bg-[#FEE2E2] text-[#991B1B]',

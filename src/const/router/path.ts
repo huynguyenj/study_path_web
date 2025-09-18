@@ -19,3 +19,8 @@ export const Auth_Path = {
             DASHBOARD: 'dashboard'
       }
 }
+
+export const Quiz_Path = {
+      TEST: 'quiz/:id',
+      RESULT: 'result/:id'
+}
