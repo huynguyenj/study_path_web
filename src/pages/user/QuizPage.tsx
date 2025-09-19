@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 export default function QuizPage() {
   const [tabValue, setTabValue] = useState('1')
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     setTabValue(newValue)
   }
 
