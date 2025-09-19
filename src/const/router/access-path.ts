@@ -13,5 +13,9 @@ export const PRIVATE_PATH = {
             SCHEDULE: '/user/schedule',
             QUIZZES: '/user/quizzes',
             COURSES: '/user/courses'
+      },
+      TEST: {
+            QUIZ_TEST: '/test/quiz/:id',
+            RESULT_QUIZ: '/test/result/:id'
       }
 }

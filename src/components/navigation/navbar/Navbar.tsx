@@ -6,7 +6,7 @@ import NavbarButtons from './NavbarButtons'
 
 export default function Navbar() {
   return (
-    <nav className="nav backdrop-blur-[8px] w-full md:rounded-b-[10px] flex items-center justify-between px-10 py-3 z-50">
+    <nav className="nav backdrop-blur-[8px] w-full flex items-center justify-between px-10 py-3 z-50">
       <NavbarLogo/>
       <NavbarMenu/>
       <NavbarResponsiveMenu/>

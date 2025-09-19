@@ -1,4 +1,4 @@
-import { Auth_Path, Global_Path } from '@/const/router/path'
+import { Auth_Path, Global_Path, Quiz_Path } from '@/const/router/path'
 import MainLayout from '@/layouts/MainLayout'
 import PageLayout from '@/layouts/PageLayout'
 import { createBrowserRouter } from 'react-router'
@@ -45,7 +45,6 @@ export const router = createBrowserRouter([
                   }
             ]
       },
-
       {
             path:'/user',
             Component: MainLayout,
@@ -81,6 +80,23 @@ export const router = createBrowserRouter([
                         }
                   }
 
+            ]
+      },
+      {
+            path: '/test',
+            children: [
+                  {
+                        path: Quiz_Path.TEST,
+                        lazy: {
+                              Component: async () => (await import('@/pages/user/QuizTestPage')).default
+                        }
+                  },
+                   {
+                        path: Quiz_Path.RESULT,
+                        lazy: {
+                              Component: async () => (await import('@/pages/user/QuizResultPage')).default
+                        }
+                  }
             ]
       }
 ])

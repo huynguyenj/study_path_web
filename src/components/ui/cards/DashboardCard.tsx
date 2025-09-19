@@ -1,7 +1,7 @@
 import type { SvgIconProps } from '@mui/material/SvgIcon'
 import type { ElementType } from 'react'
 
-type DashboardCardProps = {
+export type DashboardCardProps = {
       title: string
       data: string | number
       icon: ElementType<SvgIconProps>
