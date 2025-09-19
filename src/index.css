@@ -24,7 +24,6 @@
             
             /*Card-course style*/
             --card-course-border: 0.5px solid rgba(0, 0, 0, 0.2);
-            --card-course-border-radius: 14px;
             --card-course-shadow: 0px 4px 5px 0px rgba(0,0,0,0.2), 0px 6px 15px 0px rgba(0,0,0,0.1);
             
               /*Card-dashboard style*/
@@ -40,6 +39,7 @@
             --text-base-h1: clamp(1.5rem,  1rem + 2vw, 3rem );                      /* 24px -> 48px */
             --text-base-h2: clamp(1.25rem,  0.875rem + 0.75vw, 2.25rem );           /* 20px -> 32px */
             --text-base-h3: clamp(1.125rem,  0.75rem + 0.75vw, 1.75rem );           /* 18px -> 26px */
+            --text-base-h4: clamp(1.1rem, 0.5rem + 0.7vw , 1.5rem);                            /* 16px -> 18px */
             --text-base-body-text: clamp(0.875rem,  0.75rem + 0.5vw, 1rem );        /* 14px -> 16px */
             --text-base-small-text: clamp(0.75rem,  0.65rem + 0.25vw, 0.875rem );   /* 12px -> 15px */
 
@@ -61,7 +61,6 @@
             
             /*Card-course style after dark mode*/
             --card-course-border: 0.5px solid rgba(255, 255, 255, 0.15);
-            --card-course-border-radius: 14px;
             --card-course-shadow: 0px 4px 8px 0px rgba(255,255,255,0.2), 0px 6px 15px 0px rgba(255,255,255,0.1);
 
             --card-border-radius: 14px;
@@ -92,7 +91,6 @@
 @layer components {     
       .card-course {
             border: var(--card-course-border);
-            border-radius: var(--card-course-border-radius);
             box-shadow: var(--card-course-shadow);
       }
       .card {
@@ -113,6 +111,9 @@
        }
        .typography-h3 {
                   font-size: var(--text-base-h3)
+       }
+       .typography-h4 {
+                  font-size: var(--text-base-h4)
        }
        .typography-p {
                   font-size: var(--text-base-body-text)
