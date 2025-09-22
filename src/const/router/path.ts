@@ -16,7 +16,11 @@ export const Auth_Path = {
             COURSES: 'courses'
       },
       ADMIN: {
-            DASHBOARD: 'dashboard'
+            DASHBOARD: 'dashboard',
+            SPONSORS: 'sponsors',
+            USERS: 'user-management',
+            MEMBERSHIP: 'membership',
+            METHOD_STUDY: 'method'
       }
 }
 

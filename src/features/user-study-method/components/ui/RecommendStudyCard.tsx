@@ -30,7 +30,6 @@ export default function RecommendStudyCard({
       <div className='flex flex-col md:flex-row justify-between typography-p mt-2'>
            <p className='font-semibold'>Hiệu quả</p>
            <div className='flex items-center gap-2'>
-                  {/* <div className='relative'><span className={`absolute inset-0 w-[${effectiveness}%]`}></span></div> */}
                   <StarEvaluation limitStar={5} dataNumber={effectiveness}/>
                   <p>{effectiveness}%</p>
             </div>

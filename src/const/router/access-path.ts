@@ -17,5 +17,12 @@ export const PRIVATE_PATH = {
       TEST: {
             QUIZ_TEST: '/test/quiz/:id',
             RESULT_QUIZ: '/test/result/:id'
+      },
+      ADMIN: {
+            DASHBOARD: '/admin/dashboard',
+            SPONSORS: '/admin/sponsors',
+            USERS: '/admin/user-management',
+            MEMBERSHIP: '/admin/membership',
+            METHOD_STUDY: '/admin/method'
       }
 }
