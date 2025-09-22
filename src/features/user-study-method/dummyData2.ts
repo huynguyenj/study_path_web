@@ -1,4 +1,4 @@
-import type { StudyMethodComparisonType, StudyMethodType } from "./types/study-type"
+import type { StudyMethodComparisonType, StudyMethodType } from './types/study-type'
 
 export const studyMethodRecommendation: StudyMethodType[] = [
       {
