@@ -23,7 +23,7 @@ export default function ResultTestSection() {
                               <p>Số câu sai: <span className='bg-gray-300 w-7 h-7 rounded-full px-1'>{result?.numberIncorrectQuestion}</span></p>
                         </div>
                          <div className='mt-5'>
-                              <Button size='md' variant='inactive'  onClick={() => navigate(PRIVATE_PATH.USER.QUIZZES)}>
+                              <Button size='md' variant='inactive' onClick={() => navigate(PRIVATE_PATH.USER.QUIZZES)}>
                                     Quay lại trang quiz
                               </Button>
                          </div>
