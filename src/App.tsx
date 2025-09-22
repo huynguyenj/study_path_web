@@ -6,7 +6,6 @@ import { useEffect } from 'react'
 function App() {
     const theme = useAppSelector((state) => state.theme.value)
     useEffect(() => {
-        console.log('render')
         if (theme === 'dark') {
               document.documentElement.classList.add('dark')
         } else {

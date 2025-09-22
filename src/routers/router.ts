@@ -1,4 +1,5 @@
 import { Auth_Path, Global_Path, Quiz_Path } from '@/const/router/path'
+import AdminLayout from '@/layouts/AdminLayout'
 import MainLayout from '@/layouts/MainLayout'
 import PageLayout from '@/layouts/PageLayout'
 import { createBrowserRouter } from 'react-router'
@@ -95,6 +96,42 @@ export const router = createBrowserRouter([
                         path: Quiz_Path.RESULT,
                         lazy: {
                               Component: async () => (await import('@/pages/user/QuizResultPage')).default
+                        }
+                  }
+            ]
+      },
+      {
+            path: '/admin',
+            Component: AdminLayout,
+            children: [
+                  {
+                        path: Auth_Path.ADMIN.DASHBOARD,
+                        lazy: {
+                              Component: async () => (await import('@/pages/admin/AdminDashboard')).default
+                        }
+                  },
+                  {
+                        path: Auth_Path.ADMIN.SPONSORS,
+                        lazy: {
+                              Component: async () => (await import('@/pages/admin/AdminSponsor')).default
+                        }
+                  },
+                  {
+                        path: Auth_Path.ADMIN.USERS,
+                        lazy: {
+                              Component: async () => (await import('@/pages/admin/AdminUserManagement')).default
+                        }
+                  },
+                  {
+                        path: Auth_Path.ADMIN.MEMBERSHIP,
+                        lazy: {
+                              Component: async () => (await import('@/pages/admin/AdminMembershipManagement')).default
+                        }
+                  },
+                  {
+                        path: Auth_Path.ADMIN.METHOD_STUDY,
+                        lazy: {
+                              Component: async () => (await import('@/pages/admin/AdminMethodManagement')).default
                         }
                   }
             ]

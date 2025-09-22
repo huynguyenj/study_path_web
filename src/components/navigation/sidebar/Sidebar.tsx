@@ -3,9 +3,18 @@ import SidebarMenu from './SidebarMenu'
 import useToggleSidebar from '@/hooks/state/useToggleSidebar'
 import SidebarMenuCollapse from './SidebarMenuCollapse'
 import { motion } from 'motion/react'
+import { SideBarAdmin, SidebarItems } from '@/const/sidebar-items/sidebar'
+import { useMemo } from 'react'
 
-export default function Sidebar() {
+type SidebarProps = {
+  type: 'admin' | 'user'
+}
+
+export default function Sidebar({ type }: SidebarProps) {
   const context = useToggleSidebar()
+  const sidebarList = useMemo(() => {
+    return type === 'user' ? SidebarItems: SideBarAdmin
+  }, [type])
   return (
     <motion.aside 
     initial={false}
@@ -21,7 +30,7 @@ export default function Sidebar() {
       {context.isCollapse ? 
       <SidebarMenuCollapse/>
       :
-      <SidebarMenu/>
+      <SidebarMenu data={sidebarList}/>
     }
     </motion.aside>
   )

@@ -7,7 +7,7 @@ export default function MainLayout() {
   return (
     <main className='flex'>
       <SidebarProvider>
-          <Sidebar/>
+          <Sidebar type='user'/>
       </SidebarProvider>
         <div className='flex flex-col gap-5 w-full'>
           <MainLayoutHeader/>

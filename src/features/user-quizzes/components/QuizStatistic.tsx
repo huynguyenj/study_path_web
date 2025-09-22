@@ -6,7 +6,7 @@ export default function QuizStatistic() {
   return (
     <div className='grid xs:grid-cols-1 md:grid-cols-2 lg:flex mt-5 justify-between gap-5'>
       {quizStatisticData.map((data, index) => (
-            <DashboardCard data={data.number} title={data.title} icon={QUIZ_STATISTIC_ICON[index]} variant={QUIZ_STATISTIC_COLOR[index]}/>
+            <DashboardCard key={data.title} data={data.number} title={data.title} icon={QUIZ_STATISTIC_ICON[index]} variant={QUIZ_STATISTIC_COLOR[index]}/>
       ))}
     </div>
   )

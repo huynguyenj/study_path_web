@@ -17,7 +17,7 @@ export default function QuizHistory() {
         </thead>
         <tbody>
           {quizHistory?.map((data) => (
-            <tr>
+            <tr key={data.id}>
               <td className='py-4 font-semibold'>{data.name}</td>
               <td className=''>
                 <p className='font-semibold'>{(data.correctNumbers / data.totalQuestion)* 100}%</p>
