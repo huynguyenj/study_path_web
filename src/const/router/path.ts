@@ -17,7 +17,7 @@ export const Auth_Path = {
       },
       ADMIN: {
             DASHBOARD: 'dashboard',
-            SPONSORS: 'sponsors',
+            COURSES: 'course',
             USERS: 'user-management',
             MEMBERSHIP: 'membership',
             METHOD_STUDY: 'method'

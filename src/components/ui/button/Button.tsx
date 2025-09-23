@@ -8,11 +8,11 @@ export default function Button({ variant, size, ...props }: ButtonProps) {
   )
 }
 const variantChoice = (variant: string, size: string) => {
-  const defaults:string = 'flex item-center justify-center gap-1 rounded-[5px] hover:opacity-70 cursor-pointer'
+  const defaults:string = 'typography-p flex item-center justify-center gap-1 rounded-[5px] hover:opacity-70 cursor-pointer'
   const variants: Record<string, string> = {
-    primary: 'bg-blue-500 font-medium text-white typography-p',
-    secondary: 'bg-gray-300 font-medium text-black typography-p',
-    orange: 'bg-[#E89162] font-medium text-white typography-p',
+    primary: 'bg-blue-500 font-medium text-white',
+    secondary: 'bg-gray-300 font-medium text-black',
+    orange: 'bg-[#E89162] font-medium text-white',
     inactive: 'bg-[#E5E7EB] text-gray-400'
     
   }

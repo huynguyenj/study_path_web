@@ -19,7 +19,7 @@ export const SidebarItems: SidebarItemsProps[] = [
 
 export const SideBarAdmin: SidebarItemsProps[] = [
       { icon: DashboardIcon, name: 'Dashboard', path: PRIVATE_PATH.ADMIN.DASHBOARD },
-      { icon: SensorOccupiedIcon, name: 'Sponsors', path: PRIVATE_PATH.ADMIN.SPONSORS },
+      { icon: SensorOccupiedIcon, name: 'Courses Management', path: PRIVATE_PATH.ADMIN.COURSES },
       { icon: PersonIcon, name: 'User management', path: PRIVATE_PATH.ADMIN.USERS },
       { icon: CardMembershipIcon, name: 'Membership', path: PRIVATE_PATH.ADMIN.MEMBERSHIP },
       { icon: HelpIcon, name: 'Method Study', path: PRIVATE_PATH.ADMIN.METHOD_STUDY }

@@ -111,9 +111,9 @@ export const router = createBrowserRouter([
                         }
                   },
                   {
-                        path: Auth_Path.ADMIN.SPONSORS,
+                        path: Auth_Path.ADMIN.COURSES,
                         lazy: {
-                              Component: async () => (await import('@/pages/admin/AdminSponsor')).default
+                              Component: async () => (await import('@/pages/admin/AdminCourses')).default
                         }
                   },
                   {
