@@ -6,7 +6,7 @@ type InputProps = React.HTMLAttributes<HTMLInputElement> & PropsWithChildren & {
       error?: string
       onChange?: () => void
       size: 'sm' | 'md' | 'lg'
-      variant: 'outline' | 'filled' | 'standard'
+      variant: 'outline' | 'filled' | 'standard'|'rounded'
       type: 'text' | 'password' | 'number'
 }
 
@@ -21,11 +21,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ size, name, pla
 })
 
 const getTypeChoice = (size: string, variant: string) => {
-   const defaults: string = 'w-[100%] flex gap-2 relative'
+   const defaults: string = 'w-[100%] flex item-center justify-center gap-2 relative  focus-within:border-b-blue-400'
    const variants:Record<string, string> = {
-      outline: 'outline-1 rounded-[2px] focus-within:outline-blue-400',
-      filled: 'border-b-1 dark:bg-[#2F3234] focus-within:border-b-blue-400',
-      standard: 'border-b-1 focus-within:border-b-blue-400'
+      outline: 'outline-1 rounded-[2px]',
+      filled: 'border-b-1 dark:bg-[#2F3234]',
+      standard: 'border-b-1',
+      rounded: 'border-1 border-gray-primary rounded-[15px]'
    }
    const sizes: Record<string, string> = {
       sm: 'px-3 py-2',

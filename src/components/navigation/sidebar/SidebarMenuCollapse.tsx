@@ -1,10 +1,14 @@
-import { SidebarItems } from '@/const/sidebar-items/sidebar'
+import { type SidebarItemsProps } from '@/const/sidebar-items/sidebar'
 import { NavLink } from 'react-router'
 
-export default function SidebarMenuCollapse() {
+type SidebarMenuCollapseProps = {
+   sidebarItemList: SidebarItemsProps[]
+}
+
+export default function SidebarMenuCollapse({ sidebarItemList }: SidebarMenuCollapseProps) {
   return (
     <div className='mt-5'>
-        {SidebarItems.map((item) => {
+        {sidebarItemList.map((item) => {
         const Icon = item.icon
           return (
             <NavLink to={item.path} key={item.name} className={({ isActive }) => 

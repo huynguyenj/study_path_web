@@ -49,3 +49,6 @@ export { default as CardMembershipIcon } from '@mui/icons-material/CardMembershi
 export { default as HelpIcon } from '@mui/icons-material/Help'
 export { default as PaymentsIcon } from '@mui/icons-material/Payments'
 export { default as ImportContactsIcon } from '@mui/icons-material/ImportContacts'
+export { default as MoreHorizIcon } from '@mui/icons-material/MoreHoriz'
+export { default as AddIcon } from '@mui/icons-material/Add'
+export { default as IosShareIcon } from '@mui/icons-material/IosShare'

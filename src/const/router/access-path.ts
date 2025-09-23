@@ -20,7 +20,7 @@ export const PRIVATE_PATH = {
       },
       ADMIN: {
             DASHBOARD: '/admin/dashboard',
-            SPONSORS: '/admin/sponsors',
+            COURSES: '/admin/course',
             USERS: '/admin/user-management',
             MEMBERSHIP: '/admin/membership',
             METHOD_STUDY: '/admin/method'

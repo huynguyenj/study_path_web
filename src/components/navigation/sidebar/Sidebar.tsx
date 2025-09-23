@@ -28,7 +28,7 @@ export default function Sidebar({ type }: SidebarProps) {
     className='sidebar flex flex-col h-screen'>
       <SidebarLogo/>
       {context.isCollapse ? 
-      <SidebarMenuCollapse/>
+      <SidebarMenuCollapse sidebarItemList={sidebarList}/>
       :
       <SidebarMenu data={sidebarList}/>
     }
