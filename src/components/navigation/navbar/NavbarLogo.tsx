@@ -1,4 +1,4 @@
-import Logo from '@/assets/logo3.png'
+import Logo from '@/assets/Logo3.png'
 
 export default function NavbarLogo() {
   return (
