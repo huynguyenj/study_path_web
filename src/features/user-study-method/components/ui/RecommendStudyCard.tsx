@@ -4,6 +4,8 @@ import { CheckCircleIcon } from '@/assets/icons/mui-icon'
 import Tag from '@/components/ui/tags/Tag'
 import ProcessBar from '@/components/ui/process/ProcessBar'
 import StarEvaluation from '@/components/ui/process/StarEvaluation'
+import Button from '@/components/ui/button/Button'
+import useLocalStorage from '@/hooks/local-storage/useLocalStorage'
 
 export default function RecommendStudyCard({
       id, 
@@ -16,6 +18,13 @@ export default function RecommendStudyCard({
       pros, 
       techniques
 }: StudyMethodType) {
+  const { setItem } = useLocalStorage('method-study')
+  const handleChooseMethod = () => {
+      setItem<{id: string | number, name: string}>({
+            id: id,
+            name: name
+      })
+  }
   return (
    <Card variant='white' key={id}>
       <h3 className='typography-h3 font-semibold'>{name}</h3>
@@ -58,6 +67,11 @@ export default function RecommendStudyCard({
             {pros?.map((data) => (
                   <Tag content={data.pro} variant='primary' key={data.id}/>
             ))}
+      </div>
+      <div className='mt-5 flex items-center justify-center'>
+            <Button size='md' variant='primary' onClick={handleChooseMethod}>
+                  Chọn phương pháp
+            </Button>
       </div>
    </Card>
   )

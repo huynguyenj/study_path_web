@@ -1,6 +1,6 @@
 import type { SvgIconProps } from '@mui/material/SvgIcon'
 import { PRIVATE_PATH } from '../router/access-path'
-import { CalendarMonthOutlinedIcon, CardMembershipIcon, DashboardIcon, HelpIcon, HomeOutlinedIcon, Inventory2OutlinedIcon, LightbulbOutlinedIcon, PersonIcon, PsychologyOutlinedIcon, SensorOccupiedIcon } from '@/assets/icons/mui-icon'
+import { CalendarMonthOutlinedIcon, CardMembershipIcon, DashboardIcon, HelpIcon, HomeOutlinedIcon, LightbulbOutlinedIcon, PersonIcon, PsychologyOutlinedIcon, SensorOccupiedIcon } from '@/assets/icons/mui-icon'
 import type { ElementType } from 'react'
 
 export type SidebarItemsProps = {
@@ -14,7 +14,7 @@ export const SidebarItems: SidebarItemsProps[] = [
       { icon: LightbulbOutlinedIcon, name: 'Study method', path: PRIVATE_PATH.USER.STUDY_METHOD },
       { icon: CalendarMonthOutlinedIcon, name: 'Schedule', path: PRIVATE_PATH.USER.SCHEDULE },
       { icon: PsychologyOutlinedIcon, name: 'Quizzes', path: PRIVATE_PATH.USER.QUIZZES },
-      { icon: Inventory2OutlinedIcon, name: 'Courses', path: PRIVATE_PATH.USER.COURSES }
+      // { icon: Inventory2OutlinedIcon, name: 'Courses', path: PRIVATE_PATH.USER.COURSES }
 ]
 
 export const SideBarAdmin: SidebarItemsProps[] = [
