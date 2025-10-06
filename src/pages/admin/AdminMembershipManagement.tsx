@@ -1,6 +1,9 @@
+import MembershipPlanSection from '@/features/admin-membership/components/MembershipPlanSection'
 
 export default function AdminMembershipManagement() {
   return (
-    <div>AdminMembershipManagement</div>
+    <div>
+      <MembershipPlanSection/>
+    </div>
   )
 }

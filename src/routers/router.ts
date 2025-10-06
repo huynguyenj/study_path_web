@@ -1,4 +1,4 @@
-import { Auth_Path, Global_Path, Quiz_Path } from '@/const/router/path'
+import { Auth_Path, Global_Path, Quiz_Path } from '@/const/router/router-path'
 import AdminLayout from '@/layouts/AdminLayout'
 import MainLayout from '@/layouts/MainLayout'
 import PageLayout from '@/layouts/PageLayout'

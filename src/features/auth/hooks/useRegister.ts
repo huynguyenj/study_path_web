@@ -1,10 +1,13 @@
 import type { ChangeEvent } from 'react'
-import { AuthApi } from '../api/auth-api'
+// import { AuthApi } from '../api/auth-api'
 import type { RegisterInformation } from '../types/register-type'
 import useFormCheck from '@/hooks/component-hooks/useFormCheck'
+import useLocalStorage from '@/hooks/local-storage/useLocalStorage'
+import { toast } from 'react-toastify'
 
 export default function useRegister() {
   const { validate: isValid, errors } = useFormCheck<RegisterInformation>()
+  const { setItem } = useLocalStorage('auth-register')
   const handleSubmitForm = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = new FormData(e.currentTarget)
@@ -18,7 +21,9 @@ export default function useRegister() {
     }
     if (isValid(formData, { email: '', password: '' })) {
       try {
-        await AuthApi.register(formData)
+        // await AuthApi.register(formData)
+        setItem<RegisterInformation>(formData)
+        toast.success('Register successfully!')
       } catch (error) {
         console.log(error)
       }

@@ -6,13 +6,13 @@ import useGetUserData from '../hooks/useGetUserData'
 import { formatDate } from '@/utils/formatDate'
 import Tag from '@/components/ui/tags/Tag'
 import TableUserHeader from './TableUserHeader'
+import TableContainer from '@/components/ui/container/TableContainer'
 
 export default function TableUserManagement() {
   const { currentPage, goBackPage, goToNextPage, limit } = usePagination({ limit: 5 })
   const { users } = useGetUserData()
   return (
-    <div className='w-full overflow-x-auto'>
-      <div className='min-w-[1100px] max-w-[1200px] mx-auto'>
+      <TableContainer>
             <TableUserHeader/>
             <div className='px-5 py-2 flex justify-between text-gray-primary font-medium'>
                   <p className='w-20'>UserID</p>
@@ -40,7 +40,6 @@ export default function TableUserManagement() {
                   goBackPage={goBackPage} 
                   goToNextPage={goToNextPage} 
             />
-      </div>
-    </div>
+      </TableContainer>
   )
 }

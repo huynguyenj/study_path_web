@@ -5,13 +5,13 @@ import { MoreHorizIcon } from '@/assets/icons/mui-icon'
 import PaginationSimple from '@/components/pagination/PaginationSimple'
 import usePagination from '@/hooks/pagination/usePagination'
 import TableHeader from './TableHeader'
+import TableContainer from '@/components/ui/container/TableContainer'
 
 export default function CourseTableSection() {
   const { coursesData } = useGetCoursesData()
   const { currentPage, goBackPage, goToNextPage, limit } = usePagination({ limit: 5 })
   return (
-    <div className='w-full overflow-x-auto'>
-      <div className='min-w-[1100px] max-w-[1200px] mx-auto'>
+      <TableContainer>
       <TableHeader/>
             <div className='px-5 py-2 flex justify-between text-gray-primary font-medium'>
                   <p className='w-60'>Title</p>
@@ -40,7 +40,7 @@ export default function CourseTableSection() {
                   goBackPage={goBackPage} 
                   goToNextPage={goToNextPage} 
             />
-      </div>
-    </div>
+
+      </TableContainer>
   )
 }

@@ -1,8 +1,8 @@
-import { EmojiEventsOutlinedIcon, LibraryBooksIcon, QueryBuilderOutlinedIcon, ShowChartIcon } from '@/assets/icons/mui-icon'
+import { EmojiEventsOutlinedIcon, QueryBuilderOutlinedIcon, ShowChartIcon } from '@/assets/icons/mui-icon'
 import DashboardCard from '../../../components/ui/cards/DashboardCard'
 
 const dashboardDataList = [
-  { id: 1, title: 'Courses', data: 12, icon: LibraryBooksIcon },
+  // { id: 1, title: 'Courses', data: 12, icon: LibraryBooksIcon },
   { id: 2, title: 'Score', data: 87, icon: EmojiEventsOutlinedIcon },
   { id: 3, title: 'Study time', data: 124, icon: QueryBuilderOutlinedIcon },
   { id: 4, title: 'Streak', data: 28, icon: ShowChartIcon }
