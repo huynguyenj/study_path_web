@@ -15,7 +15,7 @@ export default function MethodTable() {
       <TableContainer>
      
             <div className='flex justify-end'>
-                  <Button size='md' variant='primary'>
+                  <Button type='normal' size='md' variant='primary'>
                         <AddIcon/>
                         Add new method
                   </Button>

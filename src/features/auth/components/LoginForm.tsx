@@ -20,7 +20,7 @@ export default function LoginForm() {
               <LockIcon/>
             </Input>
             </div>
-            <Button size='md' variant='primary'>
+            <Button type='normal' size='md' variant='primary'>
               Login
             </Button>
           </form>

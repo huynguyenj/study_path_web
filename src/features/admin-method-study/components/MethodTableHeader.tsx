@@ -11,7 +11,7 @@ export default function MethodTableHeader({ tabSections, currentTab, changeTab }
   return (
     <div className='flex items-center gap-2'>   
       {tabSections.map((tab) => (
-            <Button key={tab} size='md' variant={currentTab === tab ? 'primary' : 'inactive'} onClick={changeTab}>
+            <Button type='normal' key={tab} size='md' variant={currentTab === tab ? 'primary' : 'inactive'} onClick={changeTab}>
                   {tab}
             </Button>
       ))}
