@@ -69,7 +69,7 @@ export default function RecommendStudyCard({
             ))}
       </div>
       <div className='mt-5 flex items-center justify-center'>
-            <Button size='md' variant='primary' onClick={handleChooseMethod}>
+            <Button type='normal' size='md' variant='primary' onClick={handleChooseMethod}>
                   Chọn phương pháp
             </Button>
       </div>
