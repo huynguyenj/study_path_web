@@ -1,11 +1,11 @@
 import { IosShareIcon, PersonIcon, SearchIcon } from '@/assets/icons/mui-icon'
 import Button from '@/components/ui/button/Button'
 import { Input } from '@/components/ui/input/Input'
-import Select from '@/components/ui/input/Select'
+import { Select } from '@/components/ui/input/Select'
 export default function TableUserHeader() {
   return (
     <div className='flex items-center gap-5 justify-between mb-3'>
-      <Button size='md' variant='primary'>
+      <Button type='normal' size='md' variant='primary'>
         <IosShareIcon/>
         Export
       </Button>

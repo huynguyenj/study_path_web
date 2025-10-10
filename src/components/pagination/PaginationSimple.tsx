@@ -11,11 +11,11 @@ export default function PaginationSimple({ currentPage, limit, goBackPage, goToN
 
   return (
     <div className='flex justify-between items-center'>
-      <Button size='md' variant='inactive' onClick={goBackPage}>
+      <Button type='normal' size='md' variant='inactive' onClick={goBackPage}>
         Trước đó
       </Button>
       <p>{currentPage}/{limit}</p>
-      <Button size='md' variant='primary' onClick={goToNextPage}>
+      <Button type='normal' size='md' variant='primary' onClick={goToNextPage}>
         Tiếp theo
       </Button>
     </div>

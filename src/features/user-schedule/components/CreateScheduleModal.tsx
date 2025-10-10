@@ -10,6 +10,7 @@ import Button from '@/components/ui/button/Button'
 import Tag from '@/components/ui/tags/Tag'
 import { Select } from '@/components/ui/input/Select'
 import useCreateSchedule from '../hooks/useCreateSchedule'
+import { toast } from 'react-toastify'
 
 type CreateScheduleModalProps = {
   onClose: () => void
@@ -55,6 +56,7 @@ export default function CreateScheduleModal({ onClose }: CreateScheduleModalProp
       }
       if (isValid(data, { title: '' }) && !errorSubject) {
             await handleSubmitSchedule(data)
+            toast.success('Tạo lịch học thành công')
       }
   }
   return (  
@@ -80,7 +82,7 @@ export default function CreateScheduleModal({ onClose }: CreateScheduleModalProp
                   {errorSubject && <p className='text-red-500 font-bold'>{errorSubject}</p>}
             </div>
       {listSubject.length > 0 && 
-            <div className='mt-5 flex gap-2'>
+            <div className='flex gap-2'>
                   {listSubject.map((item, index) => (
                   <div key={index} className='relative w-fit cursor-pointer group flex gap-2 items-center'>
                         <div className='group-hover:-translate-x-8 transition-all duration-200 ease-in-out'>

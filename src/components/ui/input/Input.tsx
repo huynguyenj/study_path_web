@@ -18,8 +18,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ size, label, na
       <div className={getTypeChoice(size, variant)}>
         {children}
          <input name={name} ref={ref} type={type} placeholder={placeHolder} className='w-[100%] bg-none focus:outline-none' {...props}/>
-         {error && <p className='absolute right-0 typography-p text-red-500 -bottom-7 font-semibold'>{error}</p>}
       </div>
+         {error && <p className='typography-p text-end text-red-500 -bottom-7 font-semibold'>{error}</p>}
    </div>
   )
 })
