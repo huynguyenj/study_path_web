@@ -28,7 +28,7 @@ export default function CardCourse({ data }: CardCourseProps) {
             </div>
             <div className='flex justify-between items-center'>
                   <h3 className='typography-h3 font-bold'>{getVietNameCurrency(data.price)}</h3>
-                  <Button size='md' variant='primary'>
+                  <Button type='normal' size='md' variant='primary'>
                         <InfoIcon/>
                   </Button>
             </div>
