@@ -1,5 +1,5 @@
 import type { SvgIconProps } from '@mui/material/SvgIcon'
-import React, { type ElementType } from 'react'
+import React, { forwardRef, type ElementType } from 'react'
 
 type SelectProps = React.HTMLAttributes<HTMLSelectElement> & {
       options: Record<'name' | 'value', any>[]
@@ -11,9 +11,9 @@ type SelectProps = React.HTMLAttributes<HTMLSelectElement> & {
       variant: 'outline' | 'filled' | 'standard'|'rounded'
 }
 
-export default function Select({ id, name, options, size, variant, ...props }: SelectProps) {
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(({ id, name, options, size, variant, ...props }, ref) => {
   return (
-    <select name={name} id={id} className={getTypeChoice(size, variant)} {...props}>
+    <select ref={ref} name={name} id={id} className={getTypeChoice(size, variant)} {...props}>
       <option value="" className='flex gap-2'>
             {name}
       </option>
@@ -24,7 +24,7 @@ export default function Select({ id, name, options, size, variant, ...props }: S
       ))}
     </select>
   )
-}
+})
 
 const getTypeChoice = (size: string, variant: string) => {
    const defaults: string = 'w-fit focus-within:border-b-blue-400'

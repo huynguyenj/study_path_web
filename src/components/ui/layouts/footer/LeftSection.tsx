@@ -12,7 +12,7 @@ export default function LeftSection() {
       <p className='typography-p'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos beatae accusantium soluta placeat ad sit sapiente.
       </p>
-      <Button variant='orange' size='md'>
+      <Button type='normal' variant='orange' size='md'>
             Try it now!
             <ArrowRightIcon/>
       </Button>

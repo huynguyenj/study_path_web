@@ -1,7 +1,7 @@
 import { AddIcon, SearchIcon } from '@/assets/icons/mui-icon'
 import Button from '@/components/ui/button/Button'
 import { Input } from '@/components/ui/input/Input'
-import Select from '@/components/ui/input/Select'
+import { Select } from '@/components/ui/input/Select'
 export default function MembershipPlanHeader() {
   return (
     <div className='flex justify-between items-center'>
@@ -20,7 +20,7 @@ export default function MembershipPlanHeader() {
                   variant='rounded'
                   />
       </div>
-      <Button size='md' variant='primary'>
+      <Button type='normal' size='md' variant='primary'>
             <AddIcon/>
             Add Membership
       </Button>

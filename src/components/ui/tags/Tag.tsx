@@ -6,7 +6,7 @@ type TagProps = {
 export default function Tag({ content, variant }: TagProps) {
   return (
     <div className={styleTag(variant)}>
-      <p className="typography-p">
+      <p className="typography-p flex items-center gap-3">
         {content}
       </p>
     </div>

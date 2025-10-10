@@ -30,7 +30,7 @@ export default function ContactPage() {
           </Input>
         </div>
         <div className='flex justify-end'>
-        <Button size='md' variant='primary'>
+        <Button type='normal' size='md' variant='primary'>
           Submit
         </Button>
         </div>

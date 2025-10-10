@@ -22,7 +22,7 @@ export default function HeroSection() {
             <h3 className="typography-h3 mt-5 text-center lg:text-start">Quản lí lịch trình, tối ưu hóa việc học của bạn bằng công cụ hỗ trợ bạn tạo ra lịch học hiệu quả. Với công cụ AI sẽ giúp bạn đưa ra lịch học tối ưu nhất và hiệu quả nhất.</h3>
           </div>
           <div>
-            <Button size='md' variant='primary'>
+            <Button type='normal' size='md' variant='primary'>
               <p>Try it now!</p>
             </Button>
           </div>

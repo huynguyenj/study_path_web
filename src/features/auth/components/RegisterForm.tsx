@@ -26,7 +26,7 @@ export default function RegisterForm() {
             <MapIcon/>
           </Input>
           <DateInput label='Date of birth' name='dob'/>
-          <Button size='md' variant='primary'>
+          <Button type='normal' size='md' variant='primary'>
               Register
           </Button>
         </form>

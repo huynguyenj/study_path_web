@@ -14,7 +14,7 @@ export default function EvaluationTable() {
   return (
       <TableContainer>
              <div className='flex justify-end'>
-                  <Button size='md' variant='primary'>
+                  <Button type='normal' size='md' variant='primary'>
                         <AddIcon/>
                         Add new evaluation
                   </Button>

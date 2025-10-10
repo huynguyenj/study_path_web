@@ -2,6 +2,7 @@ import { forwardRef, type PropsWithChildren } from 'react'
 
 type InputProps = React.HTMLAttributes<HTMLInputElement> & PropsWithChildren & {
       placeHolder: string
+      label?: string
       name: string
       error?: string
       onChange?: () => void
@@ -10,18 +11,21 @@ type InputProps = React.HTMLAttributes<HTMLInputElement> & PropsWithChildren & {
       type: 'text' | 'password' | 'number'
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(({ size, name, placeHolder, type, variant, children, error, ...props }, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(({ size, label, name, placeHolder, type, variant, children, error, ...props }, ref) => {
   return (
+   <div className='relative flex flex-col gap-1'>
+      {label && <p className='absolute -top-6'>{label}</p>}
       <div className={getTypeChoice(size, variant)}>
         {children}
          <input name={name} ref={ref} type={type} placeholder={placeHolder} className='w-[100%] bg-none focus:outline-none' {...props}/>
-         {error && <p className='absolute typography-p text-red-500 -bottom-7 font-semibold'>{error}</p>}
       </div>
+         {error && <p className='typography-p text-end text-red-500 -bottom-7 font-semibold'>{error}</p>}
+   </div>
   )
 })
 
 const getTypeChoice = (size: string, variant: string) => {
-   const defaults: string = 'w-[100%] flex item-center justify-center gap-2 relative  focus-within:border-b-blue-400'
+   const defaults: string = 'w-[100%] flex item-center justify-center gap-2 relative focus-within:border-b-blue-400'
    const variants:Record<string, string> = {
       outline: 'outline-1 rounded-[2px]',
       filled: 'border-b-1 dark:bg-[#2F3234]',
