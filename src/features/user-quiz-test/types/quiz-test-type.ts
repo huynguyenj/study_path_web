@@ -1,12 +1,12 @@
 import type { QuizType } from '@/features/user-quizzes/types/quiz-type'
 
 export type ChoiceType = {
-      id: string | number
+      id: string
       name: string
 }
 
 export type QuestionType = {
-      id: string | number
+      id: string
       name: string
       description?: string
       point: number

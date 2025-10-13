@@ -7,7 +7,7 @@ export default function ResultTestSection() {
   const { result } = useGetResult()
   const navigate = useNavigate()
   return (
-    <div className='card w-[60%] flex justify-between mx-auto px-5 py-5'>
+    <div className='w-[60%] flex justify-between mx-auto px-6 py-10 shadow-[0px_0px_12px_0px_rgba(0,0,0,0.2)] dark:shadow-[0px_0px_12px_0px_rgba(255,255,255,0.3)]'>
       {result ? 
       <>
             <div>
@@ -19,8 +19,8 @@ export default function ResultTestSection() {
                   <div className='mt-5'>
                         <p className='typography-p font-semibold'>Câu trả lời</p>
                         <div className='flex gap-4'>
-                              <p>Số câu đúng: <span className='bg-gray-300 w-7 h-7 rounded-full px-1'>{result?.numberCorrectQuestion}</span></p>
-                              <p>Số câu sai: <span className='bg-gray-300 w-7 h-7 rounded-full px-1'>{result?.numberIncorrectQuestion}</span></p>
+                              <p>Số câu đúng: <span className='bg-gray-300 dark:bg-purple-500 w-7 h-7 rounded-full px-2'>{result?.numberCorrectQuestion}</span></p>
+                              <p>Số câu sai: <span className='bg-gray-300 dark:bg-purple-500 w-7 h-7 rounded-full px-2'>{result?.numberIncorrectQuestion}</span></p>
                         </div>
                          <div className='mt-5'>
                               <Button type='normal' size='md' variant='inactive' onClick={() => navigate(PRIVATE_PATH.USER.QUIZZES)}>
