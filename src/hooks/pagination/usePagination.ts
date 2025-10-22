@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
-type UsePaginationProps = {
-      limit: number
-}
-export default function usePagination({ limit }: UsePaginationProps) {
-  const [currentPage, setCurrentPage] = useState(1)
+
+export default function usePagination() {
+ const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+
 
    const goToNextPage = () => {
     const nextPage = currentPage + 1
-    if (nextPage <= limit) {
+    if (nextPage <= totalPages) {
       setCurrentPage(nextPage)
 
     }
@@ -20,6 +20,6 @@ export default function usePagination({ limit }: UsePaginationProps) {
     }
   }
   return {
-      currentPage, limit, goToNextPage, goBackPage
+      currentPage, totalPages, setTotalPages, goToNextPage, goBackPage
   }
 }

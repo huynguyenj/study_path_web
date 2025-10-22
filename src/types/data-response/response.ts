@@ -4,3 +4,11 @@ export interface ResponseStructure<T> {
       data: T,
       error: string
 }
+
+export interface PaginationResponse<T> {
+    currentPage: number
+    pageSize: number
+    totalCount: number
+    totalPages: number
+    items: T[]  
+}

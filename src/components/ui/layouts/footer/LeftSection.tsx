@@ -10,7 +10,7 @@ export default function LeftSection() {
             <p className='typography-p'>Study Path</p>
       </div>
       <p className='typography-p'>
-            Chúng ta mang tới dịch vụ giúp bạn học hiệu quả và hỗ trợ bạn học một cách có hệ thống. Hãy trải nghiệm dịch vụ của chúng tôi.
+            Copyright &copy; 2025 study-path, All rights reserved
       </p>
       {/* <Button type='normal' variant='orange' size='md'>
             Try it now!

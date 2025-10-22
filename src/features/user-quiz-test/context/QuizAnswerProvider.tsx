@@ -14,7 +14,7 @@ export function QuizAnswerProvider({ children }: QuizAnswerProviderProps) {
   const handleChoice = useCallback((questionId: string, choiceId: string) => {
     setChoices(prev => {
       const updated = prev.filter(question => question.questionId != questionId)
-      return [...updated, { questionId: questionId, choiceId: choiceId }]
+      return [...updated, { questionId: questionId, questionChoiceId: choiceId }]
     })
   }, [])
   console.log(choices)

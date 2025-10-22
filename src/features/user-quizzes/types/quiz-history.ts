@@ -1,9 +1,14 @@
 export type QuizHistoryType = {
-      id: string | number
-      name: string
-      correctNumbers: number
-      totalQuestion: number
+      id: string
+      quizName: string
+      quizId: string
+      finishAt: Date
+      startDate: Date
+      isPassed: boolean
       point: number
-      completeAt: string
+      accuracy: number
+      totalQuestion: number
+      totalPoints: number
       passScore: number
+      completeAt: string
 }

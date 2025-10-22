@@ -9,7 +9,7 @@ export default function QuestionSection() {
   return (
     <div className='card mt-10 px-5 py-8'>
       <div>
-        <QuestionSectionHeader title={context?.questionIndexPage.title} sub={context?.questionIndexPage.description}/>
+        <QuestionSectionHeader title={context?.questionIndexPage?.name} sub={context?.questionIndexPage?.description}/>
       </div>
       <div className='mt-10'>
         <QuestionList/>

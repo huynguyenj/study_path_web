@@ -7,10 +7,14 @@ import { formatDate } from '@/utils/formatDate'
 import Tag from '@/components/ui/tags/Tag'
 import TableUserHeader from './TableUserHeader'
 import TableContainer from '@/components/ui/container/TableContainer'
+import { useEffect } from 'react'
 
 export default function TableUserManagement() {
-  const { currentPage, goBackPage, goToNextPage, limit } = usePagination({ limit: 5 })
+  const { currentPage, goBackPage, goToNextPage, totalPages, setTotalPages } = usePagination()
   const { users } = useGetUserData()
+  useEffect(() => {
+      setTotalPages(users.length)
+  }, [users])
   return (
       <TableContainer>
             <TableUserHeader/>
@@ -36,7 +40,7 @@ export default function TableUserManagement() {
             ))}
             <PaginationSimple 
                   currentPage={currentPage} 
-                  limit={limit}
+                  limit={totalPages}
                   goBackPage={goBackPage} 
                   goToNextPage={goToNextPage} 
             />

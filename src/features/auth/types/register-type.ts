@@ -1,8 +1,7 @@
 export interface RegisterInformation {
       fullname?: string
-      dob?: string
-      email: string
-      phone?: string
+      dob?: Date
+      username: string
       address?: string
       password: string
 }

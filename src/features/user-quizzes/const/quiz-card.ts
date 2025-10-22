@@ -1,7 +1,7 @@
-type DifficultTypes = 'hard' | 'medium' | 'easy'
+// type DifficultTypes = 'Beginner' | 'Intermediate' | 'Advanced'
 type ColorTypes = 'success' | 'danger' | 'yellow'
-export const TagRuleQuiz: Record<DifficultTypes, ColorTypes> = {
-      easy: 'success',
-      medium: 'yellow',
-      hard: 'danger'
+export const TagRuleQuiz: Record<string, ColorTypes> = {
+      Beginner: 'success',
+      Intermediate: 'yellow',
+      Advanced: 'danger'
 }

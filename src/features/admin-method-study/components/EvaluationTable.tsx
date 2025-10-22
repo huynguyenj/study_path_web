@@ -7,10 +7,14 @@ import Tag from '@/components/ui/tags/Tag'
 import { COLOR_TAG } from '../const/color-tag'
 import PaginationSimple from '@/components/pagination/PaginationSimple'
 import usePagination from '@/hooks/pagination/usePagination'
+import { useEffect } from 'react'
 
 export default function EvaluationTable() {
   const { evaluationDataTable } = useGetEvaluationData()
-  const { currentPage, goBackPage, goToNextPage, limit } = usePagination({ limit: 5 })
+  const { currentPage, goBackPage, goToNextPage, totalPages, setTotalPages } = usePagination()
+  useEffect(() => {
+      setTotalPages(evaluationDataTable.length)
+  }, [evaluationDataTable])
   return (
       <TableContainer>
              <div className='flex justify-end'>
@@ -41,7 +45,7 @@ export default function EvaluationTable() {
             ))}
             <PaginationSimple 
                   currentPage={currentPage} 
-                  limit={limit}
+                  limit={totalPages}
                   goBackPage={goBackPage} 
                   goToNextPage={goToNextPage} 
             />

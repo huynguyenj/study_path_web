@@ -52,3 +52,5 @@ export { default as ImportContactsIcon } from '@mui/icons-material/ImportContact
 export { default as MoreHorizIcon } from '@mui/icons-material/MoreHoriz'
 export { default as AddIcon } from '@mui/icons-material/Add'
 export { default as IosShareIcon } from '@mui/icons-material/IosShare'
+export { default as InventoryIcon } from '@mui/icons-material/Inventory'
+export { default as LogoutIcon } from '@mui/icons-material/Logout'

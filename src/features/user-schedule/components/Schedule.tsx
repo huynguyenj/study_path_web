@@ -2,21 +2,31 @@ import useToggle from '@/hooks/state/useToggle'
 import { getListDayOfWeekInSpecificMonth } from '@/utils/generateDayData'
 import { useMemo, useState } from 'react'
 import TaskModal from './TaskModal'
+import type { ProcessType } from '../types/schedule-type'
+import { toast } from 'react-toastify'
 type ScheduleProps = {
    month: number
    year: number
    currentDay: number
+   processesList: ProcessType[]
 }
-export default function Schedule({ month, year, currentDay }: ScheduleProps) {
-  const [choiceDate, setChoiceDate] = useState<Date>(new Date(year, month, currentDay))
+export default function Schedule({ month, year, currentDay, processesList }: ScheduleProps) {
+  const [choiceProcess, setChoiceProcess] = useState<ProcessType>()
   const listDaysOfWeek = useMemo(() => {
       return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
   }, [])
   const { isToggle, handleToggle } = useToggle(false)
   const handleChoiceDate = (day: number | null) => {
-      setChoiceDate(new Date(year, month, day ?? 0))
+      const choiceDate = new Date(year, month, day ?? 0)
+      const isMatchWithDateProcess = processesList.find(({ date }) => new Date(date).getMonth() == choiceDate.getMonth() && new Date(date).getDate() === choiceDate.getDate() && new Date(date).getFullYear() === choiceDate.getFullYear())
+      if (!isMatchWithDateProcess) {
+        toast.error('Ngày bạn chọn không nằm trong khoảng thời gian lịch mà bạn đã chọn')
+        return
+      }
+      setChoiceProcess(isMatchWithDateProcess)
       handleToggle()
   }
+  console.log(choiceProcess)
   return (
     <div className='flex flex-col gap-8 mt-5'>
       <p className='typography-p text-center font-semibold'>Tháng {month + 1} {year}</p>
@@ -36,8 +46,8 @@ export default function Schedule({ month, year, currentDay }: ScheduleProps) {
                   ))}
             </div>
       </div>
-      {isToggle && 
-           <TaskModal currentDate={choiceDate} onClose={handleToggle}/>
+      {isToggle && choiceProcess && 
+           <TaskModal currentProcess={choiceProcess} onClose={handleToggle}/>
       }
     </div>
   )

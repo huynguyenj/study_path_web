@@ -1,9 +1,14 @@
 export type AnswerType = {
   questionId: string
-  choiceId: string  
+  questionChoiceId: string  
 }
 export type QuizAnswerType = {
-  start_at: Date
-  end_at: Date
-  answer: AnswerType[]
+  quizId: string
+  startAt: Date
+  finishAt: Date
+  answerList: AnswerType[]
+}
+
+export interface QuizAnswerResult extends QuizAnswerType {
+  id: string
 }

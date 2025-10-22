@@ -1,27 +1,32 @@
 import { useContext } from 'react'
-import type { QuestionType } from '../types/quiz-test-type'
 import QuizAnswerContext from '../context/QuizAnswerProvider'
+import type { QuizQuestionType } from '@/features/user-quizzes/types/quiz-type'
 
 type QuestionSectionProps = {
-      question: QuestionType
+      question: QuizQuestionType
 }
 
 export default function QuestionSection({ question }: QuestionSectionProps) {
   const context = useContext(QuizAnswerContext)
   const chosenColor = (choiceId: string) => {
-      return context?.choices.find((choice) => choice.choiceId === choiceId) ? '#1D89EA': '#747373'
+      const defaultStyle = 'px-3 py-5 border-2 mb-2 rounded-2xl cursor-pointer shadow-[5px_3px_0px_0px_rgba(0,0,0,0.5)]'
+      const chosenStyle = 'bg-[#212529] text-white border-none scale-101 transition-scale duration-300 ease'
+      const normalStyle = 'text-black border-[#747373]'
+      return `${defaultStyle} ${context?.choices.find((choice) => choice.questionChoiceId === choiceId) ? `${chosenStyle}`: `${normalStyle}`} `
   }
   return (
-    <div className='mt-5'>
-      <div className='typography-p flex gap-1 mb-5 font-semibold'>
-            <p>{question.name}</p>
-            <p>({question.point} điểm)</p>
+    <>
+      <div className='typography-h4 flex flex-col gap-1 font-semibold bg-[#242424] w-full rounded-t-2xl text-white text-center px-2 py-5 uppercase'>
+            <p>{question.description}</p>
+            {/* <p>({question.point} điểm)</p> */}
       </div>
-      {question.choices.map((choice) => (
-            <div key={choice.id} className='px-3 py-3 border-2 mb-2 rounded-2xl cursor-pointer' onClick={() => context?.handleChoice(question.id, choice.id)} style={{ borderColor: chosenColor(choice.id) }}>
-                  <p>{choice.name}</p>
-            </div>
-      ))}
-    </div>
+      <div className='px-5 py-3'>
+            {question.questionChoices.map((choice) => (
+                  <div key={choice.id} className={chosenColor(choice.id)} onClick={() => context?.handleChoice(question.id, choice.id)}>
+                        <p>{choice.name}</p>
+                  </div>
+            ))}
+      </div>
+    </>
   )
 }

@@ -1,17 +1,20 @@
 import { createContext, useEffect, useMemo, useState, type PropsWithChildren } from 'react'
-import { methodQuestion } from '../dummyData'
 import type { QuestionSectionType } from '../types/question-type'
-import type { AnswerType, MultipleChoice, SingleChoice } from '../types/answer-type'
+import type { AnswerType, Choice } from '../types/answer-type'
+import useGetEvaluationSections from '../hooks/useGetEvaluationSections'
+import useLocalStorage from '@/hooks/local-storage/useLocalStorage'
+import type { LoginResponse } from '@/features/auth/types/login-type'
+import LoadingScreen from '@/components/ui/loading/LoadingScreen'
 
 type StudyMethodContextProps = {
-      questionIndexPage: QuestionSectionType
-      questionSectionList: QuestionSectionType[]
+      questionIndexPage: QuestionSectionType | null
+      evaluationList: QuestionSectionType[]
       goToNextPage: () => void
       goBackPage: () => void
       handleChoice: (choiceId: string, questionId: string, typeQuestion: string) => void
       handleSubmit: () => void
-      choices: SingleChoice[]
-      multipleChoices: MultipleChoice[]
+      choices: Choice[]
+      answer: AnswerType[]
       page: number
       limit: number
 }
@@ -21,21 +24,31 @@ const StudyMethodContext = createContext<StudyMethodContextProps | undefined>(un
 type StudyMethodProviderProps = PropsWithChildren
 
 export function StudyMethodProvider({ children }: StudyMethodProviderProps) {
-  const [questionSectionList] = useState<QuestionSectionType[]>(methodQuestion)
+  const { evaluationList, loading } = useGetEvaluationSections()
   const [page, setPage] = useState(1)
-  const [questionIndexPage, setQuestionIndexPage] = useState<QuestionSectionType>(questionSectionList[0])
-  const [choices, setChoices] = useState<SingleChoice[]>([])
-  const [multipleChoices, setMultipleChoices] = useState<MultipleChoice[]>([])
+  const [questionIndexPage, setQuestionIndexPage] = useState<QuestionSectionType | null>(null)
+  const [choices, setChoices] = useState<Choice[]>([])
   const [answer, setAnswer] = useState<AnswerType[]>([])
+  const { getItem } = useLocalStorage('user-info')
+  const userId = useMemo(() => {
+     return getItem<LoginResponse>()?.userId
+  }, [])
   const limit = useMemo(() => {
-    return questionSectionList.length
-  }, [questionSectionList])
+    return evaluationList.length
+  }, [evaluationList])
+  useEffect(() => {
+     if (evaluationList.length > 0) {
+      setQuestionIndexPage(evaluationList[0])
+    }
+  }, [evaluationList])
+  
+
   const goToNextPage = () => {
       const nextPage = page + 1
       const dataIndex = nextPage - 1
       if (nextPage <= limit) {
             setPage(nextPage)
-            setQuestionIndexPage(questionSectionList[dataIndex])
+            setQuestionIndexPage(evaluationList[dataIndex])
       }
   }
   const goBackPage = () => {
@@ -43,43 +56,47 @@ export function StudyMethodProvider({ children }: StudyMethodProviderProps) {
       const dataIndex = previousPage - 1
       if (previousPage > 0) {
             setPage(previousPage)
-            setQuestionIndexPage(questionSectionList[dataIndex])
+            setQuestionIndexPage(evaluationList[dataIndex])
       }
   }
 
     const handleChoice = (choiceId: string, questionId: string, typeQuestion: string) => {
-      if (typeQuestion == 'single') {
-         setChoices((prev) => {
-          const updated = prev.filter(item => item.id !== questionId)
-          return [...updated, { id: questionId, choiceId }]
-      })
+      if (typeQuestion.toLocaleLowerCase() === 'single') {
+          setChoices((prevAnswer) => {
+            const removeSimilarAnswerInQuestion = prevAnswer.filter(answer => answer.evaluationQuestionId != questionId)
+            return [...removeSimilarAnswerInQuestion, { choiceId: choiceId, evaluationQuestionId: questionId }]
+          })
       } else {
-          setMultipleChoices((prev) => {
-            const previousQuestions = prev.filter((item) => item.id !== questionId)
-            const currentQuestion = prev.find((item) => item.id === questionId)
-            const listChoices = currentQuestion ? [...currentQuestion.choiceId.filter(choice => choice != choiceId), choiceId] : [choiceId]
-            return [...previousQuestions, { id: questionId, choiceId: listChoices }]
-      })
+        setChoices((prevAnswer) => {
+          return [...prevAnswer, { choiceId: choiceId, evaluationQuestionId: questionId }]
+        })
       }
     }
     useEffect(() => {
-      setAnswer((prev) => {
-        const previousEvaluation = prev.filter((item) => item.evaluationId !== questionIndexPage.id)
-        const listChoices = [...choices, ...multipleChoices]
-        const list: (SingleChoice | MultipleChoice)[] = []
-         questionIndexPage.question.map((item) => {
-          const choice = listChoices.find((question) => question.id === item.id)
-          return choice && list.push(choice) 
+      if (!questionIndexPage) return
+      setAnswer((prevAnswerOfEvaluation) => {
+        //Filter to get other evaluation section
+        const otherEvaluation = prevAnswerOfEvaluation.filter(evaluation => evaluation.evaluationId !== questionIndexPage.id) 
+        // List choices of current evaluation section
+        const currentListAnswerOfEvaluation: Choice[] = []
+        //Filter list choices of all evaluation and find the list choices that belong to current evaluation
+        questionIndexPage.evaluationQuestions.map((question) => {
+          const answerBelongToCurrentEvaluation = choices.find((answer) => answer.evaluationQuestionId === question.id)
+          return answerBelongToCurrentEvaluation && currentListAnswerOfEvaluation.push(answerBelongToCurrentEvaluation)
         })
-        return [...previousEvaluation, { evaluationId: questionIndexPage.id, question: [...list] }]
+        return [...otherEvaluation, { evaluationId: questionIndexPage.id, userId: userId, questions: [...currentListAnswerOfEvaluation] }]
       })
-    }, [choices, multipleChoices])
+    }, [choices])
 
     const handleSubmit = () => {
       console.log(answer)
     }
+
+    if (loading) {
+      return <LoadingScreen/>
+    }
   return (
-    <StudyMethodContext.Provider value={{ page, questionSectionList, limit, questionIndexPage, goToNextPage, goBackPage, handleChoice, choices, multipleChoices, handleSubmit }}>
+    <StudyMethodContext.Provider value={{ answer, page, evaluationList, limit, questionIndexPage, goToNextPage, goBackPage, handleChoice, choices, handleSubmit }}>
       {children}
     </StudyMethodContext.Provider>
   )

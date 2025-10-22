@@ -1,27 +1,28 @@
 import { Input } from '@/components/ui/input/Input'
-import { EmailIcon, LockIcon } from '@/assets/icons/mui-icon'
+import { LockIcon, PersonIcon } from '@/assets/icons/mui-icon'
 import Button from '@/components/ui/button/Button'
 import { Link } from 'react-router'
 import { ACCESS_PUBLIC_PATH } from '@/const/router/access-path'
 import useLogin from '../hooks/useLogin'
 import FormStructure from './FormStructure'
+import CircularProgress from '@mui/material/CircularProgress'
 
 export default function LoginForm() {
-  const { handleSubmitForm, errors } = useLogin()
+  const { handleSubmitForm, errors, loading } = useLogin()
   return (
     <FormStructure>
         <div className='mt-5'>
           <form onSubmit={handleSubmitForm} className='flex flex-col gap-10 my-2'>
             <div className='flex flex-col gap-5'>
-            <Input name='email' placeHolder='email' size='md' type='text' variant='standard' error={errors.email}>
-              <EmailIcon/>
+            <Input name='username' placeHolder='username' size='md' type='text' variant='standard' error={errors.username}>
+              <PersonIcon/>
             </Input>
             <Input name='password' placeHolder='password' size='md' type='password' variant='standard' error={errors.password}>
               <LockIcon/>
             </Input>
             </div>
-            <Button type='normal' size='md' variant='primary'>
-              Login
+            <Button disable= {loading ? true : false} type='normal' size='md' variant='primary'>
+                 {loading ? <CircularProgress color='inherit'/> : <p>Login</p>}
             </Button>
           </form>
           <div>

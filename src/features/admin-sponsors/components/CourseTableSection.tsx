@@ -6,10 +6,14 @@ import PaginationSimple from '@/components/pagination/PaginationSimple'
 import usePagination from '@/hooks/pagination/usePagination'
 import TableHeader from './TableHeader'
 import TableContainer from '@/components/ui/container/TableContainer'
+import { useEffect } from 'react'
 
 export default function CourseTableSection() {
   const { coursesData } = useGetCoursesData()
-  const { currentPage, goBackPage, goToNextPage, limit } = usePagination({ limit: 5 })
+  const { currentPage, goBackPage, goToNextPage, totalPages, setTotalPages } = usePagination()
+  useEffect(() => {
+      setTotalPages(coursesData.length)
+  }, [coursesData])
   return (
       <TableContainer>
       <TableHeader/>
@@ -36,7 +40,7 @@ export default function CourseTableSection() {
             ))}
             <PaginationSimple 
                   currentPage={currentPage} 
-                  limit={limit}
+                  limit={totalPages}
                   goBackPage={goBackPage} 
                   goToNextPage={goToNextPage} 
             />
