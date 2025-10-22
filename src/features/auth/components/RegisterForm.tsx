@@ -1,14 +1,15 @@
 import { Input } from '@/components/ui/input/Input'
-import { DriveFileRenameOutlineIcon, EmailIcon, LockIcon, MapIcon } from '@/assets/icons/mui-icon'
+import { DriveFileRenameOutlineIcon, LockIcon, MapIcon, PersonIcon } from '@/assets/icons/mui-icon'
 import DateInput from '@/components/ui/input/DateInput'
 import Button from '@/components/ui/button/Button'
 import { ACCESS_PUBLIC_PATH } from '@/const/router/access-path'
 import { Link } from 'react-router'
 import useRegister from '../hooks/useRegister'
 import FormStructure from './FormStructure'
+import CircularProgress from '@mui/material/CircularProgress'
 
 export default function RegisterForm() {
-  const { errors, handleSubmitForm } = useRegister()
+  const { errors, handleSubmitForm, loading } = useRegister()
   return (
     <FormStructure>
       <div>
@@ -16,8 +17,8 @@ export default function RegisterForm() {
           <Input name='fullname' placeHolder='Fullname' type='text' size='md' variant='standard'>
             <DriveFileRenameOutlineIcon/>
           </Input>
-          <Input name='email' placeHolder='Email' type='text' size='md' variant='standard' error={errors.email}>
-            <EmailIcon/>
+          <Input name='username' placeHolder='Username' type='text' size='md' variant='standard' error={errors.username}>
+            <PersonIcon/>
           </Input>
           <Input name='password' placeHolder='Password' type='password' size='md' variant='standard' error={errors.password}>
             <LockIcon/>
@@ -26,8 +27,8 @@ export default function RegisterForm() {
             <MapIcon/>
           </Input>
           <DateInput label='Date of birth' name='dob'/>
-          <Button type='normal' size='md' variant='primary'>
-              Register
+          <Button disable= {loading ? true : false} type='normal' size='md' variant='primary'>
+              {loading ? <CircularProgress color='inherit'/> : <p>Register</p>}
           </Button>
         </form>
          <div>

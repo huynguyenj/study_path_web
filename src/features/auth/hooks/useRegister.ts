@@ -1,36 +1,41 @@
-import type { ChangeEvent } from 'react'
-// import { AuthApi } from '../api/auth-api'
+import { useState, type ChangeEvent } from 'react'
 import type { RegisterInformation } from '../types/register-type'
 import useFormCheck from '@/hooks/component-hooks/useFormCheck'
-import useLocalStorage from '@/hooks/local-storage/useLocalStorage'
 import { toast } from 'react-toastify'
+import { AuthApi } from '../api/auth-api'
+import dayjs from 'dayjs'
 
 export default function useRegister() {
   const { validate: isValid, errors } = useFormCheck<RegisterInformation>()
-  const { setItem } = useLocalStorage('auth-register')
+  const [loading, setLoading] = useState(false)
   const handleSubmitForm = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = new FormData(e.currentTarget)
+    const dobString = form.get('dob') as string
+    const dob = dayjs(dobString, 'DD/MM/YYYY').toDate()
     const formData: RegisterInformation = {
-      email: form.get('email') as string,
+      username: form.get('username') as string,
       password: form.get('password') as string,
-      address: form.get('address') as string,
-      dob: form.get('dob') as string,
       fullname: form.get('fullname') as string,
-      phone: form.get('phone') as string
+      address: form.get('address') as string,
+      dob: dob
     }
-    if (isValid(formData, { email: '', password: '' })) {
+    if (isValid(formData, { username: '', password: '' })) {
       try {
-        // await AuthApi.register(formData)
-        setItem<RegisterInformation>(formData)
+        setLoading(true)
+        await AuthApi.register(formData)
         toast.success('Register successfully!')
       } catch (error) {
+        toast.error('Register fail')
         console.log(error)
+      } finally {
+        setLoading(false)
       }
     }
   }
   return {
       handleSubmitForm,
-      errors
+      errors,
+      loading
   }
 }

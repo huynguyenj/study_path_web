@@ -10,15 +10,15 @@ export default function PaginationSection() {
   const currentPage = context?.page
   return (
     <div className='flex items-center justify-between'>
-      <Button type='normal' size='md' variant='inactive' onClick={context?.goBackPage}>
+      <Button disable={false} type='normal' size='md' variant='inactive' onClick={context?.goBackPage}>
         Trước
       </Button>
       <p>Bước {currentPage} trên {limitPage}</p>
       {currentPage === limitPage ? 
-        <Button type='normal' size='sm' variant='primary' onClick={getStudyMethodRecommend}>
+        <Button disable={false} type='normal' size='sm' variant='primary' onClick={() => getStudyMethodRecommend(context?.answer)}>
           Nhận kết quả gợi ý
         </Button>:
-        <Button type='normal' size='md' variant='primary' onClick={context?.goToNextPage}>
+        <Button disable={false} type='normal' size='md' variant='primary' onClick={context?.goToNextPage}>
           Tiếp theo
         </Button>
       }

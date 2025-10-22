@@ -1,4 +1,4 @@
-import { EmailIcon, FacebookIcon, InstagramIcon, LocalPhoneIcon } from '@/assets/icons/mui-icon'
+import { EmailIcon, FacebookIcon } from '@/assets/icons/mui-icon'
 import SocialItem from './SocialItem'
 
 export default function MiddleSection() {
@@ -7,10 +7,8 @@ export default function MiddleSection() {
       <p className="typography-p font-semibold">Follow us</p>
       <div>
             <ul className="flex flex-col gap-3">
-                <SocialItem isALink={true} icon={FacebookIcon} content='facebook@.com'/>
-                <SocialItem isALink={true} icon={InstagramIcon} content='instagram@.com'/>
-                <SocialItem isALink={false} icon={EmailIcon} content='abc@gmail.com'/>
-                <SocialItem isALink={false} icon={LocalPhoneIcon} content='+84137949978'/> 
+                <SocialItem isALink={true} icon={FacebookIcon} link='https://www.facebook.com/share/1GBw7AY3pz/?mibextid=wwXIfr' content='StudyPath'/>
+                <SocialItem isALink={false} icon={EmailIcon} content='StudyPath23@gmail.com'/>
             </ul>
       </div>
     </div>

@@ -5,8 +5,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from 'dayjs'
+import type { ProcessType } from '../types/schedule-type'
 
-export default function ScheduleSection() {
+type ScheduleSectionProps = {
+  scheduleProcesses: ProcessType[]
+}
+
+export default function ScheduleSection({ scheduleProcesses }: ScheduleSectionProps) {
   const [date, setDate] = useState<Dayjs | null>(dayjs())
   return (
       <div className='px-10 py-8 mt-8 card'>
@@ -36,7 +41,9 @@ export default function ScheduleSection() {
                         <Schedule 
                               month={date?.month ? date.month() : dayjs().month()} 
                               year={date?.year ? date.year() : dayjs().year()} 
-                              currentDay={date?.date ? date.date() : dayjs().date()}/>
+                              currentDay={date?.date ? date.date() : dayjs().date()}
+                              processesList={scheduleProcesses}
+                        />
                 
             </div>
       </div>

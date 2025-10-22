@@ -2,10 +2,11 @@ type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
       variant: 'primary' | 'secondary'| 'orange'|'inactive'
       size: 'sm' | 'md' | 'lg' | 'circle'
       type: 'rounded' | 'normal'
+      disable?: boolean
 }
-export default function Button({ variant, size, type, ...props }: ButtonProps) {
+export default function Button({ variant, size, type, disable, ...props }: ButtonProps) {
   return (
-    <button className={variantChoice(variant, size, type)} {...props}/>
+    <button disabled = {disable} className={variantChoice(variant, size, type)} {...props}/>
   )
 }
 const variantChoice = (variant: string, size: string, type: string) => {

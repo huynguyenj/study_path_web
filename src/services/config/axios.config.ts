@@ -6,14 +6,18 @@ import { AuthApi } from '../../features/user/api/auth-api'
 import { saveToken } from '../../features/auth/auth-slice/token-slice'
 
 export const apiPrivate = axios.create({
-      baseURL: env.BASE_API_ENDPOINT,
-      withCredentials: true,
-      timeout: 2000
+      baseURL: env.BASE_API_ENDPOINT
 })
 
 export const apiPublic = axios.create({
       baseURL: env.BASE_API_ENDPOINT,
       withCredentials: true
+})
+
+apiPublic.interceptors.response.use((response: AxiosResponse) => {
+     return response.data
+}, (error: AxiosError) => {
+     return Promise.reject(error) 
 })
 
 apiPrivate.interceptors.request.use(( config: InternalAxiosRequestConfig ) => {

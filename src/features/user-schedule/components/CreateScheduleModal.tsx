@@ -10,17 +10,18 @@ import Button from '@/components/ui/button/Button'
 import Tag from '@/components/ui/tags/Tag'
 import { Select } from '@/components/ui/input/Select'
 import useCreateSchedule from '../hooks/useCreateSchedule'
-import { toast } from 'react-toastify'
+import LoadingScreen from '@/components/ui/loading/LoadingScreen'
 
 type CreateScheduleModalProps = {
+  onRefresh: () => void
   onClose: () => void
 }
 
-export default function CreateScheduleModal({ onClose }: CreateScheduleModalProps) {
+export default function CreateScheduleModal({ onClose, onRefresh }: CreateScheduleModalProps) {
   const [listSubject, setListSubject] = useState<Omit<SubjectType, 'id'>[]>([])
   const [errorSubject, setErrorSubject] = useState<string>()
   const { errors, validate: isValid } = useFormCheck<CreateScheduleType>()
-  const { handleSubmitSchedule } = useCreateSchedule()
+  const { handleSubmitSchedule, isLoading } = useCreateSchedule()
   const subjectInputRef = useRef<HTMLInputElement>(null)
   const selectInputRef = useRef<HTMLSelectElement>(null)
   const addSubjectToList = () => {
@@ -40,32 +41,40 @@ export default function CreateScheduleModal({ onClose }: CreateScheduleModalProp
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
       e.preventDefault()
       const form = new FormData(e.currentTarget)
-      const startDate = form.get('start_date') ? new Date(form.get('start_date') as string) : new Date()
-      const endDate = form.get('end_date') ? new Date(form.get('end_date') as string) : new Date()
+      const startDate = form.get('startDate') ? new Date(form.get('startDate') as string) : new Date()
+      startDate.setHours(startDate.getHours() + 2)
+      const endDate = form.get('endDate') ? new Date(form.get('endDate') as string) : new Date()
       const data: CreateScheduleType = {
-            amount_subject: listSubject.length,
-            start_date: startDate,
-            end_date: endDate,
+            amountSubject: listSubject.length,
+            totalTime: form.get('totalTime') as string,
+            startDate: startDate,
+            endDate: endDate,
+            createAt: new Date(),
             title: form.get('title') as string,
-            subject: listSubject
+            subjectListRequest: listSubject
       }
       if (listSubject.length > 0) {
             setErrorSubject(undefined)
       } else {
             setErrorSubject('Môn học cần ít nhất là 1 môn')
       }
-      if (isValid(data, { title: '' }) && !errorSubject) {
+      if (isValid(data, { title: '', totalTime: '' }) && !errorSubject) {
             await handleSubmitSchedule(data)
-            toast.success('Tạo lịch học thành công')
+            onRefresh()
       }
+  }
+
+  if (isLoading) {
+    return <LoadingScreen/>
   }
   return (  
      <Modal title='Tạo lịch học' onClose={onClose}>
       <form onSubmit={handleSubmit} className='mt-8 flex flex-col gap-5'>
             <div className='flex flex-col gap-7'>
                   <Input label='Tên' name='title' placeHolder='Tên' size='md' type='text' variant='outline' error={errors.title}/>
-                  <DateInput minDate={new Date()} label='Thời gian bắt đầu' name='start_time'/>
-                  <DateInput minDate={new Date()} label='Thời gian kết thúc' name='end_time'/>
+                  <Input label='Tổng thời gian' name='totalTime' placeHolder='Tổng thời gian' size='md' type='text' variant='outline' error={errors.totalTime}/>
+                  <DateInput minDate={new Date()} label='Thời gian bắt đầu' name='startDate'/>
+                  <DateInput minDate={new Date()} label='Thời gian kết thúc' name='endDate'/>
             </div>
             <div className='flex items-center gap-2 mt-3'>
             <Input ref={subjectInputRef} label='Tên môn học' name='name' placeHolder='Tên môn học' size='md' type='text' variant='outline'/>

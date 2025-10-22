@@ -3,44 +3,55 @@ import Button from '@/components/ui/button/Button'
 import Modal from '@/components/ui/popup/Modal'
 import Tag from '@/components/ui/tags/Tag'
 import useGetTasksByCurrentDate from '../hooks/useGetTasksByCurrentDate'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Input } from '@/components/ui/input/Input'
 import useCreateTask from '../hooks/useCreateTask'
+import CircularProgress from '@mui/material/CircularProgress'
+import LoadingScreen from '@/components/ui/loading/LoadingScreen'
+import type { ProcessType } from '../types/schedule-type'
+import useSubmitTask from '../hooks/useSubmitTask'
+import { getTimeFromDate } from '@/utils/timeHelper'
+import { formatDate } from '@/utils/formatDate'
 type TaskModalProps = {
-   currentDate: Date
+   currentProcess: ProcessType
    onClose: () => void
 }
-export default function TaskModal({ currentDate, onClose }: TaskModalProps) {
-  const { tasks, getTaskByDate } = useGetTasksByCurrentDate()
-  const { errors, handleSubmitTask } = useCreateTask()
+export default function TaskModal({ currentProcess, onClose }: TaskModalProps) {
+  const { tasks, getTaskByProcess, loading } = useGetTasksByCurrentDate()
+  const { errors, handleSubmitTask, loading: loadingTask, tasks: newTasks } = useCreateTask(currentProcess.id)
+  const { handleCompleteTask } = useSubmitTask()
   useEffect(() => {
-      getTaskByDate(currentDate)
-  }, [currentDate])
+      getTaskByProcess(currentProcess.id)
+  }, [currentProcess, newTasks])
+
+  const sortTasks = useMemo(() => {
+      return [...tasks].sort((a, b) => {
+        const timeA = new Date(a.startTime).getTime()
+        const timeB = new Date(b.startTime).getTime()
+        return timeA - timeB 
+      })
+  }, [tasks])
+
+    if (loadingTask) {
+      return <LoadingScreen/>
+  }
+  const handleTask = async (taskId: string) => {
+      await handleCompleteTask(taskId)
+      getTaskByProcess(currentProcess.id)
+  }
   return (
       
             <Modal title='Tasks' onClose={onClose}>
-                  <h4 className='typography-h4'>Danh sách tasks:</h4>
-                  <div className='flex flex-2 flex-col gap-5'>
-                        <div className='flex items-center gap-2'>
-                              <form onSubmit={handleSubmitTask} className='flex gap-3 items-center'>
-                                    <Button size='sm' type='normal' variant='primary'>
-                                           Tạo task cho hôm nay
-                                    </Button>
-                                    <Input name='title' placeHolder='title' size='sm' type='text' variant='filled' error={errors.title}/>
-                                    <Input name='description' placeHolder='Mô tả chi tiết' size='sm' type='text' variant='filled' error={errors.description}/>
-                                    <Input name='amount' placeHolder='Số lượng task' size='sm' type='number' variant='filled' error={errors.amount}/>
-                              </form>
-                        </div>
-                        {/* <Select name='sort' options={[
-                              { name: 'newest', value: 'Mới nhất' },
-                              { name: 'oldest', value: 'Cũ nhất' }
-                        ]}
-                              size='sm'
-                              variant='rounded'
-                        /> */}
-                  </div>
+                  <p>Ngày: {formatDate(new Date(currentProcess.date))}</p>
+                  <h4 className='typography-h4'>Danh sách môn hôm nay: {currentProcess.subjects.map((subject) => subject.name).join(', ')}</h4>    
                   <div>
-                        {tasks.length > 0 ? tasks.map((task) => (
+                        {loading ? 
+                        <div className='flex items-center justify-center mt-5'>
+                              <CircularProgress/>
+                        </div>
+                              :
+                        <>
+                        {sortTasks.length > 0 ? sortTasks.map((task) => (
                               <div key={task.id} className='relative flex justify-between items-center mt-5'>
                                     <div className='flex flex-2 items-center justify-between pr-20'>
                                           <div>
@@ -48,14 +59,14 @@ export default function TaskModal({ currentDate, onClose }: TaskModalProps) {
                                                 <p>{task.description}</p>
                                           </div>
                                           <div className='flex items-center justify-between'>
-                                                <p>{task.start_time}</p>
+                                                <p>{getTimeFromDate(new Date(task.startTime))}</p>
                                                 <ArrowRightIcon/>
-                                                <p>{task.end_time}</p>
+                                                <p>{getTimeFromDate(new Date(task.endTime))}</p>
                                           </div>
                                     </div>
                                     <Tag content={task.isCompleted ? 'Đã xong' : 'Chưa xong'} variant={task.isCompleted ? 'success': 'danger'}/>
                                     {!task.isCompleted && 
-                                          <div className='ml-3'>
+                                          <div className='ml-3' onClick={() => handleTask(task.id)}>
                                                 <CheckCircleIcon sx={{ color:'#22C55E' }} />
                                           </div>
                                     }
@@ -67,8 +78,25 @@ export default function TaskModal({ currentDate, onClose }: TaskModalProps) {
                                           </div>
                                     }
                               </div>
-                        )) : <p className='typography-p text-gray-primary font-medium text-center'>Chưa có task! Bạn hãy tạo task</p>}
+                        )) : <p className='typography-p text-gray-primary font-medium text-center p-10'>Chưa có task! Bạn hãy tạo task</p>}      
+                        </>
+                        }
                   </div>
+                              <form onSubmit={handleSubmitTask} className='flex flex-col gap-3 items-center'>
+                                    <div className='flex flex-col gap-2'>
+                                          <Input name='title' placeHolder='title' size='sm' type='text' variant='outline' error={errors.title}/>
+                                          <Input name='description' placeHolder='Mô tả chi tiết' size='sm' type='text' variant='outline' error={errors.description}/>
+                                          <Input name='amount' placeHolder='Số lượng task' size='sm' type='number' variant='outline' error={errors.amount}/>
+                                          <div className='flex gap-3 items-center'>
+                                                <p>Giờ bạn muốn bắt đầu làm tasks</p>
+                                                <Input name='hours' min={0} max={23} placeHolder='Giờ' size='sm' type='number' variant='outline' error={errors.amount}/>
+                                                <Input name='minutes' min={0} max={59} placeHolder='Phút' size='sm' type='number' variant='outline' error={errors.amount}/>
+                                          </div>
+                                    </div>
+                                       <Button size='sm' type='normal' variant='primary'>
+                                           Tạo task cho hôm nay
+                                    </Button>
+                              </form>
             </Modal>
   )
 }

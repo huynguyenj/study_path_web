@@ -1,4 +1,6 @@
-export type StatisticProps = {
-      title: string
-      number: number | string
+export type QuizStatisticType = {
+      totalCompleteQuiz: number
+      totalQuizPassed: number
+      totalTime: number
+      averageScore: number
 }

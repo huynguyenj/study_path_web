@@ -9,14 +9,15 @@ type SelectProps = React.HTMLAttributes<HTMLSelectElement> & {
       icon?: ElementType<SvgIconProps>
       size: 'sm' | 'md' | 'lg'
       variant: 'outline' | 'filled' | 'standard'|'rounded'
+      value?: string | number
 }
 
-export const Select = forwardRef<HTMLSelectElement, SelectProps>(({ id, name, options, size, variant, ...props }, ref) => {
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(({ id, name, options, size, variant, value, ...props }, ref) => {
   return (
-    <select ref={ref} name={name} id={id} className={getTypeChoice(size, variant)} {...props}>
-      <option value="" className='flex gap-2'>
+    <select value={value} ref={ref} name={name} id={id} className={getTypeChoice(size, variant)} {...props}>
+      {/* <option value="" className='flex gap-2'>
             {name}
-      </option>
+      </option> */}
       {options.map((opt) => (
             <option key={opt.value} value={opt.value}>
                   {opt.name}
@@ -27,7 +28,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({ id, name, op
 })
 
 const getTypeChoice = (size: string, variant: string) => {
-   const defaults: string = 'w-fit focus-within:border-b-blue-400'
+   const defaults: string = 'w-fit focus-within:border-b-blue-400 dark:bg-black'
    const variants:Record<string, string> = {
       outline: 'outline-1 rounded-[2px]',
       filled: 'border-b-1 dark:bg-[#2F3234]',

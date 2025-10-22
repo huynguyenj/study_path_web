@@ -7,10 +7,14 @@ import PaginationSimple from '@/components/pagination/PaginationSimple'
 import usePagination from '@/hooks/pagination/usePagination'
 import Button from '@/components/ui/button/Button'
 import TableContainer from '@/components/ui/container/TableContainer'
+import { useEffect } from 'react'
 
 export default function MethodTable() {
   const { methodTableDatas } = useGetMethodData()
-  const { currentPage, goBackPage, goToNextPage, limit } = usePagination({ limit: 5 })
+  const { currentPage, goBackPage, goToNextPage, totalPages, setTotalPages } = usePagination()
+  useEffect(()=> {
+      setTotalPages(methodTableDatas.length)
+  }, [methodTableDatas])
   return (
       <TableContainer>
      
@@ -42,7 +46,7 @@ export default function MethodTable() {
             ))}
             <PaginationSimple 
                   currentPage={currentPage} 
-                  limit={limit}
+                  limit={totalPages}
                   goBackPage={goBackPage} 
                   goToNextPage={goToNextPage} 
             />

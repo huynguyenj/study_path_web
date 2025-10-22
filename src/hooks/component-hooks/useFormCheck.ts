@@ -9,7 +9,7 @@ export default function useFormCheck<T extends Record<string, any>>() {
       const regex = rules[key]
       const value = formData[key]
       if (!value) {
-        newError[key] = `Không được để trống ô ${key}`
+        newError[key] = `Không được để trống`
       } else if (regex && !regex.test(value)) {
         newError[key] = 'Thông tin nhập không hợp lệ'
       }

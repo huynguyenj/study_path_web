@@ -1,20 +1,20 @@
 
 type ProsConsOfMethodType = {
-      id: string | number
+      id: string
       pro: string
 }
 
 type TechniqueMethod = {
-      id: string | number
+      id: string
       name: string
 }
 
 export type StudyMethodType = {
-      id: string | number
+      id: string
       name: string
       description: string
       difficulty: string
-      time_info: string
+      timeInfo: string
       effectiveness: number
       weight: number
       pros?: ProsConsOfMethodType[]
@@ -23,3 +23,8 @@ export type StudyMethodType = {
 }
 
 export type StudyMethodComparisonType = Omit<StudyMethodType, 'description'>
+export type StudyMethodSubmit = {
+ userId: string
+ methodId: string
+ isDeleted: boolean
+}

@@ -9,15 +9,38 @@ type InputProps = React.HTMLAttributes<HTMLInputElement> & PropsWithChildren & {
       size: 'sm' | 'md' | 'lg'
       variant: 'outline' | 'filled' | 'standard'|'rounded'
       type: 'text' | 'password' | 'number'
+      min?: number
+      max?: number
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(({ size, label, name, placeHolder, type, variant, children, error, ...props }, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(({ 
+  size, 
+  label, 
+  name, 
+  placeHolder, 
+  type, 
+  variant, 
+  children, 
+  error, 
+  min,
+  max,
+  ...props 
+}, ref) => {
   return (
    <div className='relative flex flex-col gap-1'>
       {label && <p className='absolute -top-6'>{label}</p>}
       <div className={getTypeChoice(size, variant)}>
         {children}
-         <input name={name} ref={ref} type={type} placeholder={placeHolder} className='w-[100%] bg-none focus:outline-none' {...props}/>
+         <input 
+           name={name} 
+           ref={ref} 
+           type={type} 
+           placeholder={placeHolder}
+           min={type === 'number' ? min : undefined}
+           max={type === 'number' ? max : undefined}
+           className='w-[100%] bg-none focus:outline-none' 
+           {...props}
+         />
       </div>
          {error && <p className='typography-p text-end text-red-500 -bottom-7 font-semibold'>{error}</p>}
    </div>

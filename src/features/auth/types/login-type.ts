@@ -1,8 +1,11 @@
 export type LoginInformation = {
-   email: string,
+   username: string,
    password: string
 }
 
 export type LoginResponse = {
-   accessToken: string
+   token: string | null
+   userId: string | null
+   roles: string[] | null
+   refreshToken: string | null
 }

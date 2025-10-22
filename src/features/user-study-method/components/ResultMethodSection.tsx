@@ -24,7 +24,7 @@ export default function ResultMethodSection({ result }: ResultMethodSectionProps
                         description={data.description}
                         difficulty={data.difficulty}
                         effectiveness={data.effectiveness}
-                        time_info={data.time_info}
+                        timeInfo={data.timeInfo}
                         weight={data.weight}
                         pros={data.pros}
                         techniques={data.techniques}

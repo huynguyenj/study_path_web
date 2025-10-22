@@ -1,24 +1,25 @@
 import { EmojiEventsOutlinedIcon, QueryBuilderOutlinedIcon, ShowChartIcon } from '@/assets/icons/mui-icon'
 import DashboardCard from '../../../components/ui/cards/DashboardCard'
+import type { UserDashboardStatistic } from '../types/dashboard-statistic-type'
 
-const dashboardDataList = [
-  // { id: 1, title: 'Courses', data: 12, icon: LibraryBooksIcon },
-  { id: 2, title: 'Score', data: 87, icon: EmojiEventsOutlinedIcon },
-  { id: 3, title: 'Study time', data: 124, icon: QueryBuilderOutlinedIcon },
-  { id: 4, title: 'Streak', data: 28, icon: ShowChartIcon }
-]
 const selectionColor: Record<number, 'blue' | 'green' | 'purple' | 'orange'> = {
       0: 'blue',
       1: 'green',
       2: 'purple',
       3: 'orange'
 }
-export default function StatisticSection() {
+
+type StatisticSectionProps = {
+  statisticData: UserDashboardStatistic
+}
+
+export default function StatisticSection({ statisticData }: StatisticSectionProps ) {
   return (
     <div className='grid xs:grid-cols-1 md:grid-cols-2 lg:flex mt-5 justify-between gap-5'>
-           {dashboardDataList.map(({ id, title, data, icon }, index) => (
-             <DashboardCard key={id} title={title} data={data} icon={icon} variant={selectionColor[index]}/>
-           ))}
+             <DashboardCard title='Tổng số lần thử quiz' data={statisticData.totalQuizUserAttemp} icon={EmojiEventsOutlinedIcon} variant={selectionColor[0]}/>
+             <DashboardCard title='Tổng thời gian đã làm tasks' data={statisticData.totalTimeProcessTaskComplete} icon={QueryBuilderOutlinedIcon} variant={selectionColor[1]}/>
+             <DashboardCard title='Duy trì làm task' data={statisticData.streak} icon={ShowChartIcon} variant={selectionColor[2]}/>
+
       </div>
   )
 }

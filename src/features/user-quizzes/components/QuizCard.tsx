@@ -18,7 +18,7 @@ export default function QuizCard({ data }: QuizCardProps) {
             <p className='bg-gray-200 dark:bg-purple-500 rounded-t-2xl px-5 py-3 mb-2 font-semibold'>{data.name}</p>
             <div className='bg-gray-200 dark:bg-purple-500 rounded-b-2xl px-5 py-4 h-35'>
                   <p>Mô tả: {data.description}</p>
-                  <p>Câu hỏi: {data.total_question} câu</p>
+                  <p>Câu hỏi: {data.totalQuestion} câu</p>
                   <p>Thời gian: {data.time} phút</p>
             </div>
       </div>

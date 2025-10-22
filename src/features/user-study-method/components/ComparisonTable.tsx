@@ -38,7 +38,7 @@ export default function ComparisonTable({ dataList }: ComparisonTableProps) {
                     <p className="typography-p font-semibold">{data.effectiveness}%</p>
                   </div>
                 </td>
-                <td className="border-t py-3 px-1">{data.time_info}</td>
+                <td className="border-t py-3 px-1">{data.timeInfo}</td>
                 <td className="border-t py-3 px-1">{data.difficulty}</td>
               </tr>
             ))}
