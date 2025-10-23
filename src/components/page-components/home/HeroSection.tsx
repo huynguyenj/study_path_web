@@ -1,8 +1,8 @@
 import Button from '@/components/ui/button/Button'
-import ScheduleImage from '@/assets/schedule-image.jpg'
-import AimImage from '@/assets/aim-image.webp'
-import AiImage from '@/assets/AI-img.png'
-import ManThinkImage from '@/assets/man-thinking.png'
+import ScheduleImage from '@/assets/images/schedule-image.jpg'
+import AimImage from '@/assets/images/aim-image.webp'
+import AiImage from '@/assets/images/AI-img.png'
+import ManThinkImage from '@/assets/images/man-thinking.png'
 import { motion } from 'motion/react'
 
 export default function HeroSection() {

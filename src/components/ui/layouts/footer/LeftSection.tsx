@@ -1,4 +1,4 @@
-import Logo from '@/assets/Logo4.png'
+import Logo from '@/assets/images/Logo4.png'
 // import Button from '../../button/Button'
 // import { ArrowRightIcon } from '@/assets/icons/mui-icon'
 

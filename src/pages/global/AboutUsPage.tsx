@@ -1,4 +1,4 @@
-import AboutUsImg from '@/assets/about-us-pic.jpg'
+import AboutUsImg from '@/assets/images/about-us-pic.jpg'
 import { motion } from 'motion/react'
 
 export default function AboutUsPage() {

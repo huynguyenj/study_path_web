@@ -3,7 +3,6 @@ import type { RegisterInformation } from '../types/register-type'
 import useFormCheck from '@/hooks/component-hooks/useFormCheck'
 import { toast } from 'react-toastify'
 import { AuthApi } from '../api/auth-api'
-import dayjs from 'dayjs'
 
 export default function useRegister() {
   const { validate: isValid, errors } = useFormCheck<RegisterInformation>()
@@ -11,14 +10,13 @@ export default function useRegister() {
   const handleSubmitForm = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = new FormData(e.currentTarget)
-    const dobString = form.get('dob') as string
-    const dob = dayjs(dobString, 'DD/MM/YYYY').toDate()
+    const dobString = new Date(form.get('dob') as string)
     const formData: RegisterInformation = {
       username: form.get('username') as string,
       password: form.get('password') as string,
       fullname: form.get('fullname') as string,
       address: form.get('address') as string,
-      dob: dob
+      dob: dobString
     }
     if (isValid(formData, { username: '', password: '' })) {
       try {
