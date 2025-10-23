@@ -12,6 +12,8 @@ import type { ProcessType } from '../types/schedule-type'
 import useSubmitTask from '../hooks/useSubmitTask'
 import { getTimeFromDate } from '@/utils/timeHelper'
 import { formatDate } from '@/utils/formatDate'
+import type { TaskType } from '../types/task-type'
+import { toast } from 'react-toastify'
 type TaskModalProps = {
    currentProcess: ProcessType
    onClose: () => void
@@ -35,8 +37,14 @@ export default function TaskModal({ currentProcess, onClose }: TaskModalProps) {
     if (loadingTask) {
       return <LoadingScreen/>
   }
-  const handleTask = async (taskId: string) => {
-      await handleCompleteTask(taskId)
+  const handleTask = async (taskInfo: TaskType) => {
+      const now = new Date()
+      const taskDate = new Date(taskInfo.startTime)
+      if (now.getDate() < taskDate.getDate()) {
+        toast.error('Không thể hoàn thành task khi bạn đang ở hiện tại chứ không phải tương lai')
+        return
+      }
+      await handleCompleteTask(taskInfo.id)
       getTaskByProcess(currentProcess.id)
   }
   return (
@@ -66,7 +74,7 @@ export default function TaskModal({ currentProcess, onClose }: TaskModalProps) {
                                     </div>
                                     <Tag content={task.isCompleted ? 'Đã xong' : 'Chưa xong'} variant={task.isCompleted ? 'success': 'danger'}/>
                                     {!task.isCompleted && 
-                                          <div className='ml-3' onClick={() => handleTask(task.id)}>
+                                          <div className='ml-3' onClick={() => handleTask(task)}>
                                                 <CheckCircleIcon sx={{ color:'#22C55E' }} />
                                           </div>
                                     }

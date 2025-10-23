@@ -11,6 +11,7 @@ import Tag from '@/components/ui/tags/Tag'
 import { Select } from '@/components/ui/input/Select'
 import useCreateSchedule from '../hooks/useCreateSchedule'
 import LoadingScreen from '@/components/ui/loading/LoadingScreen'
+import { toast } from 'react-toastify'
 
 type CreateScheduleModalProps = {
   onRefresh: () => void
@@ -42,14 +43,18 @@ export default function CreateScheduleModal({ onClose, onRefresh }: CreateSchedu
       e.preventDefault()
       const form = new FormData(e.currentTarget)
       const startDate = form.get('startDate') ? new Date(form.get('startDate') as string) : new Date()
-      startDate.setHours(startDate.getHours() + 2)
+      const now = new Date()
+      if (startDate.getDate() === now.getDate()) {
+        toast.error('Hãy chọn ngày hôm sau để bắt đầu')
+        return
+      }
       const endDate = form.get('endDate') ? new Date(form.get('endDate') as string) : new Date()
       const data: CreateScheduleType = {
             amountSubject: listSubject.length,
             totalTime: form.get('totalTime') as string,
             startDate: startDate,
             endDate: endDate,
-            createAt: new Date(),
+            createAt: startDate,
             title: form.get('title') as string,
             subjectListRequest: listSubject
       }
