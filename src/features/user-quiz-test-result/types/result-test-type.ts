@@ -3,10 +3,10 @@ export type ResultTestType = {
       accuracy: number
       numberCorrectQuestion: number
       numberIncorrectQuestion: number
-      total_questions: number
+      totalQuestion: number
       quizName: string
       startAt: Date
       finishAt: Date
-      total_points: number
-      pass_score: number
+      totalPoints: number
+      passScore: number
 }
