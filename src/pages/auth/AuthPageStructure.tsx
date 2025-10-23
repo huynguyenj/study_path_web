@@ -1,4 +1,4 @@
-import BackgroundImage from '@/assets/bg-auth.webp'
+import BackgroundImage from '@/assets/images/bg-auth.webp'
 import type { PropsWithChildren } from 'react'
 type AuthPageStructureProps = PropsWithChildren
 export default function AuthPageStructure({ children }: AuthPageStructureProps) {

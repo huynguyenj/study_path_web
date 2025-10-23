@@ -1,4 +1,4 @@
-import MaintanceImage from '@/assets/maintenance-background-design.png'
+import MaintanceImage from '@/assets/images/maintenance-background-design.png'
 export default function MaintenanceComponent() {
   return (
     <div className='flex justify-center items-center'>
