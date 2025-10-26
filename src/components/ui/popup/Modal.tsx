@@ -27,7 +27,7 @@ export default function Modal({ title, children, onClose }: ModalProps) {
           delay: 0.3,
           duration: 0.2
       }}
-        className='relative w-170 h-[90%] flex flex-col px-5 py-9 bg-white dark:bg-black rounded-2xl z-50 shadow-[0px_0px_5px_5px_rgba(0,0,0,0.1)] dark:shadow-[0px_0px_5px_5px_rgba(255,255,255,0.1)] overflow-y-auto'>
+        className='relative w-170 max-h-[90%] flex flex-col px-5 py-9 bg-white dark:bg-black rounded-2xl z-50 shadow-[0px_0px_5px_5px_rgba(0,0,0,0.1)] dark:shadow-[0px_0px_5px_5px_rgba(255,255,255,0.1)] overflow-y-auto'>
             <div className='absolute top-2 right-5 cursor-pointer hover:bg-red-400 hover:text-white rounded-full p-1' onClick={onClose}><CloseIcon/></div>
             <h3 className='typography-h3 font-bold'>{title}</h3>
             {children}

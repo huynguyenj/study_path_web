@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { QuizHistoryType } from '../types/quiz-history'
 import useLocalStorage from '@/hooks/local-storage/useLocalStorage'
 import { type LoginResponse } from '@/features/auth/types/login-type'
@@ -29,8 +29,8 @@ export default function useGetQuizHistory(page:number) {
     }
   }
 
-  useEffect(() => {
-    getQuizHistoryData()
-  }, [])
-  return { quizHistory, loading }
+  // useEffect(() => {
+  //   getQuizHistoryData()
+  // }, [])
+  return { quizHistory, loading, getQuizHistoryData }
 }

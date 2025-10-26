@@ -1,4 +1,4 @@
-import Logo from '@/assets/react.svg'
+import Logo from '@/assets/images/Logo4.png'
 
 type HeaderPartProps = {
       title: string,

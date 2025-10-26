@@ -14,12 +14,13 @@ type HeaderScheduleSectionProps = {
 
 export default function HeaderScheduleSection({ getStatistic, onRefreshSchedule, scheduleList }: HeaderScheduleSectionProps) {
   const { isToggle, handleToggle } = useToggle(false)
-  const [selectedSchedule, setSelectedSchedule] = useState('')
+  const [selectedScheduleId, setSelectedScheduleId] = useState('')
    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
       const value = e.currentTarget.value
-      setSelectedSchedule(value)
+      setSelectedScheduleId(value)
       getStatistic(value)
   }
+
   return (
     <div className='flex justify-between items-center'>
       <div>
@@ -29,14 +30,15 @@ export default function HeaderScheduleSection({ getStatistic, onRefreshSchedule,
       <div className='flex gap-3'>
         {scheduleList.length > 0 && 
         <Select
-            value={selectedSchedule}
+            value={selectedScheduleId}
             name='Schedule'
+            placeholder='Chọn lịch của bạn'
             size='lg'
             variant='outline'
-            options={ [
-              { name: 'Chọn schedule của bạn', value:'' }, ...scheduleList.map((schedule) => (
+            options={ 
+              scheduleList.map((schedule) => (
                         { name: schedule.title, value: schedule.id }
-                      ))]}
+                      ))}
             onChange={handleChange}
           />
         }

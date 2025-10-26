@@ -2,7 +2,7 @@ import MethodTableSection from '@/features/admin-method-study/components/MethodT
 
 export default function AdminMethodManagement() {
   return (
-    <div>
+    <div className=''>
       <MethodTableSection/>
     </div>
   )

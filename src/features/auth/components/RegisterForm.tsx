@@ -26,7 +26,7 @@ export default function RegisterForm() {
           <Input name='address' placeHolder='Address' type='text' size='md' variant='standard'>
             <MapIcon/>
           </Input>
-          <DateInput label='Date of birth' name='dob'/>
+          <DateInput colorChoice='white' label='Date of birth' name='dob'/>
           <Button disable= {loading ? true : false} type='normal' size='md' variant='primary'>
               {loading ? <CircularProgress color='inherit'/> : <p>Register</p>}
           </Button>

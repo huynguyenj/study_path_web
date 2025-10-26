@@ -25,7 +25,7 @@ export default function DashboardPage() {
     <div>
       <div className="flex flex-col md:flex-row justify-between items-center">
         <div>
-          <h2 className="typography-h2 font-semibold text-center md:text-start">Welcome back</h2>
+          <h2 className="typography-h2 font-semibold text-center md:text-start">Chào mừng trở lại</h2>
           <p className="typography-p">Theo dõi quá trình của bạn</p>
         </div>
         <div className='flex gap-5'>
@@ -36,7 +36,7 @@ export default function DashboardPage() {
               size='md'
               variant='outline'
               options={[
-                { name: 'Chọn schedule', value: '' },
+                { name: 'Chọn lịch của bạn', value: '' },
                 ...personalScheduleList.map((schedule) => (
                 { name: schedule.title, value: schedule.id }
               ))

@@ -12,7 +12,7 @@ type QuizCardProps = {
 export default function QuizCard({ data }: QuizCardProps) {
   const navigate = useNavigate()
   return (
-    <div className='relative px-5 py-5 card rounded-[24px]' >
+    <div className='relative px-5 py-5 card bg-[#5c5470] rounded-[24px]' >
      <Tag content={data.type} variant={TagRuleQuiz[data.type]}/>
       <div className='mt-5'>
             <p className='bg-gray-200 dark:bg-purple-500 rounded-t-2xl px-5 py-3 mb-2 font-semibold'>{data.name}</p>
@@ -22,7 +22,7 @@ export default function QuizCard({ data }: QuizCardProps) {
                   <p>Thời gian: {data.time} phút</p>
             </div>
       </div>
-      <div className='absolute bg-white dark:bg-black right-3 bottom-2 rounded-[12px] p-1 cursor-pointer' onClick={() => navigate(PRIVATE_PATH.TEST.QUIZ_TEST.replace(':id', data.id as string))}>
+      <div className='absolute bg-white dark:bg-[#5c5470] right-3 bottom-2 rounded-[12px] p-1 cursor-pointer' onClick={() => navigate(PRIVATE_PATH.TEST.QUIZ_TEST.replace(':id', data.id as string))}>
             <div className='bg-[#3B82F6] flex justify-center items-center p-3 rounded-2xl text-white'>
                   <CallMadeIcon/>
             </div>

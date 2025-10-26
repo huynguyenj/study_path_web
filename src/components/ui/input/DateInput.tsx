@@ -7,11 +7,12 @@ import { useCallback, useMemo, useState } from 'react'
 type DateInputProps = {
    name: string
    label: string
+   colorChoice?: 'black' | 'white'
    minDate?: Date
    maxDate?: Date
 }
 
-export default function DateInput({ name, label, maxDate, minDate }: DateInputProps) {
+export default function DateInput({ name, label, maxDate, minDate, colorChoice }: DateInputProps) {
   const [value, setValue] = useState<Dayjs | null>(dayjs(Date.now()))
   
   const theme = useMemo(() => {
@@ -22,26 +23,30 @@ export default function DateInput({ name, label, maxDate, minDate }: DateInputPr
     return {
       textField: {
         InputLabelProps: {
+          shrink: true,
           sx: {
-            color: theme,
-            borderColor: theme
+            color: colorChoice ? colorChoice : theme,
+            borderColor: theme,
+            overflow: 'hidden'
           }
         },
         InputProps: {
           sx: {
             borderWidth: 1,
-            color: theme,
-            borderColor: theme
+            color: colorChoice ? colorChoice : theme,
+            borderColor: colorChoice ? colorChoice : theme,
+             '& .MuiSvgIcon-root': { // Target the calendar icon
+            color: colorChoice ? colorChoice : theme
+          }
           }
         }
       }
     } 
-  }, [theme])
+  }, [theme, colorChoice])
   
   const datePickerCondition = useCallback(() => {
     const commonProps = {
       onChange: (newValue: Dayjs | null) => setValue(newValue),
-      label,
       value,
       defaultValue: dayjs(Date.now()),
       format: 'DD/MM/YYYY',
@@ -57,11 +62,14 @@ export default function DateInput({ name, label, maxDate, minDate }: DateInputPr
     } else {
       return <DatePicker {...commonProps} />
     }
-  }, [label, value, minDate, maxDate, slotProps])
+  }, [value, minDate, maxDate, slotProps])
   
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      {datePickerCondition()}
+      <div className='flex flex-col'>
+        <p className=''>{label}</p>
+        {datePickerCondition()}
+      </div>
       {/* Hidden input to capture date for FormData */}
       <input 
         type="hidden" 
