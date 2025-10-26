@@ -5,7 +5,7 @@ export default function AboutUsPage() {
   return (
     <>
     <div className='relative flex mt-10 px-10 py-5 justify-between items-center overflow-x-hidden'>
-      <div className='w-[40%]'>
+      <div className='relative w-[40%]'>
         <motion.h1
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -31,6 +31,15 @@ export default function AboutUsPage() {
             scale: { type: 'spring' }
           }}
         >Chúng tôi là startup với niềm đam mê mãnh liệt về công nghệ. Chúng tôi sẽ cùng nhau phát triển hơn nữa và được nhiều người biết tới hơn. Mục tiêu của chúng tôi tạo ra sự thoải mái trong học tập và giúp mọi người học hiệu quả hơn.  </motion.p>
+        <motion.div
+        initial={{ width: 0 }}
+        animate={{ width:'50%' }}
+        transition={{
+          duration: 1.1,
+          ease: 'easeInOut'
+        }}
+        className='absolute -bottom-20 left-0 bg-blue-400 dark:bg-amber-100 w-full h-10'>
+        </motion.div>
       </div>
       <motion.img 
        initial={{ scale: 0 }}
@@ -39,15 +48,8 @@ export default function AboutUsPage() {
         duration: 1
        }}
        src={AboutUsImg} alt="about-us-image" className='w-[50%] h-[50%] rounded-full' loading='lazy'/>
+       
     </div>
-       <motion.div
-        initial={{ width: 0 }}
-        animate={{ width:'50%' }}
-        transition={{
-          duration: 1.1,
-          ease: 'easeInOut'
-        }}
-        className='absolute bottom-15 left-10 bg-blue-400 dark:bg-amber-100 w-1/2 h-20 skew-3'></motion.div>
     </>
   )
 }

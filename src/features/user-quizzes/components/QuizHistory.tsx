@@ -8,14 +8,16 @@ import CircularProgress from '@mui/material/CircularProgress'
 
 export default function QuizHistory() {
   const { currentPage, goBackPage, goToNextPage, setTotalPages, totalPages } = usePagination()
-  const { quizHistory, loading } = useGetQuizHistory(currentPage)
-  
+  const { quizHistory, loading, getQuizHistoryData } = useGetQuizHistory(currentPage) 
   useEffect(() => {
     if (quizHistory) {
       setTotalPages(quizHistory.totalPages)
     }
   }, [quizHistory])
-  
+  useEffect(() => {
+    getQuizHistoryData()
+  }, [currentPage])
+
   return (
     <div className='card typography-p px-5 py-5 overflow-x-auto'>
       <table className='min-w-[800px] w-full typography-p'>

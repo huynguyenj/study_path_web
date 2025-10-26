@@ -3,7 +3,7 @@ import Button from '@/components/ui/button/Button'
 import Modal from '@/components/ui/popup/Modal'
 import Tag from '@/components/ui/tags/Tag'
 import useGetTasksByCurrentDate from '../hooks/useGetTasksByCurrentDate'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Input } from '@/components/ui/input/Input'
 import useCreateTask from '../hooks/useCreateTask'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -21,7 +21,8 @@ type TaskModalProps = {
 export default function TaskModal({ currentProcess, onClose }: TaskModalProps) {
   const { tasks, getTaskByProcess, loading } = useGetTasksByCurrentDate()
   const { errors, handleSubmitTask, loading: loadingTask, tasks: newTasks } = useCreateTask(currentProcess.id)
-  const { handleCompleteTask } = useSubmitTask()
+  const { handleCompleteTask, loading: loadingCompleteTask } = useSubmitTask()
+  const [taskCompletedChoice, setTaskCompletedChoice] = useState('')
   useEffect(() => {
       getTaskByProcess(currentProcess.id)
   }, [currentProcess, newTasks])
@@ -40,6 +41,7 @@ export default function TaskModal({ currentProcess, onClose }: TaskModalProps) {
   const handleTask = async (taskInfo: TaskType) => {
       const now = new Date()
       const taskDate = new Date(taskInfo.startTime)
+      setTaskCompletedChoice(taskInfo.id)
       if (now.getDate() < taskDate.getDate()) {
         toast.error('Không thể hoàn thành task khi bạn đang ở hiện tại chứ không phải tương lai')
         return
@@ -50,7 +52,7 @@ export default function TaskModal({ currentProcess, onClose }: TaskModalProps) {
   return (
       
             <Modal title='Tasks' onClose={onClose}>
-                  <p>Ngày: {formatDate(new Date(currentProcess.date))}</p>
+                  <h4 className='typography-h4 bg-black dark:bg-purple-500 w-fit px-3 py-2 rounded-2xl text-white font-medium'>Ngày: {formatDate(new Date(currentProcess.date))}</h4>
                   <h4 className='typography-h4'>Danh sách môn hôm nay: {currentProcess.subjects.map((subject) => subject.name).join(', ')}</h4>    
                   <div>
                         {loading ? 
@@ -74,13 +76,14 @@ export default function TaskModal({ currentProcess, onClose }: TaskModalProps) {
                                     </div>
                                     <Tag content={task.isCompleted ? 'Đã xong' : 'Chưa xong'} variant={task.isCompleted ? 'success': 'danger'}/>
                                     {!task.isCompleted && 
-                                          <div className='ml-3' onClick={() => handleTask(task)}>
+                                          <div className='ml-3 flex items-center gap-2' onClick={() => handleTask(task)}>
                                                 <CheckCircleIcon sx={{ color:'#22C55E' }} />
+                                                { loadingCompleteTask && taskCompletedChoice === task.id && <CircularProgress size={15}/> }
                                           </div>
                                     }
                                      {task.isCompleted && 
                                           <div className='absolute w-full h-full flex flex-col justify-center gap-2'>
-                                                {Array.from({ length: 3 }).map((_, index) => (
+                                                {Array.from({ length: 6 }).map((_, index) => (
                                                       <div key={index} className='bg-black dark:bg-white border-1'></div>
                                                 ))}
                                           </div>
@@ -90,15 +93,17 @@ export default function TaskModal({ currentProcess, onClose }: TaskModalProps) {
                         </>
                         }
                   </div>
-                              <form onSubmit={handleSubmitTask} className='flex flex-col gap-3 items-center'>
+                              <form onSubmit={handleSubmitTask} className='flex flex-col gap-3 items-center mt-5'>
                                     <div className='flex flex-col gap-2'>
                                           <Input name='title' placeHolder='title' size='sm' type='text' variant='outline' error={errors.title}/>
                                           <Input name='description' placeHolder='Mô tả chi tiết' size='sm' type='text' variant='outline' error={errors.description}/>
                                           <Input name='amount' placeHolder='Số lượng task' size='sm' type='number' variant='outline' error={errors.amount}/>
                                           <div className='flex gap-3 items-center'>
-                                                <p>Giờ bạn muốn bắt đầu làm tasks</p>
-                                                <Input name='hours' min={0} max={23} placeHolder='Giờ' size='sm' type='number' variant='outline' error={errors.amount}/>
-                                                <Input name='minutes' min={0} max={59} placeHolder='Phút' size='sm' type='number' variant='outline' error={errors.amount}/>
+                                                <p className='w-[70%]'>Giờ bạn muốn bắt đầu làm tasks</p>
+                                                <div className='w-[30%] flex flex-col gap-1'>
+                                                            <Input name='hours' min={0} max={23} placeHolder='Giờ' size='sm' type='number' variant='outline' error={errors.amount}/>
+                                                            <Input name='minutes' min={0} max={59} placeHolder='Phút' size='sm' type='number' variant='outline' error={errors.amount}/>
+                                                </div>
                                           </div>
                                     </div>
                                        <Button size='sm' type='normal' variant='primary'>

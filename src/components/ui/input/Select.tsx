@@ -10,14 +10,17 @@ type SelectProps = React.HTMLAttributes<HTMLSelectElement> & {
       size: 'sm' | 'md' | 'lg'
       variant: 'outline' | 'filled' | 'standard'|'rounded'
       value?: string | number
+       placeholder?: string | number
 }
 
-export const Select = forwardRef<HTMLSelectElement, SelectProps>(({ id, name, options, size, variant, value, ...props }, ref) => {
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(({ id, name, options, size, variant, value, placeholder, ...props }, ref) => {
   return (
     <select value={value} ref={ref} name={name} id={id} className={getTypeChoice(size, variant)} {...props}>
-      {/* <option value="" className='flex gap-2'>
-            {name}
-      </option> */}
+     {placeholder && (
+        <option value="" disabled>
+          {placeholder}
+        </option>
+      )}
       {options.map((opt) => (
             <option key={opt.value} value={opt.value}>
                   {opt.name}

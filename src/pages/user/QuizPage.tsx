@@ -25,6 +25,10 @@ export default function QuizPage() {
     }
   }, [quizList?.totalPages])
 
+  useEffect(() => {
+    getListQuizData()
+  }, [currentPage])
+
   if (loading) {
     return <LoadingScreen/>
   }
@@ -39,8 +43,8 @@ export default function QuizPage() {
           value={tabValue}
           onChange={handleChange}
         >
-          <Tab label='Danh sách quiz có sẵn' value='1' sx={{ color: '#747373' }}/>
-          <Tab label='Lịch sử bài quiz' value='2' sx={{ color: '#747373' }}/>
+          <Tab label='Danh sách bài kiểm tra đã tạo' value='1' sx={{ color: '#747373' }}/>
+          <Tab label='Lịch sử bài kiểm tra đã làm' value='2' sx={{ color: '#747373' }}/>
         </Tabs>
         <div hidden={tabValue !== '1'} className="mt-4 flex flex-col gap-5">
         {quizList ? 

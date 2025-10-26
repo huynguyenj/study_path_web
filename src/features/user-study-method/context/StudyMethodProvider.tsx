@@ -12,7 +12,6 @@ type StudyMethodContextProps = {
       goToNextPage: () => void
       goBackPage: () => void
       handleChoice: (choiceId: string, questionId: string, typeQuestion: string) => void
-      handleSubmit: () => void
       choices: Choice[]
       answer: AnswerType[]
       page: number
@@ -88,15 +87,11 @@ export function StudyMethodProvider({ children }: StudyMethodProviderProps) {
       })
     }, [choices])
 
-    const handleSubmit = () => {
-      console.log(answer)
-    }
-
     if (loading) {
       return <LoadingScreen/>
     }
   return (
-    <StudyMethodContext.Provider value={{ answer, page, evaluationList, limit, questionIndexPage, goToNextPage, goBackPage, handleChoice, choices, handleSubmit }}>
+    <StudyMethodContext.Provider value={{ answer, page, evaluationList, limit, questionIndexPage, goToNextPage, goBackPage, handleChoice, choices }}>
       {children}
     </StudyMethodContext.Provider>
   )

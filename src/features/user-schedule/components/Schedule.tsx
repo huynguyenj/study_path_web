@@ -26,7 +26,6 @@ export default function Schedule({ month, year, currentDay, processesList }: Sch
       setChoiceProcess(isMatchWithDateProcess)
       handleToggle()
   }
-  console.log(choiceProcess)
   return (
     <div className='flex flex-col gap-8 mt-5'>
       <p className='typography-p text-center font-semibold'>Tháng {month + 1} {year}</p>

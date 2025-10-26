@@ -5,9 +5,9 @@ import { Outlet } from 'react-router'
 
 export default function PageLayout() {
   return (
-      <div className=''>
+      <div className='flex flex-col justify-between'>
             <Navbar/>
-            <main className='mb-20'>
+            <main className='mb-20 min-h-screen'>
                   <Outlet/>
             </main>
                   <Footer/>
