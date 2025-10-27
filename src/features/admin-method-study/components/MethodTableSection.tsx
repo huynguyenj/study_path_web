@@ -10,7 +10,7 @@ export default function MethodTableSection() {
     setCurrentTab(currentTab === tabList[0] ? tabList[1]: tabList[0])
   }
   return (
-    <div>
+    <div className='mb-5'>
       <MethodTableHeader changeTab={handleChangeTab} currentTab={currentTab} tabSections={tabList}/>
       {
         currentTab == 'Method' ? <MethodTable/> : <EvaluationTable/>

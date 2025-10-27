@@ -1,5 +1,5 @@
 type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
-      variant: 'primary' | 'secondary'| 'orange'|'inactive'
+      variant: 'primary' | 'secondary'| 'orange'|'inactive' | 'danger'
       size: 'sm' | 'md' | 'lg' | 'circle'
       type: 'rounded' | 'normal'
       disable?: boolean
@@ -15,7 +15,8 @@ const variantChoice = (variant: string, size: string, type: string) => {
     primary: 'bg-blue-500 font-medium text-white',
     secondary: 'bg-gray-300 font-medium text-black',
     orange: 'bg-[#E89162] font-medium text-white',
-    inactive: 'bg-[#E5E7EB] text-gray-400'
+    inactive: 'bg-[#E5E7EB] text-gray-400',
+    danger: 'bg-[#FEE2E2] text-[#991B1B]'
   }
   const sizes: Record<string, string> = {
     sm: 'px-3 py-1',

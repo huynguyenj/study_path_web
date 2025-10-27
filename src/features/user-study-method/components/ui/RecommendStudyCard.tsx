@@ -7,6 +7,7 @@ import Tag from '@/components/ui/tags/Tag'
 import Button from '@/components/ui/button/Button'
 import useChoseStudyMethod from '../../hooks/useChoseStudyMethod'
 import LoadingScreen from '@/components/ui/loading/LoadingScreen'
+import { truncateText } from '@/utils/truncateText'
 
 export default function RecommendStudyCard({
       id, 
@@ -26,7 +27,7 @@ export default function RecommendStudyCard({
   return (
    <Card variant='white' key={id}>
       <h3 className='typography-h3 font-semibold'>{name}</h3>
-      <p className='typography-p'>{description.replace(description.slice(60), '...')}</p>
+      <p className='typography-p'>{truncateText(description, 70)}</p>
       {/* <div className='flex flex-col md:flex-row justify-between typography-p mt-3'>
             <p className='font-semibold'>Điểm khớp</p>
             <div className='flex md:w-[50%] items-center gap-2'>

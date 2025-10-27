@@ -35,7 +35,7 @@ apiPrivate.interceptors.response.use(( response: AxiosResponse ) => {
 }, async (error: AxiosError) => {
       const originalRequest = error.config as AxiosRequestConfig
       const errorResponse = error.response?.data as Omit<ResponseStructure<null>, 'data'>
-      if (errorResponse.status === HttpStatusCode.Unauthorized && errorResponse.message === 'TOKEN_EXPIRED') {
+      if (errorResponse.status === HttpStatusCode.Unauthorized) {
             try {
                   const newAccessTokenResponse = await AuthApi.getNewAccessToken()
                   const newAccessToken = newAccessTokenResponse.data.access_token

@@ -5,7 +5,8 @@ type NavbarItem = {
       path: string
 }
 export const NavItems: NavbarItem[] = [
-      { name: 'Home', path: ACCESS_PUBLIC_PATH.HOME },
-      { name: 'Contact', path: ACCESS_PUBLIC_PATH.CONTACT },
-      { name: 'About us', path: ACCESS_PUBLIC_PATH.ABOUT_US }
+      { name: 'Trang chủ', path: ACCESS_PUBLIC_PATH.HOME },
+      { name: 'Liên hệ', path: ACCESS_PUBLIC_PATH.CONTACT },
+      { name: 'Về chúng tôi', path: ACCESS_PUBLIC_PATH.ABOUT_US },
+      { name: 'Gói thành viên', path: ACCESS_PUBLIC_PATH.MEMBERSHIP }
 ]
