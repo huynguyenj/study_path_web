@@ -3,7 +3,9 @@ export const ACCESS_PUBLIC_PATH = {
       CONTACT: '/contact',
       ABOUT_US: '/about',
       LOGIN: '/auth/login',
-      REGISTER: '/auth/register'
+      REGISTER: '/auth/register',
+      PAYMENT_STATUS: '/payment/status',
+      MEMBERSHIP: '/membership'
 }
 
 export const PRIVATE_PATH = {

@@ -3,7 +3,9 @@ export const Global_Path = {
       CONTACT: 'contact',
       ABOUT_US: 'about',
       LOGIN: 'login',
-      REGISTER: 'register'
+      REGISTER: 'register',
+      PAYMENT_STATUS: 'payment/status',
+      MEMBERSHIP: 'membership'
 }
 
 

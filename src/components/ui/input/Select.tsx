@@ -10,7 +10,7 @@ type SelectProps = React.HTMLAttributes<HTMLSelectElement> & {
       size: 'sm' | 'md' | 'lg'
       variant: 'outline' | 'filled' | 'standard'|'rounded'
       value?: string | number
-       placeholder?: string | number
+      placeholder?: string | number
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(({ id, name, options, size, variant, value, placeholder, ...props }, ref) => {

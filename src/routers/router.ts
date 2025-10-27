@@ -26,6 +26,18 @@ export const router = createBrowserRouter([
                         lazy: {
                            Component: async () => (await import('@/pages/global/AboutUsPage')).default
                         }
+                  },
+                  {
+                        path: Global_Path.PAYMENT_STATUS,
+                        lazy: {
+                           Component: async () => (await import('@/pages/global/PaymentStatusPage')).default
+                        }
+                  },
+                  {
+                        path: Global_Path.MEMBERSHIP,
+                        lazy: {
+                           Component: async () => (await import('@/pages/global/MembershipPage')).default
+                        }
                   }
             ]
       },

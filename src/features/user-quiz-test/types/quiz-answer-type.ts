@@ -4,8 +4,8 @@ export type AnswerType = {
 }
 export type QuizAnswerType = {
   quizId: string
-  startAt: Date
-  finishAt: Date
+  startAt: string
+  finishAt: string
   answerList: AnswerType[]
 }
 

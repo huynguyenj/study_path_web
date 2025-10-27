@@ -9,6 +9,7 @@ import { toast } from 'react-toastify'
 import useToggle from '@/hooks/state/useToggle'
 import Modal from '@/components/ui/popup/Modal'
 import CircularProgress from '@mui/material/CircularProgress'
+import { toLocalISOString } from '@/utils/formatLocalDate'
 
 type TestHeaderProps = {
   quizInfo: QuizType
@@ -27,8 +28,8 @@ export default function TestHeader({ quizInfo, startTime }: TestHeaderProps) {
     }
     submitTest({
       answerList: context.choices,
-      startAt: startTime,
-      finishAt: new Date(),
+      startAt: toLocalISOString(startTime),
+      finishAt: toLocalISOString(new Date()),
       quizId: quizInfo.id
     })
   }
