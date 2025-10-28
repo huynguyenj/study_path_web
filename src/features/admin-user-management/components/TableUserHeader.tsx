@@ -1,7 +1,6 @@
-import { IosShareIcon, PersonIcon, SearchIcon } from '@/assets/icons/mui-icon'
+import { IosShareIcon, SearchIcon } from '@/assets/icons/mui-icon'
 import Button from '@/components/ui/button/Button'
 import { Input } from '@/components/ui/input/Input'
-import { Select } from '@/components/ui/input/Select'
 export default function TableUserHeader() {
   return (
     <div className='flex items-center gap-5 justify-between mb-3'>
@@ -13,7 +12,7 @@ export default function TableUserHeader() {
             <Input name='search' placeHolder='Search' size='sm' type='text' variant='rounded'>
                   <SearchIcon/>
             </Input>
-            <Select 
+            {/* <Select 
                   name='Role' 
                   options={[
                         { name: 'Admin', value: 'admin' }, 
@@ -32,7 +31,7 @@ export default function TableUserHeader() {
                   size='sm'
                   variant='rounded'
                   icon={PersonIcon}
-                  />
+                  /> */}
       </div>
     </div>
   )

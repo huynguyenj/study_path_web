@@ -5,7 +5,12 @@ export type StatisticType = {
 
 export type AdminStatisticsType = {
   userCount: number
-  paymentSuccess: number
+  totalAmount: number
   paymentFail: number
   memberShip: number
+}
+
+export type RevenueLineChartType = {
+  month: number
+  totalAmount: number
 }
