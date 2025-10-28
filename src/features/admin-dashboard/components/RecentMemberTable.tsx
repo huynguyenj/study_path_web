@@ -18,7 +18,7 @@ export default function RecentMemberTable() {
             </thead>
             <tbody>
                   {membershipData.map((data) => (
-                        <tr>
+                        <tr key={data.membership}>
                               <th className='text-start font-normal py-2'>{data.userId}</th>
                               <th className='text-start font-normal'>{data.membership}</th>
                               <th className='text-start font-normal py-2'>{data.type}</th>

@@ -1,8 +1,8 @@
 export type UserManagementType = {
-      id: string | number
-      username: string
-      createAt: string
-      updateAt: string
+      id: string
+      userName: string
+      createdDate: string
+      updateDate: string
       isDeleted: boolean
       roleName: string
 }

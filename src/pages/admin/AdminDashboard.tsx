@@ -1,7 +1,6 @@
 import AdminChartSection from '@/features/admin-dashboard/components/AdminChartSection'
 import AdminDashboardStatistic from '@/features/admin-dashboard/components/AdminDashboardStatistic'
 import RecentMemberTable from '@/features/admin-dashboard/components/RecentMemberTable'
-import TopCourseSection from '@/features/admin-dashboard/components/TopCourseSection'
 
 export default function AdminDashboard() {
   return (
@@ -12,7 +11,6 @@ export default function AdminDashboard() {
       </div>
       <div className='my-5 flex flex-col lg:flex-row gap-5'>
         <RecentMemberTable/>
-        <TopCourseSection/>
       </div>
     </div>
   )
