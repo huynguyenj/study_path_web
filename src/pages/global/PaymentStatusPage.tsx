@@ -71,7 +71,7 @@ export default function PaymentStatusPage() {
   }
 
   const currentStatus = useMemo(() => {
-    return statusConfig[status]
+    return statusConfig[status.toLowerCase()]
   }, [status])
 
 
@@ -79,7 +79,7 @@ export default function PaymentStatusPage() {
     if (orderCode && paymentStatus) {
       const data: UpdatePaymentType = {
         orderCode: Number(searchParams.get('orderCode')),
-        status: paymentStatus.charAt(0).toUpperCase() + paymentStatus.slice(1)
+        status: paymentStatus.charAt(0).toUpperCase() + paymentStatus.slice(1).toLowerCase()
       }
       updatePaymentStatus(data)
     }

@@ -1,28 +1,15 @@
 // import { MoreHorizIcon } from '@/assets/icons/mui-icon'
 import PaginationSimple from '@/components/pagination/PaginationSimple'
 import TableRowContainer from '@/components/ui/container/TableRowContainer'
-import usePagination from '@/hooks/pagination/usePagination'
-import useGetUserData from '../hooks/useGetUserData'
 import { formatDate } from '@/utils/formatDate'
 import Tag from '@/components/ui/tags/Tag'
 import TableUserHeader from './TableUserHeader'
 import TableContainer from '@/components/ui/container/TableContainer'
-import { useEffect } from 'react'
-import LoadingScreen from '@/components/ui/loading/LoadingScreen'
+import useUserManagementContext from '../hooks/useUserManagementContext'
+import CircularProgress from '@mui/material/CircularProgress'
 
 export default function TableUserManagement() {
-  const { currentPage, goBackPage, goToNextPage, totalPages, setTotalPages } = usePagination()
-  const { users, loading } = useGetUserData(currentPage)
-  
-  useEffect(() => {
-     if (users) {
-           setTotalPages(users.items.length)
-     }
-  }, [currentPage])
-
-  if (loading) {
-    return <LoadingScreen/>
-  }
+  const context = useUserManagementContext()
   return (
       <TableContainer>
             <TableUserHeader/>
@@ -34,9 +21,15 @@ export default function TableUserManagement() {
                   <p className='w-40 text-center'>Status</p>
                   {/* <p className='w-10'></p> */}
             </div>
-            {users ? 
+          {context.loading ? 
+          <div className='flex justify-center items-center my-20'>
+                <CircularProgress/>
+          </div>
+            : 
             <>
-                  {users.items.map((user) => (
+                  {context.users ? 
+            <>
+                  {context.users.items.map((user) => (
                         <TableRowContainer key={user.id}>
                               {/* <p className='w-20'>{user.id}</p> */}
                               <p className='w-20'>{user.userName}</p>
@@ -49,14 +42,17 @@ export default function TableUserManagement() {
                         </TableRowContainer>
                   ))}
             </>
-            : 
-            <p className='typography-p text-center mt-10'>Chưa có danh sách người dùng</p>
-            }
+              : 
+                  <p className='typography-p text-center mt-10'>Chưa có danh sách người dùng</p>
+             }
+            </>
+         }
+           
             <PaginationSimple 
-                  currentPage={currentPage} 
-                  limit={totalPages}
-                  goBackPage={goBackPage} 
-                  goToNextPage={goToNextPage} 
+                  currentPage={context.currentPage} 
+                  limit={context.totalPages}
+                  goBackPage={context.goBackPage} 
+                  goToNextPage={context.goToNextPage} 
             />
       </TableContainer>
   )

@@ -8,6 +8,7 @@ import Button from '@/components/ui/button/Button'
 import useChoseStudyMethod from '../../hooks/useChoseStudyMethod'
 import LoadingScreen from '@/components/ui/loading/LoadingScreen'
 import { truncateText } from '@/utils/truncateText'
+import Tooltip from '@mui/material/Tooltip'
 
 export default function RecommendStudyCard({
       id, 
@@ -27,7 +28,9 @@ export default function RecommendStudyCard({
   return (
    <Card variant='white' key={id}>
       <h3 className='typography-h3 font-semibold'>{name}</h3>
-      <p className='typography-p'>{truncateText(description, 70)}</p>
+      <Tooltip title= {description}>
+            <p className='typography-p'>{truncateText(description, 100)}</p>
+      </Tooltip>
       {/* <div className='flex flex-col md:flex-row justify-between typography-p mt-3'>
             <p className='font-semibold'>Điểm khớp</p>
             <div className='flex md:w-[50%] items-center gap-2'>

@@ -12,3 +12,13 @@ export type TopCourseType = {
       price: number
       image: string
 }
+
+export type RecentPaymentsType = {
+  id: string
+  createAt: Date
+  amount: number
+  status: string
+  userId: string
+  orderCode: string
+  memberShipPlanId: string
+}
