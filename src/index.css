@@ -55,7 +55,10 @@
             --sidebar-border: 0.5px solid rgba(0,0,0,0.2);
             --sidebar-shadow: 5px 0 15px 0px rgba(0,0,0,0.1), 5px 0px 5px 0px rgba(0,0,0,0.1);
 
-             
+            /*Chart*/
+            --chart-axis-label: #000000;
+            --chart-line: #000000;
+            --chart-legend-label: #000000;
       }
       .dark{
             /*Global style after dark mode*/
@@ -82,6 +85,11 @@
             --sidebar-background: #000001;
             --sidebar-border: 0.5px solid rgba(255,255,255,0.2);
             --sidebar-shadow: 5px 0 20px 0px rgba(255,255,255,0.1);
+
+            /*Chart*/
+            --chart-axis-label: #ffffff;
+            --chart-line: #ffffff;
+            --chart-legend-label: #ffffff
       }
 }
 
@@ -143,4 +151,16 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.1);
        }
+}
+
+@layer base {
+      .MuiChartsAxis-tickLabel {
+            fill: var(--chart-axis-label) !important;
+      }
+      .MuiChartsAxis-line {
+            stroke: var(--chart-line) !important;
+      }
+      .MuiChartsLegend-label {
+            color: var(--chart-legend-label)
+      }
 }

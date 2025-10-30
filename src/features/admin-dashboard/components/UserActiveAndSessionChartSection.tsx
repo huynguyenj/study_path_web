@@ -13,7 +13,7 @@ export default function UserActiveAndSessionChartSection() {
             :
       <>
       {userActiveAndSessionDataDaily ? 
-            <BarChart
+          <BarChart
             xAxis={[
                   { scaleType: 'band', data: userActiveAndSessionDataDaily.data.map((data) => {
                      const date = data.date
@@ -28,16 +28,15 @@ export default function UserActiveAndSessionChartSection() {
             series={[
             {
               data: userActiveAndSessionDataDaily.data.map(value => Number(value.values[0])),
-              label: 'Số truy cập'
+              label: 'Số lượng truy cập'
             },
             {
               data: userActiveAndSessionDataDaily.data.map(value => Number(value.values[1])),
-              label: 'Số hoạt động'
+              label: 'Số lượng hoạt động'
             }
             ]}
             height={350}
-            className='w-[100%]'
-            />
+          />
         :
          <p className='typography-p text-center'>Chưa có dữ liệu</p>
       } 

@@ -1,11 +1,11 @@
 import { forwardRef, type PropsWithChildren } from 'react'
 
 type InputProps = React.HTMLAttributes<HTMLInputElement> & PropsWithChildren & {
-      placeHolder: string
+      placeHolder?: string
       label?: string
       name: string
       error?: string
-      onChange?: () => void
+      // onChange?: () => void
       size: 'sm' | 'md' | 'lg'
       variant: 'outline' | 'filled' | 'standard'|'rounded'
       type: 'text' | 'password' | 'number'

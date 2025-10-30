@@ -9,7 +9,7 @@ export default function AdminDashboard() {
       <div className='mt-5'>
             <AdminChartSection/>
       </div>
-      <div className='my-5 flex flex-col lg:flex-row gap-5'>
+      <div className='my-5 gap-5'>
         <RecentMemberTable/>
       </div>
     </div>

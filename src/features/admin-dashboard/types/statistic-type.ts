@@ -14,3 +14,8 @@ export type RevenueLineChartType = {
   month: number
   totalAmount: number
 }
+
+export type RevenueYearlyType = {
+  chartData: RevenueLineChartType[]
+  year: number[]
+}

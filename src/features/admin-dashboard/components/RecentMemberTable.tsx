@@ -1,31 +1,55 @@
 import { getVietNameCurrency } from '@/utils/getCurrency'
-import useGetDataTable from '../hooks/useGetDataTable'
+import useGetRecentPayments from '../hooks/useGetRecentPayments'
+import CircularProgress from '@mui/material/CircularProgress'
+import { formatDate } from '@/utils/formatDate'
 
 export default function RecentMemberTable() {
-  const { membershipData } = useGetDataTable()
+  const { loading, recentPayments } = useGetRecentPayments()
   return (
-    <div className='card lg:w-[60%] flex flex-col px-8 py-7 rounded-2xl overflow-x-auto ]'>
-      <h4 className='typography-h4 font-semibold text-[#6c6c80] text-center'>Recent Orders</h4>
-      <table className='w-[650px] mx-auto typography-p '>
+    <div className='card flex flex-col px-8 py-7 rounded-2xl overflow-x-auto'>
+      <h4 className='typography-h4 font-semibold text-[#6c6c80] text-center'>Thanh toán gần đây</h4>
+      <table className='min-w-[800px] w-full mx-auto typography-p '>
             <thead className='border-b-1 border-gray-300'>
                   <tr>
                         <th className='text-start font-medium py-3'>User Id</th>
-                        <th className='text-start font-medium'>Membership</th>
-                        <th className='text-start font-medium'>Type</th>
+                        <th className='text-start font-medium'>MembershipId</th>
+                        {/* <th className='text-start font-medium'>Type</th> */}
                         <th className='text-start font-medium'>Date</th>
                         <th className='text-start font-medium'>Amount</th>
                   </tr>
             </thead>
             <tbody>
-                  {membershipData.map((data) => (
-                        <tr key={data.membership}>
-                              <th className='text-start font-normal py-2'>{data.userId}</th>
-                              <th className='text-start font-normal'>{data.membership}</th>
-                              <th className='text-start font-normal py-2'>{data.type}</th>
-                              <th className='text-start font-normal py-2'>{data.date}</th>
-                              <th className='text-start font-normal py-2'>{getVietNameCurrency(data.amount)}</th>
+                  {loading ? 
+                        <tr className='my-10'>
+                              <th colSpan={6}>
+                                    <CircularProgress/>
+                              </th>
                         </tr>
-                  ))}
+                        :
+                        <>
+                              {recentPayments.length > 0 ? 
+                                    <>
+                                          {recentPayments.map((payment) => (
+                                                <tr key={payment.id}>
+                                                      <th className='text-start font-normal py-2'>{payment.userId}</th>
+                                                      <th className='text-start font-normal'>{payment.memberShipPlanId}</th>
+                                                      {/* <th className='text-start font-normal py-2'>{payment.}
+                                                      </th> */}
+                                                      <th className='text-start font-normal py-2'>{formatDate(new Date(payment.createAt))}</th>
+                                                      <th className='text-start font-normal py-2'>{getVietNameCurrency(payment.amount)}</th>
+                                                </tr>
+                                          ))}
+                                    </>
+                                    :
+                                    <tr>
+                                          <th colSpan={6}>
+                                                <p>Chưa có thanh toán nào gần đây</p>
+                                          </th>
+                                    </tr>
+                        
+                              }
+                        </>
+                  }
             </tbody>
       </table>
     </div>

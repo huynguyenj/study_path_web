@@ -7,8 +7,8 @@ import { toast } from 'react-toastify'
 export default function useGetUserData(currentPage: number) {
   const [users, setUsers] = useState<PaginationResponse<UserManagementType>>()
   const [loading, setLoading] = useState(false)
-  useEffect(() => {
-    const fetchUsers = async () => {
+ 
+   const fetchUsers = async () => {
       try {
         setLoading(true)
         const response = await UserAdminApi.getAllUser(currentPage, 5)
@@ -21,10 +21,28 @@ export default function useGetUserData(currentPage: number) {
         setLoading(false)
       }
     }
+
+    const fetchUsersByName = async (userName: string) => {
+      try {
+        setLoading(true)
+        const response = await UserAdminApi.getAllUser(currentPage, 5, userName)
+        setUsers(response.data)
+        toast.success('Lấy danh sách người dùng thành công')
+      } catch (error) {
+        console.log(error)
+        toast.error('Lấy danh sách người dùng thất bại')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+  useEffect(() => {
     fetchUsers()
   }, [currentPage])
+
   return {
       users,
-      loading
+      loading,
+      fetchUsersByName
   }
 }

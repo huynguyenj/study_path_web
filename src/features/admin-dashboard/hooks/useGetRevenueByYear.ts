@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import type { RevenueLineChartType } from '../types/statistic-type'
+import type { RevenueYearlyType } from '../types/statistic-type'
 import { toast } from 'react-toastify'
 import { AnalyticApis } from '../api/api.analytics'
 
 export default function useGetRevenueByYear(year: number) {
-  const [revenueInYearData, setRevenueInYear] = useState<RevenueLineChartType[]>([])
+  const [revenueInYearData, setRevenueInYear] = useState<RevenueYearlyType>()
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     const fetchRevenueByYear = async () => {
