@@ -22,7 +22,6 @@ export default function useGetQuizStatistic() {
          setQuizStatistic(response.data)   
        } catch (error) {
          console.log(error)
-         toast.error('Lấy thông số của quiz thất bại')   
        } finally {
          setLoading(false)
        }
