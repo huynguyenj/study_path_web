@@ -1,18 +1,21 @@
 import { DashboardIcon } from '@/assets/icons/mui-icon'
 import Button from '@/components/ui/button/Button'
 import { ACCESS_PUBLIC_PATH, PRIVATE_PATH } from '@/const/router/access-path'
-import useLocalStorage from '@/hooks/local-storage/useLocalStorage'
+import useAuth from '@/features/auth/hooks/useAuth'
 import { useNavigate } from 'react-router'
 
 export default function NavbarButtons() {
   const navigate = useNavigate()
-  const { getItem } = useLocalStorage('user-info')
-  const userInfo = getItem()
+  const { listRoles, userId } = useAuth()
+  const handleNavigate = (role: string[]) => {
+    if (role.includes('Admin')) navigate(PRIVATE_PATH.ADMIN.DASHBOARD)
+    if (role.includes('User')) navigate(PRIVATE_PATH.USER.DASHBOARD)
+  }
   return (
     <div className='flex gap-2'>
-      { userInfo ? 
+      { userId && listRoles ? 
       <div>
-        <Button size='circle' type='rounded' variant='primary' onClick={() => navigate(PRIVATE_PATH.USER.DASHBOARD)}>
+        <Button size='circle' type='rounded' variant='primary' onClick={() => handleNavigate(listRoles)}>
           <DashboardIcon/>
         </Button>
       </div>

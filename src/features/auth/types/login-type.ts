@@ -9,3 +9,5 @@ export type LoginResponse = {
    roles: string[] | null
    refreshToken: string | null
 }
+
+export type UserInfo = LoginResponse

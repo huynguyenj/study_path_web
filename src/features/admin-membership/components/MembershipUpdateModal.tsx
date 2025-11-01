@@ -85,11 +85,11 @@ export default function MembershipUpdateModal({ data, onClose }: MembershipUpdat
                               <div>
                                     <p>Tính năng</p>
                                     {membershipPlanDetail && membershipPlanDetail?.features.length > 0 ?
-                                          <>
+                                          <div className='flex gap-2 mt-2'>
                                                 {membershipPlanDetail?.features.map((feature) => (
                                                       <Tag key={feature.id} content={feature.name} variant='primary'/>
                                                 ))}
-                                          </>
+                                          </div>
                                     :
                                     <p className='text-center mt-5 text-gray-primary font-medium'>Chưa có tính năng</p>
                                     }
@@ -113,7 +113,7 @@ export default function MembershipUpdateModal({ data, onClose }: MembershipUpdat
                                                 <div className='flex gap-2'>
                                                       {listFeatureChoices.map((item, index) => (
                                                       <div key={index} className='relative w-fit cursor-pointer group flex gap-2 items-center'>
-                                                            <div className='group-hover:-translate-x-8 transition-all duration-200 ease-in-out'>
+                                                            <div className='group-hover:-translate-x-8 transition-all duration-200 ease-in-out gap-2 mt-2'>
                                                                   <Tag content={item.name} variant='primary' key={index}/>
                                                             </div>
                                                             <div className='absolute right-0 -z-10 -translate-x-0 group-hover:z-0 transition-all duration-300 ease-in-out' onClick={() => removeFeature(item.id)}>

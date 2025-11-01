@@ -1,4 +1,3 @@
-import Button from '@/components/ui/button/Button'
 import ScheduleImage from '@/assets/images/schedule-image.jpg'
 import AimImage from '@/assets/images/aim-image.webp'
 import AiImage from '@/assets/images/AI-img.png'
@@ -21,11 +20,11 @@ export default function HeroSection() {
             <h1 className="typography-h1 font-semibold lg:leading-15 text-center lg:text-start">Giải pháp hiện đại, tối ưu lịch trình của bạn</h1>          
             <h3 className="typography-h3 mt-5 text-center lg:text-start">Quản lí lịch trình, tối ưu hóa việc học của bạn bằng công cụ hỗ trợ bạn tạo ra lịch học hiệu quả. Với công cụ AI sẽ giúp bạn đưa ra lịch học tối ưu nhất và hiệu quả nhất.</h3>
           </div>
-          <div>
+          {/* <div>
             <Button type='normal' size='md' variant='primary'>
               <p>Try it now!</p>
             </Button>
-          </div>
+          </div> */}
         </motion.div>
         <motion.div
             initial={{ x: 100, opacity: 0 }}

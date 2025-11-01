@@ -27,15 +27,20 @@ export default function MembershipCard({ data }: MembershipCardProps) {
     <div className='card px-10 py-10'>
       <h3 className='typography-h3 font-medium'>{data.name}</h3>
       <h2 className='typography-h2 font-bold'>{getVietNameCurrency(data.fee)} /<span className='typography-p font-normal text-gray-primary'>{data.duration}</span></h2>
-      {data.features.map((feature) => (
-         <div className='typography-p flex items-center'>
-            <CheckCircleIcon/>
-            <p>{feature.name}</p>
-         </div>
-      ))}
-      <Button size='md' type='normal' variant='primary' onClick={() => getPaymentUrl(data.id)}>
-            Chọn gói thành viên này
-      </Button>
+      <div className='mt-3'>
+        <Button size='md' type='normal' variant='primary' onClick={() => getPaymentUrl(data.id)}>
+              Chọn gói thành viên này
+        </Button>
+      </div>
+      <div className='mt-3'>
+        {data.features.map((feature) => (
+          <div className='typography-p flex items-center mt-2'>
+              <CheckCircleIcon/>
+              <p>{feature.name}</p>
+          </div>
+        ))}
+      </div>
+     
     </div>
   )
 }

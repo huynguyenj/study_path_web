@@ -14,7 +14,7 @@ export default function MembershipSection() {
             <RocketLaunchIcon/>
             <p>Hãy chọn gói thành viên của bạn </p>
       </div>
-      <div className='flex items-center gap-2 px-20'>
+      <div className='flex flex-col mx-auto items-center gap-10 px-20 mt-10'>
             {membershipList.length > 0 && 
             membershipList.map((membership) => (
                   <MembershipCard data={membership}/>

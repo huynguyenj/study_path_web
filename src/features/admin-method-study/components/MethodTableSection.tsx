@@ -1,19 +1,37 @@
 import { useState } from 'react'
-import MethodTableHeader from './MethodTableHeader'
 import MethodTable from './MethodTable'
 import EvaluationTable from './EvaluationTable'
+import Button from '@/components/ui/button/Button'
+import { EvaluationProvider } from '../context/EvaluationProvider'
+import { StudyMethodAdminProvider } from '../context/StudyMethodAdminProvider'
 
 export default function MethodTableSection() {
-  const [tabList] = useState(['Method', 'Evaluation'])
-  const [currentTab, setCurrentTab] = useState(tabList[0])
-  const handleChangeTab = () => {
-    setCurrentTab(currentTab === tabList[0] ? tabList[1]: tabList[0])
+  const [tabValue, setTabValue] = useState(1)
+  const handleChange = (newValue: number) => {
+    setTabValue(newValue)
   }
+
   return (
     <div className='mb-5'>
-      <MethodTableHeader changeTab={handleChangeTab} currentTab={currentTab} tabSections={tabList}/>
+      <div className='flex gap-2'>
+          <Button size='md' type='normal' variant={tabValue === 1 ? 'primary' : 'inactive'} onClick={() => handleChange(1)}>
+                Phương pháp học
+          </Button>
+          <Button size='md' type='normal' variant={tabValue === 2 ? 'primary' : 'inactive'} onClick={() => handleChange(2)}>
+                Mục đánh giá
+          </Button>
+      </div>
       {
-        currentTab == 'Method' ? <MethodTable/> : <EvaluationTable/>
+        tabValue === 1 &&
+        <StudyMethodAdminProvider>
+          <MethodTable/>
+        </StudyMethodAdminProvider> 
+      }
+      {
+        tabValue === 2 && 
+        <EvaluationProvider>
+          <EvaluationTable/>
+        </EvaluationProvider>
       }
     </div>
   )

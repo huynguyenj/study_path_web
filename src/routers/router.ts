@@ -3,6 +3,7 @@ import AdminLayout from '@/layouts/AdminLayout'
 import MainLayout from '@/layouts/MainLayout'
 import PageLayout from '@/layouts/PageLayout'
 import { createBrowserRouter } from 'react-router'
+import { authMiddleWare } from './middlewares/auth-middleware'
 
 export const router = createBrowserRouter([
       {
@@ -60,6 +61,7 @@ export const router = createBrowserRouter([
       },
       {
             path:'/user',
+            unstable_middleware: [authMiddleWare({ role: 'User' })],
             Component: MainLayout,
             children: [
                   {
@@ -114,6 +116,7 @@ export const router = createBrowserRouter([
       },
       {
             path: '/admin',
+            unstable_middleware: [authMiddleWare({ role: 'Admin' })],
             Component: AdminLayout,
             children: [
                   {
@@ -147,5 +150,11 @@ export const router = createBrowserRouter([
                         }
                   }
             ]
+      },
+      {
+            path: '*',
+            lazy: {
+               Component: async () => (await import('@/pages/global/ErrorPage')).default
+            }
       }
 ])

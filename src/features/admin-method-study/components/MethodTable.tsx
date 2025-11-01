@@ -1,14 +1,9 @@
-import useGetMethodData from '../hooks/useGetMethodData'
 import TableRowContainer from '@/components/ui/container/TableRowContainer'
 import Tag from '@/components/ui/tags/Tag'
 import { COLOR_TAG } from '../const/color-tag'
-import { AddIcon, MoreHorizIcon } from '@/assets/icons/mui-icon'
 import PaginationSimple from '@/components/pagination/PaginationSimple'
-import usePagination from '@/hooks/pagination/usePagination'
 import Button from '@/components/ui/button/Button'
 import TableContainer from '@/components/ui/container/TableContainer'
-import { useEffect } from 'react'
-import LoadingScreen from '@/components/ui/loading/LoadingScreen'
 import Modal from '@/components/ui/popup/Modal'
 import { Input } from '@/components/ui/input/Input'
 import { Select } from '@/components/ui/input/Select'
@@ -17,29 +12,22 @@ import useCreateStudyMethod from '../hooks/useCreateStudyMethod'
 import useToggle from '@/hooks/state/useToggle'
 import Tooltip from '@mui/material/Tooltip'
 import { truncateText } from '@/utils/truncateText'
+import useGetStudyMethodContext from '../hooks/useGetStudyMethodContext'
+import CircularProgress from '@mui/material/CircularProgress'
 
 export default function MethodTable() {
-    const { currentPage, goBackPage, goToNextPage, totalPages, setTotalPages } = usePagination()
-    const { methodTableDatas, loading: dataLoading } = useGetMethodData(currentPage)
+    const context = useGetStudyMethodContext()
     const { handleToggle, isToggle } = useToggle(false)
-    const { errors, handleSubmit, loading: submitLoading } = useCreateStudyMethod()
+    const { errors, handleSubmit, loading:submitLoading } = useCreateStudyMethod()
   
-    useEffect(() => {
-      if (methodTableDatas) {
-            setTotalPages(methodTableDatas.totalPages)
-      }
-    }, [methodTableDatas])
-      if (dataLoading || submitLoading) {
-        return <LoadingScreen/>
-      }
   return (
       <>
       <TableContainer>
             <div className='flex justify-end'>
-                  <Button type='normal' size='md' variant='primary' onClick={handleToggle}>
+                  {/* <Button type='normal' size='md' variant='primary' onClick={handleToggle}>
                         <AddIcon/>
                         Tạo phương pháp học
-                  </Button>
+                  </Button> */}
             </div>
             <div className='px-5 py-2 flex justify-between text-gray-primary font-medium mt-5'>
                   {/* <p className='w-20'>ID</p> */}
@@ -47,45 +35,53 @@ export default function MethodTable() {
                   <p className='w-35 text-start'>Thời gian chú thích</p>
                   <p className='w-50 text-start'>Mô tả</p>
                   <p className='w-30 text-start'>Độ khó</p>
-                  <p className='w-10'></p>
+                  {/* <p className='w-10'></p> */}
             </div>
-            {methodTableDatas ? 
-              <>
-                  {methodTableDatas.items.map((method) => (
-                        <TableRowContainer key={method.id}>
-                              {/* <p className='w-20'>{method.id}</p> */}
-                              <p className='w-55'>{method.name}</p>
-                              <p className='w-35 text-start '>{method.timeInfo}</p>
-                              <p className='w-50 text-start'>
-                                    <Tooltip title= {method.description}>
-                                      <p>
-                                          {truncateText(method.description, 35)}
-                                      </p>
-                                    </Tooltip> 
-                              </p>
-                              <div className='w-30'><Tag content={method.difficulty} variant={COLOR_TAG[method.difficulty.toLowerCase()]}/></div>
-                              <div className='w-10 group cursor-pointer'>
-                                    <MoreHorizIcon/>
-                                    <div className='flex flex-col gap-2 absolute right-15 scale-0 group-hover:scale-100 transition-all duration-200 ease-in-out'>
-                                          <Button size='sm' type='normal' variant='secondary'>
-                                              Xem chi tiết
-                                          </Button>
-                                          <Button size='sm' type='normal' variant='danger'>
-                                             Xóa
-                                          </Button>
-                                    </div>
-                              </div>
-                        </TableRowContainer>
-                  ))}
-              </>
-              : 
-              <p className='typography-p text-center p-5 text-gray-primary'>Chưa có phương pháp học</p>
+            {context.loading || submitLoading ? 
+                  <div className='flex justify-center items-center mt-15'>
+                        <CircularProgress/>
+                  </div>
+             :
+             <>
+                  {context.methodTableDatas ? 
+                  <>
+                        {context.methodTableDatas.items.map((method) => (
+                              <TableRowContainer key={method.id}>
+                                    {/* <p className='w-20'>{method.id}</p> */}
+                                    <p className='w-55'>{method.name}</p>
+                                    <p className='w-35 text-start '>{method.timeInfo}</p>
+                                    <p className='w-50 text-start'>
+                                          <Tooltip title= {method.description}>
+                                          <p>
+                                                {truncateText(method.description, 35)}
+                                          </p>
+                                          </Tooltip> 
+                                    </p>
+                                    <div className='w-30'><Tag content={method.difficulty} variant={COLOR_TAG[method.difficulty.toLowerCase()]}/></div>
+                                    {/* <div className='w-10 group cursor-pointer'>
+                                          <MoreHorizIcon/>
+                                          <div className='flex flex-col gap-2 absolute right-15 scale-0 group-hover:scale-100 transition-all duration-200 ease-in-out'>
+                                                <Button size='sm' type='normal' variant='secondary'>
+                                                Xem chi tiết
+                                                </Button>
+                                                <Button size='sm' type='normal' variant='danger'>
+                                                Xóa
+                                                </Button>
+                                          </div>
+                                    </div> */}
+                              </TableRowContainer>
+                        ))}
+                  </>
+                  : 
+                  <p className='typography-p text-center p-5 text-gray-primary'>Chưa có phương pháp học</p>
+                  }
+             </>
             }
             <PaginationSimple 
-                  currentPage={currentPage} 
-                  limit={totalPages}
-                  goBackPage={goBackPage} 
-                  goToNextPage={goToNextPage} 
+                  currentPage={context.currentPage} 
+                  limit={context.totalPages}
+                  goBackPage={context.goBackPage} 
+                  goToNextPage={context.goToNextPage} 
             />
       </TableContainer>
             {isToggle && 

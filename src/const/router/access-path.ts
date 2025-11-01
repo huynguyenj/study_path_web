@@ -5,7 +5,8 @@ export const ACCESS_PUBLIC_PATH = {
       LOGIN: '/auth/login',
       REGISTER: '/auth/register',
       PAYMENT_STATUS: '/payment/status',
-      MEMBERSHIP: '/membership'
+      MEMBERSHIP: '/membership',
+      NOT_FOUND: '/not-found'
 }
 
 export const PRIVATE_PATH = {

@@ -5,7 +5,8 @@ export const Global_Path = {
       LOGIN: 'login',
       REGISTER: 'register',
       PAYMENT_STATUS: 'payment/status',
-      MEMBERSHIP: 'membership'
+      MEMBERSHIP: 'membership',
+      NOT_FOUND: 'not-found'
 }
 
 
