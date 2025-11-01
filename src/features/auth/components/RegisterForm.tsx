@@ -14,23 +14,23 @@ export default function RegisterForm() {
     <FormStructure>
       <div>
         <form onSubmit={handleSubmitForm} className='flex flex-col gap-6 my-2'>
-          <div className='flex gap-5 mt-5'>
-            <Input label='Tên đầy đủ' name='fullname' placeHolder='Nguyen Van A' type='text' size='md' variant='standard'>
+          <div className='flex gap-8 mt-8'>
+            <Input label='Tên đầy đủ' name='fullName' placeHolder='Nguyen Van A' type='text' size='md' variant='standard' error={errors.fullName}>
               <DriveFileRenameOutlineIcon/>
             </Input>
-            <Input label='Tên sử dụng' name='username' placeHolder='NguyenA' type='text' size='md' variant='standard' error={errors.username}>
+            <Input label='Tên sử dụng' name='userName' placeHolder='NguyenA' type='text' size='md' variant='standard' error={errors.userName}>
               <PersonIcon/>
             </Input>
           </div>
-          <div className='flex gap-5 mt-5 mb-5'>
-            <Input label='Email' placeHolder='nguyenvana@gmail.com' name='email' size='md' type='text' variant='standard'>
+          <div className='flex gap-8 mt-5 mb-5'>
+            <Input label='Email' placeHolder='nguyenvana@gmail.com' name='email' size='md' type='text' variant='standard' error={errors.email}>
               <EmailIcon/>
             </Input>
             <Input label='Mật khẩu' name='password' placeHolder='Password' type='password' size='md' variant='standard' error={errors.password}>
               <LockIcon/>
             </Input>
           </div>
-          <Input label='Địa chỉ' name='address' placeHolder='Hồ Chí Minh' type='text' size='md' variant='standard'>
+          <Input label='Địa chỉ' name='address' placeHolder='Hồ Chí Minh' type='text' size='md' variant='standard' error={errors.address}>
             <MapIcon/>
           </Input>
           <DateInput colorChoice='white' label='Ngày sinh' name='dob'/>

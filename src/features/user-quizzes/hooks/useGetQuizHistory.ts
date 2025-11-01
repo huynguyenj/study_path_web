@@ -23,7 +23,6 @@ export default function useGetQuizHistory(page:number) {
       setQuizHistory(response.data)
     } catch (error) {
       console.log(error)
-      toast.error('Lấy lịch sử quiz thất bại')
     } finally {
       setLoading(false)
     }

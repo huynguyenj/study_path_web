@@ -12,13 +12,14 @@ export default function useRegister() {
     const form = new FormData(e.currentTarget)
     const dobString = new Date(form.get('dob') as string)
     const formData: RegisterInformation = {
-      username: form.get('username') as string,
+      userName: form.get('userName') as string,
       password: form.get('password') as string,
-      fullname: form.get('fullname') as string,
+      fullName: form.get('fullName') as string,
       address: form.get('address') as string,
+      email: form.get('email') as string,
       dob: dobString
     }
-    if (isValid(formData, { username: '', password: '' })) {
+    if (isValid(formData, { userName: '', password: '', address: '', email: '', fullName: '' })) {
       try {
         setLoading(true)
         await AuthApi.register(formData)
