@@ -5,3 +5,8 @@ export type GoogleAnalyticsType = {
       values: string[]
   }[]
 }
+
+export type GoogleAnalyticsNewUserType = {
+  month: number
+  newUser: number
+}

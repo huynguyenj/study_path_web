@@ -1,5 +1,4 @@
-import { IosShareIcon, SearchIcon } from '@/assets/icons/mui-icon'
-import Button from '@/components/ui/button/Button'
+import { SearchIcon } from '@/assets/icons/mui-icon'
 import { Input } from '@/components/ui/input/Input'
 import useDebounce from '@/hooks/debounce/useDebounce'
 import { useEffect, useState, type ChangeEvent } from 'react'
@@ -23,10 +22,10 @@ export default function TableUserHeader() {
   }, [debounceText])
   return (
     <div className='flex items-center gap-5 justify-between mb-3'>
-      <Button type='normal' size='md' variant='primary'>
+      {/* <Button type='normal' size='md' variant='primary'>
         <IosShareIcon/>
         Export
-      </Button>
+      </Button> */}
       <div className='flex gap-2'>
             <Input name='search' placeHolder='Search' size='sm' type='text' variant='rounded' 
             onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}>
