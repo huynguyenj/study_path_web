@@ -4,11 +4,8 @@ import Button from '@/components/ui/button/Button'
 import useToggle from '@/hooks/state/useToggle'
 import CreateQuizModal from './CreateQuizModal'
 
-type QuizHeaderProps = {
-  refreshQuizData: () => void
-}
 
-export default function QuizHeader({ refreshQuizData }: QuizHeaderProps) {
+export default function QuizHeader() {
   const { handleToggle, isToggle } = useToggle(false)
   return (
     <div className='flex items-center justify-between'>
@@ -26,7 +23,7 @@ export default function QuizHeader({ refreshQuizData }: QuizHeaderProps) {
       </Input> */}
       </div>  
       {isToggle && 
-      <CreateQuizModal refreshQuizData={refreshQuizData} handleToggle={handleToggle}/>    
+      <CreateQuizModal handleToggle={handleToggle}/>    
       }
     </div>
   )

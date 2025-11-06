@@ -8,21 +8,17 @@ import Button from '@/components/ui/button/Button'
 import LoadingScreen from '@/components/ui/loading/LoadingScreen'
 
 type StudyMethodCardProps = {
+  studyMethodPersonalId: string
   data: StudyMethodType
-  refresh: () => void
 }
 
-export default function StudyMethodCard({ data, refresh }: StudyMethodCardProps) {
+export default function StudyMethodCard({ data, studyMethodPersonalId }: StudyMethodCardProps) {
   const { handleDeletePersonalStudyMethod, loading } = useDeletePersonalStudyMethod()
   const { handleToggle, isToggle } = useToggle(false)
   if (loading) {
    return <LoadingScreen/>
   }
 
-  const handleDelete = () => {
-    handleDeletePersonalStudyMethod(data.id)
-    refresh()
-  }
   return (
     <div className='card'>
       <div className='bg-[#fdb44b] rounded-t-2xl p-5'>
@@ -58,7 +54,7 @@ export default function StudyMethodCard({ data, refresh }: StudyMethodCardProps)
                         <Button size='md' type='normal' variant='inactive' onClick={handleToggle}>
                             Không
                         </Button>
-                        <Button size='md' type='normal' variant='primary' onClick={handleDelete}>
+                        <Button size='md' type='normal' variant='primary' onClick={() => handleDeletePersonalStudyMethod(studyMethodPersonalId)}>
                             Có
                         </Button>
                   </div>

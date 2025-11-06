@@ -6,7 +6,9 @@ export default function useGetEvaluationSections() {
   const [loading, setLoading] = useState(false)
   const [evaluationList, setEvaluationList] = useState<QuestionSectionType[]>([])
   useEffect(() => {
-    const fetchEvaluationList = async () => {
+    fetchEvaluationList()
+  }, [])
+   const fetchEvaluationList = async () => {
       try {
         setLoading(true)
         const response = await StudyMethodApi.getAllEvaluation()
@@ -17,10 +19,9 @@ export default function useGetEvaluationSections() {
         setLoading(false)
       }
     }
-    fetchEvaluationList()
-  }, [])
   return {
       loading,
-      evaluationList
+      evaluationList,
+      fetchEvaluationList
   }
 }

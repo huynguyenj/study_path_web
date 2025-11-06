@@ -4,10 +4,12 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import type { StudyMethodSubmit } from '../types/study-type'
 import { StudyMethodApi } from '../api/api.study.method'
+import usePersonalStudyMethodContext from './usePersonalStudyMethodContext'
 
 export default function useChoseStudyMethod() {
   const { getItem } = useLocalStorage('user-info')
   const [isLoading, setIsLoading] = useState(false)
+  const context = usePersonalStudyMethodContext()
   const handleSubmitStudyMethod = async (methodId: string) => {
       const userId = getItem<LoginResponse>()?.userId
       if (!userId) {
@@ -22,6 +24,7 @@ export default function useChoseStudyMethod() {
             userId: userId
         }    
         await StudyMethodApi.chooseStudyMethod(data)
+        context.getPersonalStudyMethod()
       } catch (error) {
         console.log(error)
         toast.error('Đã xảy ra lỗi. Vui lòng thử lại!')

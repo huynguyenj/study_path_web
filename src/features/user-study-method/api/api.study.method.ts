@@ -12,5 +12,7 @@ export const StudyMethodApi = {
   submitEvaluation: async (answerData: AnswerType[]): Promise<ResponseStructure<StudyMethodComparisonType[]>> => await apiPrivate.post('/UserAnswer/submit', answerData),
   getTopThreeStudyMethod: async(userId: string): Promise<ResponseStructure<StudyMethodType[]>> => await apiPrivate.get(`Method/top3/${userId}`),
   chooseStudyMethod: async (studyMethodSubmission: StudyMethodSubmit): Promise<null> => await apiPrivate.post('/StudyMethod/create', studyMethodSubmission),
-  deletePersonalStudyMethod: async (studyMethodId: string): Promise<null> => await apiPrivate.delete(`/${studyMethodId}`)
+
+  
+  deletePersonalStudyMethod: async (studyMethodId: string): Promise<null> => await apiPrivate.delete(`/StudyMethod/delete-by/${studyMethodId}`)
 }

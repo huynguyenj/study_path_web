@@ -6,10 +6,12 @@ import useLocalStorage from '@/hooks/local-storage/useLocalStorage'
 import type { LoginResponse } from '@/features/auth/types/login-type'
 import { toast } from 'react-toastify'
 import { QuizApi } from '../api/api.quiz'
+import useQuizContext from './useQuizContext'
 
-export default function useCreateQuiz(refreshQuiz: () => void) {
+export default function useCreateQuiz() {
   const { errors, validate } = useFormCheck<CreateQuizType>()
   const [loading, setLoading] = useState(false)
+  const context = useQuizContext()
   const { getItem } = useLocalStorage('user-info')
   const handleSubmitQuiz = async (e: ChangeEvent<HTMLFormElement>) => {
       const userId = getItem<LoginResponse>()?.userId
@@ -33,7 +35,7 @@ export default function useCreateQuiz(refreshQuiz: () => void) {
         try {
           setLoading(true)  
           await QuizApi.createQuizByAi(data)
-          refreshQuiz()
+          context.getListQuizData()
         } catch (error) {
           console.log(error)
           toast.error('Tạo quiz thất bại')  

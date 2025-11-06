@@ -17,7 +17,6 @@ export function QuizAnswerProvider({ children }: QuizAnswerProviderProps) {
       return [...updated, { questionId: questionId, questionChoiceId: choiceId }]
     })
   }, [])
-  console.log(choices)
   return (
     <QuizAnswerContext.Provider value={{ handleChoice, choices }}>
       {children}

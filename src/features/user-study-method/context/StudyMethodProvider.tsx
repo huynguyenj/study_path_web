@@ -12,6 +12,7 @@ type StudyMethodContextProps = {
       goToNextPage: () => void
       goBackPage: () => void
       handleChoice: (choiceId: string, questionId: string, typeQuestion: string) => void
+      fetchEvaluationList: () => void
       choices: Choice[]
       answer: AnswerType[]
       page: number
@@ -23,7 +24,7 @@ const StudyMethodContext = createContext<StudyMethodContextProps | undefined>(un
 type StudyMethodProviderProps = PropsWithChildren
 
 export function StudyMethodProvider({ children }: StudyMethodProviderProps) {
-  const { evaluationList, loading } = useGetEvaluationSections()
+  const { evaluationList, loading, fetchEvaluationList } = useGetEvaluationSections()
   const [page, setPage] = useState(1)
   const [questionIndexPage, setQuestionIndexPage] = useState<QuestionSectionType | null>(null)
   const [choices, setChoices] = useState<Choice[]>([])
@@ -91,7 +92,7 @@ export function StudyMethodProvider({ children }: StudyMethodProviderProps) {
       return <LoadingScreen/>
     }
   return (
-    <StudyMethodContext.Provider value={{ answer, page, evaluationList, limit, questionIndexPage, goToNextPage, goBackPage, handleChoice, choices }}>
+    <StudyMethodContext.Provider value={{ answer, page, evaluationList, limit, questionIndexPage, goToNextPage, goBackPage, handleChoice, fetchEvaluationList, choices }}>
       {children}
     </StudyMethodContext.Provider>
   )
