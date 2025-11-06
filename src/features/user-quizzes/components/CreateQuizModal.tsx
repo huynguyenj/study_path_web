@@ -8,11 +8,10 @@ import LoadingScreen from '@/components/ui/loading/LoadingScreen'
 
 type CreateQuizModalProps = {
   handleToggle: () => void
-  refreshQuizData: () => void
 }
 
-export default function CreateQuizModal({ handleToggle, refreshQuizData }: CreateQuizModalProps) {
-  const { handleSubmitQuiz, loading, errors } = useCreateQuiz(refreshQuizData)
+export default function CreateQuizModal({ handleToggle }: CreateQuizModalProps) {
+  const { handleSubmitQuiz, loading, errors } = useCreateQuiz()
   if (loading) {
       return <LoadingScreen/>
   }

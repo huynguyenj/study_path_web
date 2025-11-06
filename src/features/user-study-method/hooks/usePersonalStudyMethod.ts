@@ -7,6 +7,7 @@ import { StudyMethodApi } from '../api/api.study.method'
 
 export default function usePersonalStudyMethod() {
   const [personalStudyMethod, setPersonalStudyMethod] = useState<StudyMethodType>()
+  const [studyMethodPersonalId, setStudyMethodPersonalId] = useState<string>('')
   const [loading, setLoading] = useState(false)
   const { getItem } = useLocalStorage('user-info')
   
@@ -24,9 +25,11 @@ export default function usePersonalStudyMethod() {
       setLoading(true)
       const response = await StudyMethodApi.getPersonalStudyMethod(userId)
       const responseStudyMethod = await StudyMethodApi.getStudyMethodDetail(response.data.methodId)
+      setStudyMethodPersonalId(response.data.id)
       setPersonalStudyMethod(responseStudyMethod.data)
     } catch (error) {
       console.log(error)
+      setPersonalStudyMethod(undefined)
     } finally {
       setLoading(false)
     }
@@ -34,6 +37,7 @@ export default function usePersonalStudyMethod() {
   return {
       loading,
       personalStudyMethod,
-      getPersonalStudyMethod
+      getPersonalStudyMethod,
+      studyMethodPersonalId
   }
 }
