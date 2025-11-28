@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { PaymentApi } from '../api/api.payment.status'
 import type { PaymentTypes, UpdatePaymentType } from '../types/payment-types'
+import { toast } from 'react-toastify'
 
 export default function useUpdatePaymentStatus() {
   const [paymentData, setPaymentData] = useState<PaymentTypes>()
@@ -11,7 +12,7 @@ export default function useUpdatePaymentStatus() {
       const response = await PaymentApi.updatePaymentStatus(updatePaymentData)
       setPaymentData(response.data) 
     } catch (error) {
-      console.log(error)
+      toast.error(error as string)
     } finally {
       setLoading(false)
     }

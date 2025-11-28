@@ -13,8 +13,7 @@ export default function useDeleteFeature() {
         toast.success('Xóa chức năng thành công')
         context.fetchListFeature()    
       } catch (error) {
-        console.log(error)
-        toast.error('Xóa chức năng thất bại')    
+        toast.error(error as string)    
       } finally {
         setLoading(false)
       }

@@ -19,8 +19,7 @@ export default function useCreateSchedule() {
       await ScheduleApi.createSchedule(userId, scheduleData)
       toast.success('Tạo lịch thành công!')      
     } catch (error) {
-      console.log(error)
-      toast.error('Tạo lịch thất bại. Hãy thử lại!')
+      toast.error(error as string)
     } finally {
       setIsLoading(false)
     }

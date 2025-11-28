@@ -23,8 +23,7 @@ export default function useCreateFeature() {
               toast.success('Tạo tính năng thành công')
               context.fetchListFeature()
             } catch (error) {
-              console.log(error)
-              toast.error('Tạo tính năng thất bại')    
+              toast.error(error as string)    
             } finally {
               setLoading(false)
             }

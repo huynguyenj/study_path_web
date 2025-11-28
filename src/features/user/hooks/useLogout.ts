@@ -17,8 +17,7 @@ export default function useLogout() {
          toast.success('Đăng xuất thành công')
          navigate(ACCESS_PUBLIC_PATH.HOME)
       } catch (error) {
-         console.log(error)
-         toast.error('Đăng xuất thất bại!')   
+         toast.error(error as string)   
       } finally {
          setLoading(false)
       }

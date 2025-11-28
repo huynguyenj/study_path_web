@@ -20,8 +20,7 @@ export default function useGetPaymentUrl() {
         const response = await PaymentApi.createPaymentLinks(membershipPlanId, userId)  
         setPaymentUrlData(response)
       } catch (error) {
-        console.log(error)
-        toast.error('Lấy link thanh toán thất bại')    
+        toast.error(error as string)    
       } finally {
         setLoading(false)
       }

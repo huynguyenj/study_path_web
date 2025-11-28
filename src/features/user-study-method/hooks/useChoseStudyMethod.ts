@@ -26,8 +26,7 @@ export default function useChoseStudyMethod() {
         await StudyMethodApi.chooseStudyMethod(data)
         context.getPersonalStudyMethod()
       } catch (error) {
-        console.log(error)
-        toast.error('Đã xảy ra lỗi. Vui lòng thử lại!')
+        toast.error(error as string)
       } finally {
         setIsLoading(false)
       }

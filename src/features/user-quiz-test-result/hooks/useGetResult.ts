@@ -17,8 +17,7 @@ export default function useGetResult({ resultId }: { resultId: string | undefine
        const response = await QuizTestResultApi.getQuizResult(resultId)
        setResult(response.data)
       } catch (error) {
-        console.log(error)
-        toast.error('Xảy ra lỗi trong quá trình nộp bài!')
+        toast.error(error as string)
       } finally {
         setLoading(false)
       }

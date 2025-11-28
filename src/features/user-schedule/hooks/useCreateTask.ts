@@ -28,8 +28,7 @@ export default function useCreateTask(processId: string) {
               setTasks(response.data.processTasks)
               toast.success('Tạo task thành công')
             } catch (error) {
-              console.log(error)
-              toast.error('Tạo tasks thất bại xin hãy thử lại sau.')
+              toast.error(error as string)
             } finally {
               setLoading(false)
             }

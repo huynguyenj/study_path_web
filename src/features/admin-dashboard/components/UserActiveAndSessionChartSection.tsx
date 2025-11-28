@@ -32,7 +32,11 @@ export default function UserActiveAndSessionChartSection() {
             },
             {
               data: userActiveAndSessionDataDaily.data.map(value => Number(value.values[1])),
-              label: 'Số lượng hoạt động'
+              label: 'Số lượng phiên hoạt động'
+            },
+            {
+              data: userActiveAndSessionDataDaily.data.map(value => Number(value.values[2])),
+              label: 'Số lượng event'
             }
             ]}
             height={350}

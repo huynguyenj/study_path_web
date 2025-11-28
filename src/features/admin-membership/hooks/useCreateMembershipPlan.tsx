@@ -28,8 +28,7 @@ export default function useCreateMembershipPlan() {
            toast.success('Tạo gói thành viên thành công')
            context.fetchMembershipPlan()
          } catch (error) {
-           console.log(error)
-           toast.error('Tạo gói thành viên thất bại') 
+           toast.error(error as string) 
          } finally {
            setLoading(false)
          }

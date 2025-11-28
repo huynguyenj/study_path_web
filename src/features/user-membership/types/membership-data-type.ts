@@ -10,3 +10,7 @@ export type MembershipDataType = {
   duration: string
   features: MembershipFeature[] 
 }
+
+export type MembershipState = {
+  isSubScription: boolean
+}

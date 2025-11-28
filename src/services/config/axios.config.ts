@@ -1,7 +1,7 @@
 import axios, { AxiosError, HttpStatusCode, type AxiosRequestConfig, type AxiosResponse, type InternalAxiosRequestConfig } from 'axios'
 import { env } from '../../configuration/environment'
 import { store } from '../../store/store'
-import type { ResponseStructure } from '../../types/data-response/response'
+import type { ErrorResponse, ResponseStructure } from '../../types/data-response/response'
 import { AuthApi } from '../../features/user/api/auth-api'
 import { saveToken } from '../../features/auth/auth-slice/token-slice'
 
@@ -10,14 +10,14 @@ export const apiPrivate = axios.create({
 })
 
 export const apiPublic = axios.create({
-      baseURL: env.BASE_API_ENDPOINT,
-      withCredentials: true
+      baseURL: env.BASE_API_ENDPOINT
 })
 
 apiPublic.interceptors.response.use((response: AxiosResponse) => {
      return response.data
 }, (error: AxiosError) => {
-     return Promise.reject(error) 
+     const errorResponseMessage = error.response?.data as ErrorResponse
+     return Promise.reject(errorResponseMessage.Message) 
 })
 
 apiPrivate.interceptors.request.use(( config: InternalAxiosRequestConfig ) => {
@@ -49,5 +49,6 @@ apiPrivate.interceptors.response.use(( response: AxiosResponse ) => {
                   return Promise.reject(error)
             }
       }
-      return Promise.reject(error.message)
+      const errorResponseMessage = error.response?.data as ErrorResponse
+      return Promise.reject(errorResponseMessage.Message)
 })

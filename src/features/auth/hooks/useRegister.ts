@@ -25,8 +25,7 @@ export default function useRegister() {
         await AuthApi.register(formData)
         toast.success('Register successfully!')
       } catch (error) {
-        toast.error('Register fail')
-        console.log(error)
+        toast.error(error as string)
       } finally {
         setLoading(false)
       }

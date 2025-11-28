@@ -1,4 +1,4 @@
-import type { ResponseStructure } from '@/types/data-response/response'
+import type { PaginationResponse, ResponseStructure } from '@/types/data-response/response'
 import axios from 'axios'
 import type { GoogleAnalyticsNewUserType, GoogleAnalyticsType } from '../types/google-analytics-type'
 import type { AdminStatisticsType, RevenueYearlyType } from '../types/statistic-type'
@@ -16,5 +16,5 @@ export const AnalyticApis = {
   },
   getAdminStatistics: async (): Promise<ResponseStructure<AdminStatisticsType>> => apiPrivate.get('/Admin/get-admin-infor'),
   getRevenueByYear: async (year: number): Promise<ResponseStructure<RevenueYearlyType>> => await apiPrivate.get(`/payment/get-payment-of-year?year=${year}`),
-  getRecentPayments: async (): Promise<ResponseStructure<RecentPaymentsType[]>> => await apiPrivate.get('/payment/get-recent-payment')
+  getRecentPayments: async (currentPage: number): Promise<PaginationResponse<RecentPaymentsType>> => await apiPrivate.get(`/payment/get-recent-payment?pageNumber=${currentPage}&pageSize=5`)
 }
