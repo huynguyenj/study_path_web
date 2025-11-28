@@ -37,8 +37,7 @@ export default function useCreateQuiz() {
           await QuizApi.createQuizByAi(data)
           context.getListQuizData()
         } catch (error) {
-          console.log(error)
-          toast.error('Tạo quiz thất bại')  
+          toast.error(error as string)  
         } finally {
           setLoading(false)
         }

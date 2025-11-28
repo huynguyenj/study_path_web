@@ -22,8 +22,7 @@ export default function useCreateStudyMethod() {
           await StudyMethodAdmin.createStudyMethod(data)
           toast.success('Tạo phương pháp học thành công!')  
         } catch (error) {
-          console.log(error)
-          toast.error('Tạo phương pháp học thất bại!')
+          toast.error(error as string)
         } finally {
           setLoading(false)
         }

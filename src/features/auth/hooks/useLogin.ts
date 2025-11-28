@@ -33,7 +33,7 @@ export default function useLogin() {
         toast.success('Login successfully!')
       } catch (error) {
         console.log(error)
-        toast.error('Login fail!')
+        toast.error(error as string)
       } finally {
         setLoading(false)
       }

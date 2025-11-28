@@ -13,8 +13,7 @@ export default function useDeletePersonalStudyMethod() {
         toast.success('Xóa phương pháp học của bạn thành công!')    
         context.getPersonalStudyMethod()
       } catch (error) {
-        console.log(error)
-        toast.error('Xóa phương pháp học của bạn thất bại!')    
+        toast.error(error as string)    
       } finally {
         setLoading(false)
       }

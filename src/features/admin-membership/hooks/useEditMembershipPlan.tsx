@@ -15,8 +15,7 @@ export default function useEditMembershipPlan() {
         const response = await MembershipAdminApi.getMembershipDetail(membershipId)
         setMembershipPlanDetail(response.data)  
       } catch (error) {
-        console.log(error)
-        toast.error('Lấy thông tin chi tiết của gói thất bại')    
+        toast.error(error as string)    
       } finally {
         setLoading(false)
       }
@@ -29,8 +28,7 @@ export default function useEditMembershipPlan() {
               toast.success('Cập nhật gói thành công')
               context.fetchMembershipPlan()
             } catch (error) {
-              console.log(error)
-              toast.error('Cập nhật gói thất bại')
+              toast.error(error as string)
             } finally {
               setLoading(false)
             }

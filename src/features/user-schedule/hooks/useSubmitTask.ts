@@ -10,8 +10,7 @@ export default function useSubmitTask() {
         await ScheduleApi.submitCompleteTask(taskId)
         toast.success('Hoàn thành task thành công')    
       } catch (error) {
-        console.log(error)
-        toast.error('Hoàn thành task thất bại.')    
+        toast.error(error as string)    
       } finally {
         setLoading(false)
       }

@@ -13,8 +13,7 @@ export default function useDeleteMembership() {
         toast.success('Xóa gói thành công')
         context.fetchMembershipPlan()    
       } catch (error) {
-        console.log(error)
-        toast.error('Xóa gói thất bại')    
+        toast.error(error as string)    
       } finally {
         setLoading(false)
       }

@@ -21,8 +21,7 @@ export default function useTestQuiz({ quizId }: UseTestQuizProps) {
       const response = await QuizApi.getQuizDetail(quizId)
       setQuizData(response.data)
     } catch (error) {
-      console.log(error)
-      toast.error('Lấy bài quiz xảy ra lỗi hãy thử lại.')
+      toast.error(error as string)
     } finally {
       setLoading(false)
     }

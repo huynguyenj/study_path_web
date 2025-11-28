@@ -15,8 +15,7 @@ export default function useSubmitTest() {
        toast.success('Submit thành công!')
        navigate(PRIVATE_PATH.TEST.RESULT_QUIZ.replace(':id', response.data.id as string))
      } catch (error) {
-       console.log(error)
-       toast.error('Submit thất bại')
+       toast.error(error as string)
      } finally {
       setLoading(false)
      }

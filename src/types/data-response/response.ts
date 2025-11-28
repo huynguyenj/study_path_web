@@ -12,3 +12,7 @@ export interface PaginationResponse<T> {
     totalPages: number
     items: T[]  
 }
+
+export interface ErrorResponse{ 
+    Message: string
+}

@@ -12,8 +12,7 @@ export default function useDeleteQuiz() {
         await QuizApi.deleteQuiz(quizId)
         context.getListQuizData()    
       } catch (error) {
-        console.log(error)
-        toast.error('Xóa bài kiểm tra thất bại!')    
+        toast.error(error as string)    
       } finally {
         setLoading(false)
       }

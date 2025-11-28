@@ -14,8 +14,7 @@ export default function useEditFeature() {
         const response = await MembershipAdminApi.getFeatureDetail(featureId)
         setFeatureDetail(response.data)    
       } catch (error) {
-        console.log(error)
-        toast.error('Lấy thông tin tính năng thất bại')    
+        toast.error(error as string)    
       } finally {
         setLoading(false)
       }
@@ -28,8 +27,7 @@ export default function useEditFeature() {
         toast.success('Cập nhật tính năng thành công')    
         context.fetchListFeature()
       } catch (error) {
-        console.log(error)
-        toast.error('Cập nhật tính năng thất bại')    
+        toast.error(error as string)    
       } finally {
         setLoading(false)
       }

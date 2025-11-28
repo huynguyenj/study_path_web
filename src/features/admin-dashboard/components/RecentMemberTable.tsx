@@ -2,9 +2,12 @@ import { getVietNameCurrency } from '@/utils/getCurrency'
 import useGetRecentPayments from '../hooks/useGetRecentPayments'
 import CircularProgress from '@mui/material/CircularProgress'
 import { formatDate } from '@/utils/formatDate'
+import PaginationSimple from '@/components/pagination/PaginationSimple'
+import usePagination from '@/hooks/pagination/usePagination'
 
 export default function RecentMemberTable() {
-  const { loading, recentPayments } = useGetRecentPayments()
+  const { currentPage, goBackPage, goToNextPage } = usePagination()
+  const { loading, recentPayments } = useGetRecentPayments(currentPage)
   return (
     <div className='card flex flex-col px-8 py-7 rounded-2xl overflow-x-auto'>
       <h4 className='typography-h4 font-semibold text-[#6c6c80] text-center'>Thanh toán gần đây</h4>
@@ -27,9 +30,9 @@ export default function RecentMemberTable() {
                         </tr>
                         :
                         <>
-                              {recentPayments.length > 0 ? 
+                              {recentPayments?.items ? 
                                     <>
-                                          {recentPayments.map((payment) => (
+                                          {recentPayments.items.map((payment) => (
                                                 <tr key={payment.id}>
                                                       <th className='text-start font-normal py-2'>{payment.userId}</th>
                                                       <th className='text-start font-normal'>{payment.memberShipPlanId}</th>
@@ -52,6 +55,12 @@ export default function RecentMemberTable() {
                   }
             </tbody>
       </table>
+      <PaginationSimple
+            currentPage={currentPage}
+            goBackPage={goBackPage}
+            goToNextPage={goToNextPage}
+            limit={recentPayments?.totalPages || 0}
+      />
     </div>
   )
 }
