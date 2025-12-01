@@ -16,5 +16,5 @@ export const AnalyticApis = {
   },
   getAdminStatistics: async (): Promise<ResponseStructure<AdminStatisticsType>> => apiPrivate.get('/Admin/get-admin-infor'),
   getRevenueByYear: async (year: number): Promise<ResponseStructure<RevenueYearlyType>> => await apiPrivate.get(`/payment/get-payment-of-year?year=${year}`),
-  getRecentPayments: async (currentPage: number): Promise<PaginationResponse<RecentPaymentsType>> => await apiPrivate.get(`/payment/get-recent-payment?pageNumber=${currentPage}&pageSize=5`)
+  getRecentPayments: async (currentPage: number): Promise<ResponseStructure<PaginationResponse<RecentPaymentsType>>> => await apiPrivate.get(`/payment/get-recent-payment?pageNumber=${currentPage}&pageSize=5`)
 }

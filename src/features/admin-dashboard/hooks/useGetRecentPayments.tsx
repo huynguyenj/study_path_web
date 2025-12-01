@@ -10,7 +10,7 @@ export default function useGetRecentPayments(currentPage: number) {
     try {
       setLoading(true)
       const response = await AnalyticApis.getRecentPayments(currentPage)
-      setRecentPayments(response)
+      setRecentPayments(response.data)
     } catch (error) {
       console.log(error)
     } finally {
