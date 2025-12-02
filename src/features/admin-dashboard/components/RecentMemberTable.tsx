@@ -4,10 +4,16 @@ import CircularProgress from '@mui/material/CircularProgress'
 import { formatDate } from '@/utils/formatDate'
 import PaginationSimple from '@/components/pagination/PaginationSimple'
 import usePagination from '@/hooks/pagination/usePagination'
+import { useEffect } from 'react'
 
 export default function RecentMemberTable() {
-  const { currentPage, goBackPage, goToNextPage } = usePagination()
+  const { currentPage, goBackPage, goToNextPage, setTotalPages, totalPages } = usePagination()
   const { loading, recentPayments } = useGetRecentPayments(currentPage)
+  useEffect(() => {
+      if (recentPayments) {
+              setTotalPages(recentPayments.totalPages)
+      }
+  }, [recentPayments])
   return (
     <div className='card flex flex-col px-8 py-7 rounded-2xl overflow-x-auto'>
       <h4 className='typography-h4 font-semibold text-[#6c6c80] text-center'>Thanh toán gần đây</h4>
@@ -59,7 +65,7 @@ export default function RecentMemberTable() {
             currentPage={currentPage}
             goBackPage={goBackPage}
             goToNextPage={goToNextPage}
-            limit={recentPayments?.totalPages || 0}
+            limit={totalPages}
       />
     </div>
   )
