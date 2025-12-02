@@ -5,7 +5,6 @@ export default function usePagination() {
  const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
 
-
    const goToNextPage = () => {
     const nextPage = currentPage + 1
     if (nextPage <= totalPages) {

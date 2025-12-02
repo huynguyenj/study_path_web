@@ -19,7 +19,7 @@ export default function useGetRecentPayments(currentPage: number) {
   }
   useEffect(() => {
       fetchRecentPayments()
-  }, [])
+  }, [currentPage])
   return {
       recentPayments,
       loading
