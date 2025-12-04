@@ -54,6 +54,7 @@ export default function MembershipUpdateModal({ data, onClose }: MembershipUpdat
   
     useEffect(() => {
       fetchMembershipDetail(data.id)
+      setListFeatureChoices(data.features)
     }, [data])
 
   return (
@@ -85,7 +86,7 @@ export default function MembershipUpdateModal({ data, onClose }: MembershipUpdat
                               <div>
                                     <p>Tính năng</p>
                                     {membershipPlanDetail && membershipPlanDetail?.features.length > 0 ?
-                                          <div className='flex gap-2 mt-2'>
+                                          <div className='flex flex-col gap-2 mt-2'>
                                                 {membershipPlanDetail?.features.map((feature) => (
                                                       <Tag key={feature.id} content={feature.name} variant='primary'/>
                                                 ))}
@@ -110,7 +111,7 @@ export default function MembershipUpdateModal({ data, onClose }: MembershipUpdat
                                     </div>
                                  </div>
                                       {listFeatureChoices.length > 0 && 
-                                                <div className='flex gap-2'>
+                                                <div className='flex flex-col gap-2'>
                                                       {listFeatureChoices.map((item, index) => (
                                                       <div key={index} className='relative w-fit cursor-pointer group flex gap-2 items-center'>
                                                             <div className='group-hover:-translate-x-8 transition-all duration-200 ease-in-out gap-2 mt-2'>
