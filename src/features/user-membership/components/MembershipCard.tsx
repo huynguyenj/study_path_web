@@ -24,7 +24,8 @@ export default function MembershipCard({ data }: MembershipCardProps) {
 
 
   return (
-    <div className='card px-10 py-10'>
+    <div className='card w-120 px-10 py-10 flex flex-col items-center'>
+
       <h3 className='typography-h3 font-medium'>{data.name}</h3>
       <h2 className='typography-h2 font-bold'>{getVietNameCurrency(data.fee)} /<span className='typography-p font-normal text-gray-primary'>{data.duration}</span></h2>
       <div className='mt-3'>
@@ -32,7 +33,7 @@ export default function MembershipCard({ data }: MembershipCardProps) {
               Chọn gói thành viên này
         </Button>
       </div>
-      <div className='mt-3'>
+      <div className='mt-3 text-start w-full'>
         {data.features.map((feature) => (
           <div className='typography-p flex items-center mt-2'>
               <CheckCircleIcon/>
