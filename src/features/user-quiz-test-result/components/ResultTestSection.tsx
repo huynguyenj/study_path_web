@@ -36,8 +36,8 @@ export default function ResultTestSection() {
                   <div className='mt-5'>
                         <p className='typography-p font-semibold'>Câu trả lời</p>
                         <div className='flex gap-4'>
-                              <p>Số câu đúng: <span className='bg-gray-300 dark:bg-purple-500 rounded-full p-2'>{(result.accuracy/100)*result.totalQuestion}</span></p>
-                              <p>Số câu sai: <span className='bg-gray-300 dark:bg-purple-500 rounded-full p-2'>{result.totalQuestion - (result.accuracy/100)*result.totalQuestion}</span></p>
+                              <p>Số câu đúng: <span className='bg-gray-300 dark:bg-purple-500 rounded-full p-2'>{Math.round((result.accuracy/100)*result.totalQuestion)}</span></p>
+                              <p>Số câu sai: <span className='bg-gray-300 dark:bg-purple-500 rounded-full p-2'>{Math.round(result.totalQuestion - (result.accuracy/100)*result.totalQuestion)}</span></p>
                         </div>
                          <div className='mt-5'>
                               <Button type='normal' size='md' variant='inactive' onClick={() => navigate(PRIVATE_PATH.USER.QUIZZES)}>
